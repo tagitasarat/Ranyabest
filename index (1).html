@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ร้านยา Best — แคตตาล็อกสินค้า</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F7F5F0; --surface: #FFFFFF; --border: #E2DDD6;
+  --text: #1A1714; --text-muted: #7A746C;
+  --accent: #2D6A4F; --accent-dark: #52B788;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  --thead: #F2EFE9; --row-hover: #FAFAF8; --row-border: #F0EDE8;
+  --transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+[data-theme="dark"] {
+  --bg: #0F1210; --surface: #1A1F1C; --border: #2A332D;
+  --text: #E8F0EB; --text-muted: #7A9082;
+  --accent: #52B788; --accent-dark: #52B788;
+  --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.25);
+  --thead: #141A16; --row-hover: #1F2820; --row-border: #222E26;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Sarabun', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; min-height: 100vh; transition: var(--transition); }
+
+header { background: var(--accent); padding: 1.5rem 1.5rem 1.25rem; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(45,106,79,0.25); transition: var(--transition); }
+.header-inner { max-width: 900px; margin: 0 auto; }
+.header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.shop-title { font-size: 22px; font-weight: 600; color: #fff; }
+.shop-sub { font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+.updated { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+/* dark mode toggle */
+.theme-btn {
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.15);
+  border: none; border-radius: 99px;
+  width: 52px; height: 28px;
+  cursor: pointer; position: relative;
+  transition: background 0.3s;
+  margin-top: 2px;
+}
+.theme-btn:hover { background: rgba(255,255,255,0.25); }
+.theme-btn .knob {
+  position: absolute; top: 4px; left: 4px;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: #fff;
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; line-height: 1;
+}
+[data-theme="dark"] .theme-btn .knob { transform: translateX(24px); }
+
+.search-row { display: flex; gap: 8px; margin-top: 1rem; flex-wrap: wrap; }
+.search-wrap { position: relative; flex: 1; min-width: 200px; }
+.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.5; pointer-events: none; }
+#search { width: 100%; padding: 10px 12px 10px 38px; border: none; border-radius: 10px; font-family: inherit; font-size: 14px; background: rgba(255,255,255,0.15); color: #fff; outline: none; transition: background 0.2s; }
+#search::placeholder { color: rgba(255,255,255,0.55); }
+#search:focus { background: rgba(255,255,255,0.25); }
+select { padding: 10px 14px; border: none; border-radius: 10px; font-family: inherit; font-size: 13px; background: rgba(255,255,255,0.15); color: #fff; outline: none; cursor: pointer; min-width: 140px; }
+select option { color: var(--text); background: #fff; }
+
+.stats-bar { max-width: 900px; margin: 1.25rem auto 0; padding: 0 1.5rem; display: flex; gap: 10px; flex-wrap: wrap; }
+.stat-chip { background: var(--surface); border: 1px solid var(--border); border-radius: 99px; padding: 5px 14px; font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; box-shadow: var(--shadow); transition: var(--transition); }
+.stat-chip strong { color: var(--accent); font-weight: 600; }
+
+.content { max-width: 900px; margin: 0 auto; padding: 1.25rem 1.5rem 3rem; }
+
+.cat-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.cat-pill { padding: 5px 14px; border-radius: 99px; font-size: 12px; font-weight: 500; border: 1.5px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.15s; white-space: nowrap; font-family: inherit; }
+.cat-pill:hover { border-color: var(--accent); color: var(--accent); }
+.cat-pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.count-info { font-size: 13px; color: var(--text-muted); margin-bottom: 1rem; }
+.count-info span { font-weight: 500; color: var(--accent); }
+
+.error-box { background: #FFF0F0; border: 1px solid #FFCDD2; border-radius: 12px; padding: 1rem 1.25rem; color: #7A2510; font-size: 14px; margin-bottom: 1rem; line-height: 1.7; }
+.error-box code { font-size: 12px; background: rgba(0,0,0,0.06); padding: 2px 6px; border-radius: 4px; }
+
+.table-card { background: var(--surface); border-radius: 16px; border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
+table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+col.cn { width: 45%; } col.cc { width: 22%; } col.cp { width: 18%; } col.cu { width: 15%; }
+thead th { background: var(--thead); padding: 11px 16px; text-align: left; font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid var(--border); transition: var(--transition); }
+tbody tr { transition: background 0.1s; }
+tbody tr:hover { background: var(--row-hover); }
+tbody td { padding: 11px 16px; border-bottom: 1px solid var(--row-border); font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: var(--transition); }
+tbody tr:last-child td { border-bottom: none; }
+.cp-val { font-weight: 600; color: var(--accent); text-align: right; }
+.cu-val { color: var(--text-muted); font-size: 13px; text-align: center; }
+.badge { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 500; white-space: nowrap; }
+.b-diabetes{ background:#EBF3FF; color:#1E4D9B; }
+.b-pressure{ background:#E8F7EF; color:#1A5C3A; }
+.b-lipid   { background:#FFF5E6; color:#7A4500; }
+.b-pain    { background:#FFEBE8; color:#7A2510; }
+.b-resp    { background:#EAF7F1; color:#14593A; }
+.b-psych   { background:#F0EEFF; color:#3D2A9E; }
+.b-vitamin { background:#F0FAF4; color:#1B5E35; }
+.b-device  { background:#FFF3E0; color:#7A4200; }
+.b-other   { background:#F2EFE9; color:#5A5248; }
+[data-theme="dark"] .b-diabetes{ background:#0D1F3C; color:#7DAEE8; }
+[data-theme="dark"] .b-pressure{ background:#0D2218; color:#52B788; }
+[data-theme="dark"] .b-lipid   { background:#2A1A00; color:#D4923A; }
+[data-theme="dark"] .b-pain    { background:#2A0D08; color:#E07060; }
+[data-theme="dark"] .b-resp    { background:#0D2218; color:#52B788; }
+[data-theme="dark"] .b-psych   { background:#1A1030; color:#9B85E8; }
+[data-theme="dark"] .b-vitamin { background:#0D2010; color:#52B788; }
+[data-theme="dark"] .b-device  { background:#2A1800; color:#D4923A; }
+[data-theme="dark"] .b-other   { background:#1A1A16; color:#8A9080; }
+
+.state-box { text-align: center; padding: 3rem 1rem; color: var(--text-muted); }
+.spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.state-box p { font-size: 14px; }
+
+footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); transition: var(--transition); }
+
+@media (max-width: 600px) {
+  header { padding: 1.25rem 1rem 1rem; }
+  .content { padding: 1rem 1rem 2rem; }
+  .stats-bar { padding: 0 1rem; }
+  col.cc { width: 0; } thead th:nth-child(2), tbody td:nth-child(2) { display: none; }
+  col.cn { width: 55%; } col.cp { width: 25%; } col.cu { width: 20%; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <div>
+        <div class="shop-title">ร้านยา Best</div>
+        <div class="shop-sub">แคตตาล็อกสินค้า</div>
+        <div class="updated" id="updatedAt"></div>
+      </div>
+      <button class="theme-btn" id="themeBtn" title="เปลี่ยนธีม" onclick="toggleTheme()">
+        <span class="knob" id="themeIcon">☀️</span>
+      </button>
+    </div>
+    <div class="search-row">
+      <div class="search-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="search" placeholder="ค้นหาชื่อยา..." oninput="render()">
+      </div>
+      <select id="catFilter" onchange="setActiveCat(this.value)">
+        <option value="">ทุกหมวด</option>
+        <option value="ยาเบาหวาน">ยาเบาหวาน</option>
+        <option value="ยาความดัน">ยาความดัน</option>
+        <option value="ยาไขมัน">ยาไขมัน</option>
+        <option value="ยาแก้ปวด/ลดไข้">ยาแก้ปวด/ลดไข้</option>
+        <option value="ยาระบบหายใจ">ยาระบบหายใจ</option>
+        <option value="ยาจิตเวช">ยาจิตเวช</option>
+        <option value="วิตามิน/อาหารเสริม">วิตามิน/อาหารเสริม</option>
+        <option value="เครื่องมือแพทย์">เครื่องมือแพทย์</option>
+        <option value="อื่นๆ">อื่นๆ</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-chip">รายการทั้งหมด <strong id="totalCount">—</strong> รายการ</div>
+  <div class="stat-chip">ราคา <strong id="minPrice">—</strong> – <strong id="maxPrice">—</strong> บาท</div>
+</div>
+
+<div class="content">
+  <div class="cat-pills" id="catPills"></div>
+  <div id="errorBox"></div>
+  <div class="count-info" id="countInfo"></div>
+  <div class="table-card">
+    <table>
+      <colgroup><col class="cn"><col class="cc"><col class="cp"><col class="cu"></colgroup>
+      <thead>
+        <tr>
+          <th>รายการยา</th>
+          <th>หมวดหมู่</th>
+          <th style="text-align:right">ราคา</th>
+          <th style="text-align:center">หน่วย</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        <tr><td colspan="4"><div class="state-box"><div class="spinner"></div><p>กำลังโหลดข้อมูลจาก Google Sheets...</p></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer>ร้านยา Best &nbsp;|&nbsp; ราคาอาจมีการเปลี่ยนแปลงโดยไม่แจ้งล่วงหน้า &nbsp;|&nbsp; สอบถามเพิ่มเติมติดต่อร้าน</footer>
+
+<script>
+const SHEET_ID = '1dftli8HX_EU9aNFiv-xPzx7TsO9Ge3Z6CVImc9S8L3A';
+const URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+
+// Dark mode
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.documentElement.setAttribute('data-theme', isDark ? '' : 'dark');
+  document.getElementById('themeIcon').textContent = isDark ? '☀️' : '🌙';
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+}
+const savedTheme = localStorage.getItem('theme') ||
+  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+if (savedTheme === 'dark') {
+  document.documentElement.setAttribute('data-theme', 'dark');
+  document.getElementById('themeIcon').textContent = '🌙';
+}
+
+const CAT_CLASS = {
+  "ยาเบาหวาน":"b-diabetes","ยาความดัน":"b-pressure","ยาไขมัน":"b-lipid",
+  "ยาแก้ปวด/ลดไข้":"b-pain","ยาระบบหายใจ":"b-resp","ยาจิตเวช":"b-psych",
+  "วิตามิน/อาหารเสริม":"b-vitamin","เครื่องมือแพทย์":"b-device","อื่นๆ":"b-other"
+};
+
+function catOf(n) {
+  const l = n.toLowerCase();
+  if (/glucoph|metfor|diamicron|jardiance|januv|janumet|foexiga|glyxabi|glucovia|glizid|glycedieb|ozempic|wegovy|monjaro|rybesus|trajenta|tenelia|sucovia|sitagliptin|zemiglo|zemidapa|oseni|xigduo|favotan|dafomin/.test(l)) return "ยาเบาหวาน";
+  if (/blopress|diovan|exforge|dafiro|lanzaar|losartan|valsartan|micardis|edarbi|caraten|normetec|twynstar|unisia|amlod|amlopine|amlopress|madiplot|manidipin|zandip|felopine|lercardip|tritace|bisoprolol|bisoven|prenolol|metoprolol/.test(l)) return "ยาความดัน";
+  if (/crestor|atorvast|bestatin|chovas|rosucor|lipanthyl|lipostat|mevalotin|pitavast|pravast|surotin|roacta|livalo|atozet|ezetimibe|ezetrol|ezuvas|vytorin|xarator|xatrel|tovastatin|vivacor/.test(l)) return "ยาไขมัน";
+  if (/cemol|bakamol|diclof|volta|napro|probufen|umafen|solufen|ultracet|celxib|b-coxib|exib|torixib|melcalm|mel-od|naproxen|sinprofen|duocet|norgesic/.test(l)) return "ยาแก้ปวด/ลดไข้";
+  if (/anoro|symbicort|seretide|relvar|flixot|salda|busonase|rhinoc|nasonex|momemsa|mometha|aerius|bilaxten|telfast|alerest|deztanex|cetrizine|deslorat|bliztine|lorsedin|loridine|singulair/.test(l)) return "ยาระบบหายใจ";
+  if (/abilify|seroquel|apalife|neutapin|risperidone|deanxit|efexor|escitalop|lexapro|pristiq|voldoxan|duloz|quantia|trazadone/.test(l)) return "ยาจิตเวช";
+  if (/^mega |^maxxlife |^everest |vitamin|calcium|fish oil|collagen|probiotic|glucosamine|bioactive|albumin|albu quick|lamoon|bioflor|caltab/.test(l)) return "วิตามิน/อาหารเสริม";
+  if (/yuwell|accucheck|contour|rossmax|nipro|bd ultra|oral quick|เครื่อง/.test(l)) return "เครื่องมือแพทย์";
+  return "อื่นๆ";
+}
+
+const CATS = ["ทุกหมวด","ยาเบาหวาน","ยาความดัน","ยาไขมัน","ยาแก้ปวด/ลดไข้","ยาระบบหายใจ","ยาจิตเวช","วิตามิน/อาหารเสริม","เครื่องมือแพทย์","อื่นๆ"];
+let allData = [], activeCat = "";
+
+const pillsEl = document.getElementById('catPills');
+CATS.forEach(c => {
+  const btn = document.createElement('button');
+  btn.className = 'cat-pill' + (c === "ทุกหมวด" ? ' active' : '');
+  btn.textContent = c;
+  btn.onclick = () => setActiveCat(c === "ทุกหมวด" ? "" : c);
+  pillsEl.appendChild(btn);
+});
+
+function setActiveCat(val) {
+  activeCat = val;
+  document.getElementById('catFilter').value = val;
+  document.querySelectorAll('.cat-pill').forEach(el => {
+    el.classList.toggle('active', val === "" ? el.textContent === "ทุกหมวด" : el.textContent === val);
+  });
+  render();
+}
+
+async function loadSheet() {
+  try {
+    const res = await fetch(URL);
+    const text = await res.text();
+    const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);?\s*$/)[1]);
+    const rows = json.table.rows || [];
+
+    allData = rows.map(r => ({
+      name:  (r.c[0]?.v ?? '').toString().trim(),
+      price:  r.c[1]?.v ?? r.c[1]?.f ?? '',
+      unit:  (r.c[2]?.v ?? '').toString().trim(),
+    }))
+    .filter(d => d.name && !['รายการ','ชื่อยา','name'].includes(d.name.toLowerCase()))
+    .map(d => ({ ...d, category: catOf(d.name) }));
+
+    const nums = allData.map(d => d.price).filter(p => typeof p === 'number' && p > 0);
+    document.getElementById('totalCount').textContent = allData.length.toLocaleString();
+    document.getElementById('minPrice').textContent   = Math.min(...nums).toLocaleString();
+    document.getElementById('maxPrice').textContent   = Math.max(...nums).toLocaleString();
+    document.getElementById('updatedAt').textContent  =
+      'โหลดข้อมูลเมื่อ ' + new Date().toLocaleString('th-TH', {day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+
+    render();
+  } catch(e) {
+    document.getElementById('tbody').innerHTML = '';
+    document.getElementById('errorBox').innerHTML = `
+      <div class="error-box">
+        ⚠️ <strong>โหลดข้อมูลไม่ได้</strong> — กรุณาตรวจสอบ:<br>
+        1. เปิด Google Sheets → Share → เปลี่ยนเป็น <strong>"Anyone with the link"</strong><br>
+        2. รีเฟรชหน้านี้อีกครั้ง<br>
+        <code>${e.message}</code>
+      </div>`;
+  }
+}
+
+function render() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const filtered = allData.filter(d =>
+    (!q || d.name.toLowerCase().includes(q)) &&
+    (!activeCat || d.category === activeCat)
+  );
+  document.getElementById('countInfo').innerHTML =
+    `แสดง <span>${filtered.length.toLocaleString()}</span> รายการ จากทั้งหมด ${allData.length.toLocaleString()} รายการ`;
+
+  const tbody = document.getElementById('tbody');
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="4"><div class="state-box"><p>ไม่พบรายการที่ค้นหา</p></div></td></tr>';
+    return;
+  }
+  tbody.innerHTML = filtered.map(d => {
+    const p = typeof d.price === 'number'
+      ? d.price.toLocaleString() + ' ฿'
+      : (d.price || 'สอบถามราคา');
+    return `<tr>
+      <td title="${d.name}">${d.name}</td>
+      <td><span class="badge ${CAT_CLASS[d.category]||'b-other'}">${d.category}</span></td>
+      <td class="cp-val">${p}</td>
+      <td class="cu-val">${d.unit}</td>
+    </tr>`;
+  }).join('');
+}
+
+loadSheet();
+</script>
+</body>
+</html>
