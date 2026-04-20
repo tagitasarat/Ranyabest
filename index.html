@@ -190,7 +190,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
 
 <script>
 const SHEET_ID = '1dftli8HX_EU9aNFiv-xPzx7TsO9Ge3Z6CVImc9S8L3A';
-const URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
 
 // Dark mode
 function toggleTheme() {
@@ -246,20 +246,34 @@ function setActiveCat(val) {
   render();
 }
 
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  const result = [];
+  for (let i = 1; i < lines.length; i++) {
+    const cols = [];
+    let cur = '', inQ = false;
+    for (const ch of lines[i]) {
+      if (ch === '"') { inQ = !inQ; }
+      else if (ch === ',' && !inQ) { cols.push(cur.trim()); cur = ''; }
+      else { cur += ch; }
+    }
+    cols.push(cur.trim());
+    const name  = (cols[0] || '').replace(/^"|"$/g, '').trim();
+    const price = parseFloat((cols[1] || '').replace(/,/g, '')) || cols[1] || '';
+    const unit  = (cols[2] || '').replace(/^"|"$/g, '').trim();
+    if (name && !['รายการ','ชื่อยา','name'].includes(name.toLowerCase())) {
+      result.push({ name, price, unit, category: catOf(name) });
+    }
+  }
+  return result;
+}
+
 async function loadSheet() {
   try {
-    const res = await fetch(URL);
+    const res = await fetch(CSV_URL, { redirect: 'follow' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const text = await res.text();
-    const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);?\s*$/)[1]);
-    const rows = json.table.rows || [];
-
-    allData = rows.map(r => ({
-      name:  (r.c[0]?.v ?? '').toString().trim(),
-      price:  r.c[1]?.v ?? r.c[1]?.f ?? '',
-      unit:  (r.c[2]?.v ?? '').toString().trim(),
-    }))
-    .filter(d => d.name && !['รายการ','ชื่อยา','name'].includes(d.name.toLowerCase()))
-    .map(d => ({ ...d, category: catOf(d.name) }));
+    allData = parseCSV(text);
 
     const nums = allData.map(d => d.price).filter(p => typeof p === 'number' && p > 0);
     document.getElementById('totalCount').textContent = allData.length.toLocaleString();
@@ -267,7 +281,6 @@ async function loadSheet() {
     document.getElementById('maxPrice').textContent   = Math.max(...nums).toLocaleString();
     document.getElementById('updatedAt').textContent  =
       'โหลดข้อมูลเมื่อ ' + new Date().toLocaleString('th-TH', {day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
-
     render();
   } catch(e) {
     document.getElementById('tbody').innerHTML = '';
