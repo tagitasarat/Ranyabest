@@ -97,6 +97,7 @@ tbody tr:last-child td { border-bottom: none; }
 .b-psych   { background:#F0EEFF; color:#3D2A9E; }
 .b-vitamin { background:#F0FAF4; color:#1B5E35; }
 .b-device  { background:#FFF3E0; color:#7A4200; }
+.b-gi      { background:#FFF8E6; color:#7A5500; }
 .b-other   { background:#F2EFE9; color:#5A5248; }
 [data-theme="dark"] .b-diabetes{ background:#0D1F3C; color:#7DAEE8; }
 [data-theme="dark"] .b-pressure{ background:#0D2218; color:#52B788; }
@@ -106,6 +107,7 @@ tbody tr:last-child td { border-bottom: none; }
 [data-theme="dark"] .b-psych   { background:#1A1030; color:#9B85E8; }
 [data-theme="dark"] .b-vitamin { background:#0D2010; color:#52B788; }
 [data-theme="dark"] .b-device  { background:#2A1800; color:#D4923A; }
+[data-theme="dark"] .b-gi      { background:#2A1E00; color:#D4A830; }
 [data-theme="dark"] .b-other   { background:#1A1A16; color:#8A9080; }
 
 .state-box { text-align: center; padding: 3rem 1rem; color: var(--text-muted); }
@@ -119,11 +121,13 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
   header { padding: 1.25rem 1rem 1rem; }
   .content { padding: 1rem 1rem 2rem; }
   .stats-bar { padding: 0 1rem; }
-  .table-card { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  table { min-width: 460px; table-layout: fixed; }
-  col.cn { width: 190px; } col.cp { width: 90px; } col.cc { width: 110px; } col.cu { width: 70px; }
-  .scroll-hint { display: flex; }
-  thead th, tbody td { padding: 10px 10px; }
+  .table-card { overflow: hidden; }
+  table { min-width: unset; width: 100%; table-layout: fixed; }
+  col.cn { width: 65%; } col.cp { width: 35%; } col.cc { width: 0; } col.cu { width: 0; }
+  thead th:nth-child(3), tbody td:nth-child(3),
+  thead th:nth-child(4), tbody td:nth-child(4) { display: none; }
+  thead th, tbody td { padding: 10px 12px; }
+  .scroll-hint { display: none; }
 }
 .scroll-hint {
   display: none;
@@ -163,6 +167,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
         <option value="ยาแก้ปวด/ลดไข้">ยาแก้ปวด/ลดไข้</option>
         <option value="ยาระบบหายใจ">ยาระบบหายใจ</option>
         <option value="ยาจิตเวช">ยาจิตเวช</option>
+        <option value="ยาระบบทางเดินอาหาร">ยาระบบทางเดินอาหาร</option>
         <option value="วิตามิน/อาหารเสริม">วิตามิน/อาหารเสริม</option>
         <option value="เครื่องมือแพทย์">เครื่องมือแพทย์</option>
         <option value="อื่นๆ">อื่นๆ</option>
@@ -224,7 +229,8 @@ if (savedTheme === 'dark') {
 const CAT_CLASS = {
   "ยาเบาหวาน":"b-diabetes","ยาความดัน":"b-pressure","ยาไขมัน":"b-lipid",
   "ยาแก้ปวด/ลดไข้":"b-pain","ยาระบบหายใจ":"b-resp","ยาจิตเวช":"b-psych",
-  "วิตามิน/อาหารเสริม":"b-vitamin","เครื่องมือแพทย์":"b-device","อื่นๆ":"b-other"
+  "วิตามิน/อาหารเสริม":"b-vitamin","เครื่องมือแพทย์":"b-device",
+  "ยาระบบทางเดินอาหาร":"b-gi","อื่นๆ":"b-other"
 };
 
 function catOf(n) {
@@ -235,12 +241,13 @@ function catOf(n) {
   if (/cemol|bakamol|diclof|volta|napro|probufen|umafen|solufen|ultracet|celxib|b-coxib|exib|torixib|melcalm|mel-od|naproxen|sinprofen|duocet|norgesic/.test(l)) return "ยาแก้ปวด/ลดไข้";
   if (/anoro|symbicort|seretide|relvar|flixot|salda|busonase|rhinoc|nasonex|momemsa|mometha|aerius|bilaxten|telfast|alerest|deztanex|cetrizine|deslorat|bliztine|lorsedin|loridine|singulair/.test(l)) return "ยาระบบหายใจ";
   if (/abilify|seroquel|apalife|neutapin|risperidone|deanxit|efexor|escitalop|lexapro|pristiq|voldoxan|duloz|quantia|trazadone/.test(l)) return "ยาจิตเวช";
+  if (/nexium|buscopan|omeprazole|pantoprazole|pariet|controloc|axiago|taprazole|miracid|gasmotin|domperidone|smecta|gaviscon|colpermin|eno|kremil|dexilant|prevacid|sucralfate|ulcefate|mucosta|diasgest|motilium|spasmex|cencopan|corilax/.test(l)) return "ยาระบบทางเดินอาหาร";
   if (/^mega |^maxxlife |^everest |vitamin|calcium|fish oil|collagen|probiotic|glucosamine|bioactive|albumin|albu quick|lamoon|bioflor|caltab/.test(l)) return "วิตามิน/อาหารเสริม";
   if (/yuwell|accucheck|contour|rossmax|nipro|bd ultra|oral quick|เครื่อง/.test(l)) return "เครื่องมือแพทย์";
   return "อื่นๆ";
 }
 
-const CATS = ["ทุกหมวด","ยาเบาหวาน","ยาความดัน","ยาไขมัน","ยาแก้ปวด/ลดไข้","ยาระบบหายใจ","ยาจิตเวช","วิตามิน/อาหารเสริม","เครื่องมือแพทย์","อื่นๆ"];
+const CATS = ["ทุกหมวด","ยาเบาหวาน","ยาความดัน","ยาไขมัน","ยาแก้ปวด/ลดไข้","ยาระบบหายใจ","ยาจิตเวช","ยาระบบทางเดินอาหาร","วิตามิน/อาหารเสริม","เครื่องมือแพทย์","อื่นๆ"];
 let allData = [], activeCat = "";
 
 const pillsEl = document.getElementById('catPills');
