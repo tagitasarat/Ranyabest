@@ -80,7 +80,7 @@ select option { color: var(--text); background: #fff; }
 
 .table-card { background: var(--surface); border-radius: 16px; border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
 table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-col.cn { width: 45%; } col.cc { width: 22%; } col.cp { width: 18%; } col.cu { width: 15%; }
+col.cn { width: 42%; } col.cp { width: 16%; } col.cc { width: 28%; } col.cu { width: 14%; }
 thead th { background: var(--thead); padding: 11px 16px; text-align: left; font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid var(--border); transition: var(--transition); }
 tbody tr { transition: background 0.1s; }
 tbody tr:hover { background: var(--row-hover); }
@@ -119,8 +119,19 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
   header { padding: 1.25rem 1rem 1rem; }
   .content { padding: 1rem 1rem 2rem; }
   .stats-bar { padding: 0 1rem; }
-  col.cc { width: 0; } thead th:nth-child(2), tbody td:nth-child(2) { display: none; }
-  col.cn { width: 55%; } col.cp { width: 25%; } col.cu { width: 20%; }
+  .table-card { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { min-width: 520px; table-layout: auto; }
+  col.cn { width: 200px; } col.cp { width: 100px; } col.cc { width: 130px; } col.cu { width: 80px; }
+  .scroll-hint { display: flex; }
+}
+.scroll-hint {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  padding-left: 2px;
 }
 </style>
 </head>
@@ -168,14 +179,18 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
   <div class="cat-pills" id="catPills"></div>
   <div id="errorBox"></div>
   <div class="count-info" id="countInfo"></div>
+  <div class="scroll-hint">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    เลื่อนซ้าย-ขวาเพื่อดูข้อมูลเพิ่มเติม
+  </div>
   <div class="table-card">
     <table>
-      <colgroup><col class="cn"><col class="cc"><col class="cp"><col class="cu"></colgroup>
+      <colgroup><col class="cn"><col class="cp"><col class="cc"><col class="cu"></colgroup>
       <thead>
         <tr>
           <th>รายการยา</th>
-          <th>หมวดหมู่</th>
           <th style="text-align:right">ราคา</th>
+          <th>หมวดหมู่</th>
           <th style="text-align:center">หน่วย</th>
         </tr>
       </thead>
@@ -189,8 +204,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
 <footer>ร้านยา Best &nbsp;|&nbsp; ราคาอาจมีการเปลี่ยนแปลงโดยไม่แจ้งล่วงหน้า &nbsp;|&nbsp; สอบถามเพิ่มเติมติดต่อร้าน</footer>
 
 <script>
-const SHEET_ID = '1dftli8HX_EU9aNFiv-xPzx7TsO9Ge3Z6CVImc9S8L3A';
-const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
+const API_URL = 'https://script.google.com/macros/s/AKfycbwOM15N23AIDPEZ-CIi8WIQyU_oR7-XptW5LIVjb8Vl5tTlPGBqxyfp_jaYDCw_L8ii/exec';
 
 // Dark mode
 function toggleTheme() {
@@ -246,34 +260,20 @@ function setActiveCat(val) {
   render();
 }
 
-function parseCSV(text) {
-  const lines = text.trim().split('\n');
-  const result = [];
-  for (let i = 1; i < lines.length; i++) {
-    const cols = [];
-    let cur = '', inQ = false;
-    for (const ch of lines[i]) {
-      if (ch === '"') { inQ = !inQ; }
-      else if (ch === ',' && !inQ) { cols.push(cur.trim()); cur = ''; }
-      else { cur += ch; }
-    }
-    cols.push(cur.trim());
-    const name  = (cols[0] || '').replace(/^"|"$/g, '').trim();
-    const price = parseFloat((cols[1] || '').replace(/,/g, '')) || cols[1] || '';
-    const unit  = (cols[2] || '').replace(/^"|"$/g, '').trim();
-    if (name && !['รายการ','ชื่อยา','name'].includes(name.toLowerCase())) {
-      result.push({ name, price, unit, category: catOf(name) });
-    }
-  }
-  return result;
-}
-
 async function loadSheet() {
   try {
-    const res = await fetch(CSV_URL, { redirect: 'follow' });
+    const res = await fetch(API_URL);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const text = await res.text();
-    allData = parseCSV(text);
+    const json = await res.json();
+
+    allData = json
+      .filter(r => r.name && r.name.toString().trim() !== '')
+      .map(r => ({
+        name:  r.name.toString().trim(),
+        price: typeof r.price === 'number' ? r.price : parseFloat(r.price) || r.price || '',
+        unit:  (r.unit || '').toString().trim(),
+        category: catOf(r.name.toString().trim())
+      }));
 
     const nums = allData.map(d => d.price).filter(p => typeof p === 'number' && p > 0);
     document.getElementById('totalCount').textContent = allData.length.toLocaleString();
@@ -286,9 +286,7 @@ async function loadSheet() {
     document.getElementById('tbody').innerHTML = '';
     document.getElementById('errorBox').innerHTML = `
       <div class="error-box">
-        ⚠️ <strong>โหลดข้อมูลไม่ได้</strong> — กรุณาตรวจสอบ:<br>
-        1. เปิด Google Sheets → Share → เปลี่ยนเป็น <strong>"Anyone with the link"</strong><br>
-        2. รีเฟรชหน้านี้อีกครั้ง<br>
+        ⚠️ <strong>โหลดข้อมูลไม่ได้</strong> — กรุณาลองรีเฟรชใหม่<br>
         <code>${e.message}</code>
       </div>`;
   }
@@ -314,8 +312,8 @@ function render() {
       : (d.price || 'สอบถามราคา');
     return `<tr>
       <td title="${d.name}">${d.name}</td>
-      <td><span class="badge ${CAT_CLASS[d.category]||'b-other'}">${d.category}</span></td>
       <td class="cp-val">${p}</td>
+      <td><span class="badge ${CAT_CLASS[d.category]||'b-other'}">${d.category}</span></td>
       <td class="cu-val">${d.unit}</td>
     </tr>`;
   }).join('');
