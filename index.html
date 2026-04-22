@@ -80,7 +80,7 @@ select option { color: var(--text); background: #fff; }
 
 .table-card { background: var(--surface); border-radius: 16px; border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
 table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-col.cn { width: 42%; } col.cp { width: 16%; } col.cc { width: 28%; } col.cu { width: 14%; }
+col.cn { width: 42%; } col.cp { width: 14%; } col.cu { width: 12%; } col.cc { width: 32%; }
 thead th { background: var(--thead); padding: 11px 16px; text-align: left; font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid var(--border); transition: var(--transition); }
 tbody tr { transition: background 0.1s; }
 tbody tr:hover { background: var(--row-hover); }
@@ -98,6 +98,8 @@ tbody tr:last-child td { border-bottom: none; }
 .b-vitamin { background:#F0FAF4; color:#1B5E35; }
 .b-device  { background:#FFF3E0; color:#7A4200; }
 .b-gi      { background:#FFF8E6; color:#7A5500; }
+.b-maxxlife{ background:#E8F0FF; color:#1A3A8F; }
+.b-mega    { background:#FFE8F5; color:#8F1A5A; }
 .b-other   { background:#F2EFE9; color:#5A5248; }
 [data-theme="dark"] .b-diabetes{ background:#0D1F3C; color:#7DAEE8; }
 [data-theme="dark"] .b-pressure{ background:#0D2218; color:#52B788; }
@@ -108,6 +110,8 @@ tbody tr:last-child td { border-bottom: none; }
 [data-theme="dark"] .b-vitamin { background:#0D2010; color:#52B788; }
 [data-theme="dark"] .b-device  { background:#2A1800; color:#D4923A; }
 [data-theme="dark"] .b-gi      { background:#2A1E00; color:#D4A830; }
+[data-theme="dark"] .b-maxxlife{ background:#0D1A3C; color:#7A9AE8; }
+[data-theme="dark"] .b-mega    { background:#3C0D25; color:#E87AB0; }
 [data-theme="dark"] .b-other   { background:#1A1A16; color:#8A9080; }
 
 .state-box { text-align: center; padding: 3rem 1rem; color: var(--text-muted); }
@@ -123,7 +127,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
   .stats-bar { padding: 0 1rem; }
   .table-card { overflow: hidden; }
   table { min-width: unset; width: 100%; table-layout: fixed; }
-  col.cn { width: 65%; } col.cp { width: 35%; } col.cc { width: 0; } col.cu { width: 0; }
+  col.cn { width: 65%; } col.cp { width: 35%; } col.cu { width: 0; } col.cc { width: 0; }
   thead th:nth-child(3), tbody td:nth-child(3),
   thead th:nth-child(4), tbody td:nth-child(4) { display: none; }
   thead th, tbody td { padding: 10px 12px; }
@@ -161,6 +165,8 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       </div>
       <select id="catFilter" onchange="setActiveCat(this.value)">
         <option value="">ทุกหมวด</option>
+        <option value="MaxxLife">MaxxLife</option>
+        <option value="Mega">Mega</option>
         <option value="ยาเบาหวาน">ยาเบาหวาน</option>
         <option value="ยาความดัน">ยาความดัน</option>
         <option value="ยาไขมัน">ยาไขมัน</option>
@@ -191,13 +197,13 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
   </div>
   <div class="table-card">
     <table>
-      <colgroup><col class="cn"><col class="cp"><col class="cc"><col class="cu"></colgroup>
+      <colgroup><col class="cn"><col class="cp"><col class="cu"><col class="cc"></colgroup>
       <thead>
         <tr>
           <th>รายการยา</th>
           <th style="text-align:right">ราคา</th>
-          <th>หมวดหมู่</th>
           <th style="text-align:center">หน่วย</th>
+          <th>หมวดหมู่</th>
         </tr>
       </thead>
       <tbody id="tbody">
@@ -229,12 +235,14 @@ if (savedTheme === 'dark') {
 const CAT_CLASS = {
   "ยาเบาหวาน":"b-diabetes","ยาความดัน":"b-pressure","ยาไขมัน":"b-lipid",
   "ยาแก้ปวด/ลดไข้":"b-pain","ยาระบบหายใจ":"b-resp","ยาจิตเวช":"b-psych",
-  "วิตามิน/อาหารเสริม":"b-vitamin","เครื่องมือแพทย์":"b-device",
-  "ยาระบบทางเดินอาหาร":"b-gi","อื่นๆ":"b-other"
+  "ยาระบบทางเดินอาหาร":"b-gi","วิตามิน/อาหารเสริม":"b-vitamin",
+  "เครื่องมือแพทย์":"b-device","MaxxLife":"b-maxxlife","Mega":"b-mega","อื่นๆ":"b-other"
 };
 
 function catOf(n) {
   const l = n.toLowerCase();
+  if (/^maxxlife/.test(l)) return "MaxxLife";
+  if (/^mega /.test(l)) return "Mega";
   if (/glucoph|metfor|diamicron|jardiance|januv|janumet|foexiga|glyxabi|glucovia|glizid|glycedieb|ozempic|wegovy|monjaro|rybesus|trajenta|tenelia|sucovia|sitagliptin|zemiglo|zemidapa|oseni|xigduo|favotan|dafomin/.test(l)) return "ยาเบาหวาน";
   if (/blopress|diovan|exforge|dafiro|lanzaar|losartan|valsartan|micardis|edarbi|caraten|normetec|twynstar|unisia|amlod|amlopine|amlopress|madiplot|manidipin|zandip|felopine|lercardip|tritace|bisoprolol|bisoven|prenolol|metoprolol/.test(l)) return "ยาความดัน";
   if (/crestor|atorvast|bestatin|chovas|rosucor|lipanthyl|lipostat|mevalotin|pitavast|pravast|surotin|roacta|livalo|atozet|ezetimibe|ezetrol|ezuvas|vytorin|xarator|xatrel|tovastatin|vivacor/.test(l)) return "ยาไขมัน";
@@ -242,12 +250,12 @@ function catOf(n) {
   if (/anoro|symbicort|seretide|relvar|flixot|salda|busonase|rhinoc|nasonex|momemsa|mometha|aerius|bilaxten|telfast|alerest|deztanex|cetrizine|deslorat|bliztine|lorsedin|loridine|singulair/.test(l)) return "ยาระบบหายใจ";
   if (/abilify|seroquel|apalife|neutapin|risperidone|deanxit|efexor|escitalop|lexapro|pristiq|voldoxan|duloz|quantia|trazadone/.test(l)) return "ยาจิตเวช";
   if (/nexium|buscopan|omeprazole|pantoprazole|pariet|controloc|axiago|taprazole|miracid|gasmotin|domperidone|smecta|gaviscon|colpermin|eno|kremil|dexilant|prevacid|sucralfate|ulcefate|mucosta|diasgest|motilium|spasmex|cencopan|corilax/.test(l)) return "ยาระบบทางเดินอาหาร";
-  if (/^mega |^maxxlife |^everest |vitamin|calcium|fish oil|collagen|probiotic|glucosamine|bioactive|albumin|albu quick|lamoon|bioflor|caltab/.test(l)) return "วิตามิน/อาหารเสริม";
+  if (/^everest |vitamin|calcium|fish oil|collagen|probiotic|glucosamine|bioactive|albumin|albu quick|lamoon|bioflor|caltab/.test(l)) return "วิตามิน/อาหารเสริม";
   if (/yuwell|accucheck|contour|rossmax|nipro|bd ultra|oral quick|เครื่อง/.test(l)) return "เครื่องมือแพทย์";
   return "อื่นๆ";
 }
 
-const CATS = ["ทุกหมวด","ยาเบาหวาน","ยาความดัน","ยาไขมัน","ยาแก้ปวด/ลดไข้","ยาระบบหายใจ","ยาจิตเวช","ยาระบบทางเดินอาหาร","วิตามิน/อาหารเสริม","เครื่องมือแพทย์","อื่นๆ"];
+const CATS = ["ทุกหมวด","MaxxLife","Mega","ยาเบาหวาน","ยาความดัน","ยาไขมัน","ยาแก้ปวด/ลดไข้","ยาระบบหายใจ","ยาจิตเวช","ยาระบบทางเดินอาหาร","วิตามิน/อาหารเสริม","เครื่องมือแพทย์","อื่นๆ"];
 let allData = [], activeCat = "";
 
 const pillsEl = document.getElementById('catPills');
@@ -321,8 +329,8 @@ function render() {
     return `<tr>
       <td title="${d.name}">${d.name}</td>
       <td class="cp-val">${p}</td>
-      <td><span class="badge ${CAT_CLASS[d.category]||'b-other'}">${d.category}</span></td>
       <td class="cu-val">${d.unit}</td>
+      <td><span class="badge ${CAT_CLASS[d.category]||'b-other'}">${d.category}</span></td>
     </tr>`;
   }).join('');
 }
