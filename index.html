@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///C:/Users/acer/Downloads/index_3.html -->
+<!-- saved from url=(0044)file:///C:/Users/acer/Downloads/index_5.html -->
 <html lang="th" data-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -164,6 +164,38 @@ tbody tr:last-child td { border-bottom: none; }
 .btn-clear { padding: 10px 14px; border-radius: 10px; border: 1.5px solid var(--border); background: transparent; color: var(--text-muted); font-family: inherit; font-size: 14px; cursor: pointer; transition: all 0.15s; }
 .btn-clear:hover { border-color: #E07060; color: #E07060; }
 
+/* ORDER POPUP */
+.popup-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 400;
+  display: flex; align-items: center; justify-content: center; padding: 1rem;
+  opacity: 0; pointer-events: none; transition: opacity 0.25s;
+}
+.popup-overlay.open { opacity: 1; pointer-events: all; }
+.popup-box {
+  background: var(--surface); border-radius: 16px; width: 100%; max-width: 420px;
+  max-height: 90vh; overflow-y: auto; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  transform: translateY(20px); transition: transform 0.25s;
+}
+.popup-overlay.open .popup-box { transform: translateY(0); }
+.popup-head { padding: 1.25rem 1.25rem 0.75rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.popup-head h3 { font-size: 16px; font-weight: 600; }
+.popup-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-muted); }
+.popup-body { padding: 1.25rem; }
+.form-group { margin-bottom: 1rem; }
+.form-label { font-size: 13px; font-weight: 500; color: var(--text-muted); margin-bottom: 4px; display: block; }
+.form-input {
+  width: 100%; padding: 10px 14px; border: 1.5px solid var(--border);
+  border-radius: 10px; font-family: inherit; font-size: 14px;
+  background: var(--bg); color: var(--text); outline: none; transition: border-color 0.15s;
+}
+.form-input:focus { border-color: var(--accent); }
+textarea.form-input { resize: vertical; min-height: 80px; }
+.order-summary { background: var(--bg); border-radius: 10px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 13px; color: var(--text-muted); line-height: 1.8; }
+.order-summary strong { color: var(--accent); font-size: 16px; }
+.btn-confirm { width: 100%; padding: 12px; border-radius: 10px; border: none; background: var(--accent); color: #fff; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
+.btn-confirm:hover { opacity: 0.85; }
+.btn-confirm:disabled { opacity: 0.5; cursor: not-allowed; }
+
 /* COPY TOAST */
 .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1A1714; color: #fff; padding: 10px 20px; border-radius: 99px; font-size: 13px; opacity: 0; transition: all 0.3s; pointer-events: none; z-index: 300; white-space: nowrap; }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -198,11 +230,11 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <div>
         <div class="shop-title">ร้านยา Best</div>
         <div class="shop-sub">แคตตาล็อกสินค้า</div>
-        <div class="updated" id="updatedAt">โหลดข้อมูลเมื่อ 24 เม.ย. 2569 21:09</div>
+        <div class="updated" id="updatedAt">โหลดข้อมูลเมื่อ 25 เม.ย. 2569 16:43</div>
       </div>
       <div class="header-actions">
         <button class="cart-btn-header" onclick="toggleCart()">
-          🛒 ตะกร้า <span class="cart-badge" id="cartBadge">0</span>
+          🛒 ตะกร้า <span class="cart-badge show" id="cartBadge">3</span>
         </button>
         <button class="theme-btn" onclick="toggleTheme()">
           <span class="knob" id="themeIcon">🌙</span>
@@ -717,15 +749,15 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <button class="add-btn" onclick="addFromRow(&#39;Apixaban_Sandoz_5_mg&#39;,&#39;Apixaban Sandoz 5 mg&#39;,1750,&#39;กล่อง&#39;)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
-      <td title="Artodar 9x10">Artodar 9x10</td>
+      <td title="Artrodar 9x10">Artrodar 9x10</td>
       <td class="cp-val">1,400 ฿</td>
       <td class="cu-val">กล่อง</td>
       <td><span class="badge b-other">อื่นๆ</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
-          <button class="qty-btn" onclick="changeQty(&#39;Artodar_9x10&#39;,-1)">−</button>
-          <input class="qty-input" id="qty_Artodar_9x10" type="number" value="1" min="1" max="999">
-          <button class="qty-btn" onclick="changeQty(&#39;Artodar_9x10&#39;,1)">+</button>
-          <button class="add-btn" onclick="addFromRow(&#39;Artodar_9x10&#39;,&#39;Artodar 9x10&#39;,1400,&#39;กล่อง&#39;)">+ ตะกร้า</button>
+          <button class="qty-btn" onclick="changeQty(&#39;Artrodar_9x10&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_Artrodar_9x10" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;Artrodar_9x10&#39;,1)">+</button>
+          <button class="add-btn" onclick="addFromRow(&#39;Artrodar_9x10&#39;,&#39;Artrodar 9x10&#39;,1400,&#39;กล่อง&#39;)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td title="Astair 10 mg">Astair 10 mg</td>
@@ -7626,27 +7658,88 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
     <div class="cart-title">🛒 ตะกร้าสินค้า</div>
     <button class="cart-close" onclick="toggleCart()">✕</button>
   </div>
-  <div class="cart-body" id="cartBody">
-    <div class="cart-empty">ยังไม่มีสินค้าในตะกร้า</div>
-  </div>
+  <div class="cart-body" id="cartBody"><div class="cart-item">
+      <div class="cart-item-name">
+        Abilify 5 mg
+        <small>กล่อง · 2,650 ฿/กล่อง</small>
+      </div>
+      <div class="cart-item-qty">
+        <button class="qty-btn" onclick="updateCartQty(&#39;Abilify_5_mg&#39;, -1)">−</button>
+        <span style="min-width:28px;text-align:center;font-weight:500">1</span>
+        <button class="qty-btn" onclick="updateCartQty(&#39;Abilify_5_mg&#39;, 1)">+</button>
+      </div>
+      <div class="cart-item-price">2,650 ฿</div>
+      <button class="cart-remove" onclick="removeFromCart(&#39;Abilify_5_mg&#39;)">🗑</button>
+    </div><div class="cart-item">
+      <div class="cart-item-name">
+        Accu-Check Safe-T-Pro UNO
+        <small>กล่อง · 650 ฿/กล่อง</small>
+      </div>
+      <div class="cart-item-qty">
+        <button class="qty-btn" onclick="updateCartQty(&#39;Accu-Check_Safe-T-Pro_UNO&#39;, -1)">−</button>
+        <span style="min-width:28px;text-align:center;font-weight:500">1</span>
+        <button class="qty-btn" onclick="updateCartQty(&#39;Accu-Check_Safe-T-Pro_UNO&#39;, 1)">+</button>
+      </div>
+      <div class="cart-item-price">650 ฿</div>
+      <button class="cart-remove" onclick="removeFromCart(&#39;Accu-Check_Safe-T-Pro_UNO&#39;)">🗑</button>
+    </div><div class="cart-item">
+      <div class="cart-item-name">
+        Accu-Check Instant 25 strips
+        <small>กล่อง · 425 ฿/กล่อง</small>
+      </div>
+      <div class="cart-item-qty">
+        <button class="qty-btn" onclick="updateCartQty(&#39;Accu-Check_Instant_25_strips&#39;, -1)">−</button>
+        <span style="min-width:28px;text-align:center;font-weight:500">1</span>
+        <button class="qty-btn" onclick="updateCartQty(&#39;Accu-Check_Instant_25_strips&#39;, 1)">+</button>
+      </div>
+      <div class="cart-item-price">425 ฿</div>
+      <button class="cart-remove" onclick="removeFromCart(&#39;Accu-Check_Instant_25_strips&#39;)">🗑</button>
+    </div></div>
   <div class="cart-footer">
     <div class="cart-summary">
       <div class="cart-total-label">ยอดรวมทั้งหมด</div>
-      <div class="cart-total-val" id="cartTotal">0 ฿</div>
+      <div class="cart-total-val" id="cartTotal">3,725 ฿</div>
     </div>
     <div class="cart-actions">
       <button class="btn-clear" onclick="clearCart()">ล้างตะกร้า</button>
-      <button class="btn-copy" onclick="copyCart()">📋 Copy รายการ</button>
+      <button class="btn-copy" onclick="openOrderPopup()">✅ ยืนยันสั่งซื้อ</button>
       <button class="btn-line" onclick="sendToLine()">💬 ส่งทาง LINE</button>
     </div>
   </div>
 </div>
 
+<!-- ORDER POPUP -->
+<div class="popup-overlay" id="orderPopup">
+  <div class="popup-box">
+    <div class="popup-head">
+      <h3>📋 ยืนยันการสั่งซื้อ</h3>
+      <button class="popup-close" onclick="closeOrderPopup()">✕</button>
+    </div>
+    <div class="popup-body">
+      <div class="order-summary" id="orderSummary"><b>รายการสั่งซื้อ</b><br>1. Abilify 5 mg x1 กล่อง<br>2. Accu-Check Safe-T-Pro UNO x1 กล่อง<br>3. Accu-Check Instant 25 strips x1 กล่อง<br><br>ยอดรวม: <strong>3,725 ฿</strong></div>
+      <div class="form-group">
+        <label class="form-label">ชื่อ - นามสกุล *</label>
+        <input class="form-input" id="cusName" type="text" placeholder="กรอกชื่อ-นามสกุล">
+      </div>
+      <div class="form-group">
+        <label class="form-label">เบอร์โทรศัพท์ *</label>
+        <input class="form-input" id="cusPhone" type="tel" placeholder="กรอกเบอร์โทร">
+      </div>
+      <div class="form-group">
+        <label class="form-label">ที่อยู่จัดส่ง *</label>
+        <textarea class="form-input" id="cusAddress" placeholder="กรอกที่อยู่สำหรับจัดส่ง"></textarea>
+      </div>
+      <button class="btn-confirm" id="confirmBtn" onclick="submitOrder()">✅ ยืนยันและ Copy รายการ</button>
+    </div>
+  </div>
+</div>
+
 <!-- TOAST -->
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast">✅ บันทึกแล้วครับ!</div>
 
 <script>
 const API_URL = 'https://script.google.com/macros/s/AKfycbwOM15N23AIDPEZ-CIi8WIQyU_oR7-XptW5LIVjb8Vl5tTlPGBqxyfp_jaYDCw_L8ii/exec';
+const ORDER_URL = 'https://script.google.com/macros/s/AKfycbzKmSzS6J6gRzLySRH4fxSxJrR8VZCtOO0eDJ0YS7bfwFMb8NtcOgch9ksUBlzSo6qSgw/exec';
 
 // DARK MODE
 function toggleTheme() {
@@ -7844,6 +7937,96 @@ function showToast(msg) {
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ORDER POPUP
+function openOrderPopup() {
+  const items = Object.values(cart);
+  if (!items.length) { showToast('ตะกร้าว่างอยู่ครับ'); return; }
+  const total = items.reduce((s, i) => s + (typeof i.price === 'number' ? i.price * i.qty : 0), 0);
+
+  // แสดงสรุปออเดอร์
+  let summary = '<b>รายการสั่งซื้อ</b><br>';
+  items.forEach((item, i) => {
+    summary += `${i+1}. ${item.name} x${item.qty} ${item.unit}<br>`;
+  });
+  summary += `<br>ยอดรวม: <strong>${total.toLocaleString()} ฿</strong>`;
+  document.getElementById('orderSummary').innerHTML = summary;
+
+  // โหลดข้อมูลที่จำไว้
+  const saved = JSON.parse(localStorage.getItem('cusInfo') || '{}');
+  if (saved.name) document.getElementById('cusName').value = saved.name;
+  if (saved.phone) document.getElementById('cusPhone').value = saved.phone;
+  if (saved.address) document.getElementById('cusAddress').value = saved.address;
+
+  document.getElementById('orderPopup').classList.add('open');
+  toggleCart();
+}
+
+function closeOrderPopup() {
+  document.getElementById('orderPopup').classList.remove('open');
+}
+
+async function submitOrder() {
+  const name = document.getElementById('cusName').value.trim();
+  const phone = document.getElementById('cusPhone').value.trim();
+  const address = document.getElementById('cusAddress').value.trim();
+
+  if (!name || !phone || !address) {
+    showToast('กรุณากรอกข้อมูลให้ครบครับ');
+    return;
+  }
+
+  // จำข้อมูลลูกค้า
+  localStorage.setItem('cusInfo', JSON.stringify({ name, phone, address }));
+
+  const items = Object.values(cart);
+  const total = items.reduce((s, i) => s + (typeof i.price === 'number' ? i.price * i.qty : 0), 0);
+
+  // สร้างข้อความ
+  let itemsText = items.map((item, i) => {
+    const lineTotal = typeof item.price === 'number' ? (item.price * item.qty).toLocaleString() + ' ฿' : 'สอบถามราคา';
+    return `${i+1}. ${item.name} x${item.qty} ${item.unit} = ${lineTotal}`;
+  }).join('\n');
+
+  const orderText = `📋 รายการสั่งซื้อ
+─────────────────
+👤 ผู้สั่งซื้อ
+ชื่อ: ${name}
+เบอร์: ${phone}
+ที่อยู่: ${address}
+─────────────────
+${itemsText}
+─────────────────
+ยอดรวม: ${total.toLocaleString()} ฿`;
+
+  // บันทึกลง Google Sheets
+  const btn = document.getElementById('confirmBtn');
+  btn.disabled = true;
+  btn.textContent = 'กำลังบันทึก...';
+
+  try {
+    await fetch(ORDER_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, phone, address, items: itemsText, total: total.toLocaleString() + ' ฿' })
+    });
+  } catch(e) {
+    console.log('บันทึกออเดอร์:', e);
+  }
+
+  // Copy รายการ
+  try {
+    await navigator.clipboard.writeText(orderText);
+    showToast('✅ บันทึกแล้ว! Copy รายการแล้วครับ');
+  } catch(e) {
+    showToast('✅ บันทึกแล้วครับ!');
+  }
+
+  btn.disabled = false;
+  btn.textContent = '✅ ยืนยันและ Copy รายการ';
+  closeOrderPopup();
 }
 
 // LOAD DATA
