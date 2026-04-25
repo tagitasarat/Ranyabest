@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///C:/Users/acer/Downloads/index_6.html -->
+<!-- saved from url=(0045)file:///C:/Users/acer/Downloads/index_11.html -->
 <html lang="th" data-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -164,6 +164,28 @@ tbody tr:last-child td { border-bottom: none; }
 .btn-clear { padding: 10px 14px; border-radius: 10px; border: 1.5px solid var(--border); background: transparent; color: var(--text-muted); font-family: inherit; font-size: 14px; cursor: pointer; transition: all 0.15s; }
 .btn-clear:hover { border-color: #E07060; color: #E07060; }
 
+/* HISTORY PANEL */
+.history-panel {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+  background: var(--surface); border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+  transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  max-height: 80vh; display: flex; flex-direction: column;
+}
+.history-panel.open { transform: translateY(0); }
+.history-item { padding: 12px 0; border-bottom: 1px solid var(--row-border); }
+.history-item:last-child { border-bottom: none; }
+.history-item-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.history-order-id { font-size: 12px; font-weight: 600; color: var(--accent); }
+.history-date { font-size: 12px; color: var(--text-muted); }
+.history-name { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+.history-items-preview { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+.history-total { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 8px; }
+.history-actions { display: flex; gap: 6px; }
+.btn-history-copy { flex: 1; padding: 7px; border-radius: 8px; border: 1.5px solid var(--accent); background: transparent; color: var(--accent); font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer; }
+.btn-history-reorder { flex: 1; padding: 7px; border-radius: 8px; border: none; background: var(--accent); color: #fff; font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer; }
+.history-empty { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 14px; }
+
 /* NAME POPUP */
 .name-popup {
   position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 500;
@@ -249,9 +271,12 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <div>
         <div class="shop-title">ร้านยา Best</div>
         <div class="shop-sub">แคตตาล็อกสินค้า</div>
-        <div class="updated" id="updatedAt">โหลดข้อมูลเมื่อ 25 เม.ย. 2569 17:07</div>
+        <div class="updated" id="updatedAt">โหลดข้อมูลเมื่อ 25 เม.ย. 2569 17:51</div>
       </div>
       <div class="header-actions">
+        <button class="cart-btn-header" onclick="toggleHistory()">
+          🕐 ประวัติ
+        </button>
         <button class="cart-btn-header" onclick="toggleCart()">
           🛒 ตะกร้า <span class="cart-badge show" id="cartBadge">1</span>
         </button>
@@ -7677,19 +7702,9 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
     <div class="cart-title">🛒 ตะกร้าสินค้า</div>
     <button class="cart-close" onclick="toggleCart()">✕</button>
   </div>
-  <div class="cart-body" id="cartBody"><div class="cart-item">
-      <div class="cart-item-name">
-        Atorvastatin Sandoz Hmbh 20mg 10x10
-        <small>กล่อง · 1,850 ฿/กล่อง</small>
-      </div>
-      <div class="cart-item-qty">
-        <button class="qty-btn" onclick="updateCartQty(&#39;Atorvastatin_Sandoz_Hmbh_20mg_10x10&#39;, -1)">−</button>
-        <span style="min-width:28px;text-align:center;font-weight:500">1</span>
-        <button class="qty-btn" onclick="updateCartQty(&#39;Atorvastatin_Sandoz_Hmbh_20mg_10x10&#39;, 1)">+</button>
-      </div>
-      <div class="cart-item-price">1,850 ฿</div>
-      <button class="cart-remove" onclick="removeFromCart(&#39;Atorvastatin_Sandoz_Hmbh_20mg_10x10&#39;)">🗑</button>
-    </div></div>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty">ยังไม่มีสินค้าในตะกร้า</div>
+  </div>
   <div class="cart-footer">
     <div class="cart-summary">
       <div class="cart-total-label">ยอดรวมทั้งหมด</div>
@@ -7698,7 +7713,38 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
     <div class="cart-actions">
       <button class="btn-clear" onclick="clearCart()">ล้างตะกร้า</button>
       <button class="btn-copy" onclick="openOrderPopup()">✅ ยืนยันสั่งซื้อ</button>
-      <button class="btn-line" onclick="sendToLine()">💬 ส่งทาง LINE</button>
+    </div>
+  </div>
+</div>
+
+<!-- HISTORY PANEL -->
+<div class="history-panel" id="historyPanel">
+  <div class="cart-header">
+    <div class="cart-title">🕐 ประวัติการสั่งซื้อ</div>
+    <button class="cart-close" onclick="toggleHistory()">✕</button>
+  </div>
+  <div class="cart-body" id="historyBody">
+    <div class="history-empty">ยังไม่มีประวัติการสั่งซื้อ</div>
+  </div>
+</div>
+
+<!-- SUCCESS POPUP (mobile LINE button) -->
+<div class="popup-overlay" id="successPopup">
+  <div class="popup-box">
+    <div class="popup-head">
+      <h3>✅ สั่งซื้อสำเร็จ!</h3>
+      <button class="popup-close" onclick="closeSuccessPopup()">✕</button>
+    </div>
+    <div class="popup-body">
+      <p style="font-size:14px; color:var(--text-muted); margin-bottom:1rem; line-height:1.6">
+        Copy รายการแล้ว กรุณาส่งรายการให้ทางร้านผ่าน LINE ได้เลยครับ
+      </p>
+      <button class="btn-line" id="lineBtn" onclick="openLine()" style="width:100%; padding:12px; border-radius:10px; font-size:15px; margin-bottom:8px;">
+        💬 เปิด LINE และวางรายการ
+      </button>
+      <button class="btn-clear" onclick="closeSuccessPopup()" style="width:100%; padding:10px; border-radius:10px; text-align:center;">
+        ปิด
+      </button>
     </div>
   </div>
 </div>
@@ -7707,7 +7753,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
 <div class="name-popup" id="namePopup" onclick="closeNamePopup()">
   <div class="name-popup-box" onclick="event.stopPropagation()">
     <div class="name-popup-label">ชื่อยา</div>
-    <div class="name-popup-text" id="namePopupText">Atorvastatin Sandoz Hmbh 20mg 10x10</div>
+    <div class="name-popup-text" id="namePopupText"></div>
     <div class="name-popup-actions">
       <button class="btn-copy-name" onclick="copyName()">📋 Copy ชื่อ</button>
       <button class="btn-close-name" onclick="closeNamePopup()">ปิด</button>
@@ -7723,7 +7769,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <button class="popup-close" onclick="closeOrderPopup()">✕</button>
     </div>
     <div class="popup-body">
-      <div class="order-summary" id="orderSummary"><b>รายการสั่งซื้อ</b><br>1. Atorvastatin Sandoz Hmbh 20mg 10x10 x1 กล่อง<br><br>ยอดรวม: <strong>1,850 ฿</strong></div>
+      <div class="order-summary" id="orderSummary"></div>
       <div class="form-group">
         <label class="form-label">ชื่อ - นามสกุล *</label>
         <input class="form-input" id="cusName" type="text" placeholder="กรอกชื่อ-นามสกุล">
@@ -7742,7 +7788,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast">เพิ่ม Atorvastatin Sandoz Hmbh 20mg 10x10 x1 ลงตะกร้าแล้ว</div>
+<div class="toast" id="toast"></div>
 
 <script>
 const API_URL = 'https://script.google.com/macros/s/AKfycbwOM15N23AIDPEZ-CIi8WIQyU_oR7-XptW5LIVjb8Vl5tTlPGBqxyfp_jaYDCw_L8ii/exec';
@@ -7946,6 +7992,15 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2500);
 }
 
+function closeSuccessPopup() {
+  document.getElementById('successPopup').classList.remove('open');
+}
+
+function openLine() {
+  window.open('https://line.me/ti/p/~hongkamon33', '_blank');
+  closeSuccessPopup();
+}
+
 // NAME POPUP
 function openNamePopup(name) {
   document.getElementById('namePopupText').textContent = name;
@@ -8042,14 +8097,144 @@ ${itemsText}
   // Copy รายการ
   try {
     await navigator.clipboard.writeText(orderText);
-    showToast('✅ บันทึกแล้ว! Copy รายการแล้วครับ');
   } catch(e) {
-    showToast('✅ บันทึกแล้วครับ!');
+    console.log('copy failed:', e);
   }
+
+  // บันทึกประวัติใน localStorage
+  const orderId = '#' + new Date().toLocaleDateString('th-TH', {year:'2-digit',month:'2-digit',day:'2-digit'}).replace(/\//g,'') + '-' + Date.now().toString().slice(-4);
+  const historyItem = {
+    id: orderId,
+    date: new Date().toLocaleString('th-TH', {day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}),
+    name, phone, address,
+    items: items.map(i => ({ name: i.name, qty: i.qty, unit: i.unit, price: i.price })),
+    total: total,
+    orderText
+  };
+  const history = JSON.parse(localStorage.getItem('orderHistory') || '[]');
+  history.unshift(historyItem);
+  localStorage.setItem('orderHistory', JSON.stringify(history.slice(0, 20)));
+
+  // ล้างตะกร้า
+  cart = {};
+  saveCart();
+  updateCartUI();
 
   btn.disabled = false;
   btn.textContent = '✅ ยืนยันและ Copy รายการ';
   closeOrderPopup();
+  showToast('✅ บันทึกแล้ว! Copy รายการแล้วครับ');
+
+  // เปิด success popup บนมือถือเท่านั้น
+  if (window.innerWidth <= 600) {
+    setTimeout(() => {
+      document.getElementById('successPopup').classList.add('open');
+    }, 600);
+  }
+}
+
+// HISTORY
+function toggleHistory() {
+  const panel = document.getElementById('historyPanel');
+  const isOpen = panel.classList.toggle('open');
+  if (isOpen) {
+    renderHistory();
+    document.getElementById('cartPanel').classList.remove('open');
+  }
+}
+
+function renderHistory() {
+  const history = JSON.parse(localStorage.getItem('orderHistory') || '[]');
+  const body = document.getElementById('historyBody');
+  if (!history.length) {
+    body.innerHTML = '<div class="history-empty">ยังไม่มีประวัติการสั่งซื้อ</div>';
+    return;
+  }
+  body.innerHTML = history.map((order, idx) => {
+    const preview = order.items.slice(0, 2).map(i => `${i.name} x${i.qty}`).join(', ') + (order.items.length > 2 ? ` และอีก ${order.items.length - 2} รายการ` : '');
+    const isLatest = idx === 0;
+    return `<div class="history-item">
+      <div class="history-item-head">
+        <span class="history-order-id">${order.id}</span>
+        <span class="history-date">${order.date}</span>
+      </div>
+      <div class="history-name">👤 ${order.name} | ${order.phone}</div>
+      <div class="history-items-preview">${preview}</div>
+      <div class="history-total">ยอดรวม: ${typeof order.total === 'number' ? order.total.toLocaleString() : order.total} ฿</div>
+      <div class="history-actions">
+        ${isLatest ? `<button class="btn-history-copy" onclick="copyFromHistory(${idx})">📋 Copy จากประวัติ</button>` : ''}
+        <button class="btn-history-reorder" onclick="reorder(${idx})" style="${isLatest ? '' : 'flex:1'}">🔄 สั่งซื้อซ้ำ</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function copyFromHistory(idx) {
+  const history = JSON.parse(localStorage.getItem('orderHistory') || '[]');
+  const order = history[idx];
+  if (!order) return;
+
+  const itemsText = order.items.map((item, i) => {
+    return `${i+1}. ${item.name} x${item.qty} ${item.unit}`;
+  }).join('\n');
+
+  const totalStr = typeof order.total === 'number' ? order.total.toLocaleString() : order.total;
+
+  const copyText = `📋 รายการสั่งซื้อ (Copy จากประวัติ)
+─────────────────
+👤 ผู้สั่งซื้อ
+ชื่อ: ${order.name}
+เบอร์: ${order.phone}
+ที่อยู่: ${order.address}
+─────────────────
+${itemsText}
+─────────────────
+⚠️⚠️⚠️ ราคา ณ วันที่สั่งเดิม: ${totalStr} ฿
+ราคาอาจมีการเปลี่ยนแปลง กรุณาตรวจสอบกับทางร้าน ⚠️⚠️⚠️`;
+
+  // บันทึก Sheets สถานะ "Copy จากประวัติ"
+  try {
+    const itemsSheetText = order.items.map((item, i) => `${i+1}. ${item.name} x${item.qty} ${item.unit}`).join('\n');
+    await fetch(ORDER_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: order.name,
+        phone: order.phone,
+        address: order.address,
+        items: itemsSheetText,
+        total: totalStr + ' ฿ (Copy จากประวัติ)',
+        status: 'Copy จากประวัติ'
+      })
+    });
+  } catch(e) { console.log(e); }
+
+  try {
+    await navigator.clipboard.writeText(copyText);
+    showToast('📋 Copy จากประวัติแล้วครับ!');
+  } catch(e) {
+    showToast('Copy ไม่ได้ครับ ลองใหม่');
+  }
+}
+
+function reorder(idx) {
+  const history = JSON.parse(localStorage.getItem('orderHistory') || '[]');
+  const order = history[idx];
+  if (!order) return;
+
+  // ดึงรายการเดิมใส่ตะกร้าพร้อมราคาปัจจุบัน
+  order.items.forEach(item => {
+    const current = allData.find(d => d.name === item.name);
+    const currentPrice = current ? current.price : item.price;
+    const id = getCartId(item.name);
+    cart[id] = { name: item.name, price: currentPrice, unit: item.unit, qty: item.qty };
+  });
+  saveCart();
+  updateCartUI();
+  toggleHistory();
+  setTimeout(() => toggleCart(), 300);
+  showToast('🔄 ใส่ตะกร้าแล้ว ราคาอัปเดตเป็นปัจจุบันแล้วครับ');
 }
 
 // LOAD DATA
