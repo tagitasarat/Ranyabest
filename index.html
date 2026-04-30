@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0042)file:///C:/Users/acer/Downloads/index.html -->
+<!-- saved from url=(0044)file:///C:/Users/acer/Downloads/index_1.html -->
 <html lang="th" data-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -271,14 +271,14 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <div>
         <div class="shop-title">ร้านยา Best</div>
         <div class="shop-sub">แคตตาล็อกสินค้า</div>
-        <div class="updated" id="updatedAt">โหลดข้อมูลเมื่อ 29 เม.ย. 2569 13:28</div>
+        <div class="updated" id="updatedAt">โหลดข้อมูลเมื่อ 30 เม.ย. 2569 19:09</div>
       </div>
       <div class="header-actions">
         <button class="cart-btn-header" onclick="toggleHistory()">
           🕐 ประวัติ
         </button>
         <button class="cart-btn-header" onclick="toggleCart()">
-          🛒 ตะกร้า <span class="cart-badge show" id="cartBadge">1</span>
+          🛒 ตะกร้า <span class="cart-badge" id="cartBadge">0</span>
         </button>
         <button class="theme-btn" onclick="toggleTheme()">
           <span class="knob" id="themeIcon">🌙</span>
@@ -290,34 +290,20 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
         <input type="text" id="search" placeholder="ค้นหาชื่อยา..." oninput="render()">
       </div>
-      <select id="catFilter" onchange="setActiveCat(this.value)">
-        <option value="">ทุกหมวด</option>
-        <option value="MaxxLife">MaxxLife</option>
-        <option value="Mega">Mega</option>
-        <option value="ยาเบาหวาน">ยาเบาหวาน</option>
-        <option value="ยาความดัน">ยาความดัน</option>
-        <option value="ยาไขมัน">ยาไขมัน</option>
-        <option value="ยาแก้ปวด/ลดไข้">ยาแก้ปวด/ลดไข้</option>
-        <option value="ยาระบบหายใจ">ยาระบบหายใจ</option>
-        <option value="ยาจิตเวช">ยาจิตเวช</option>
-        <option value="ยาระบบทางเดินอาหาร">ยาระบบทางเดินอาหาร</option>
-        <option value="วิตามิน/อาหารเสริม">วิตามิน/อาหารเสริม</option>
-        <option value="เครื่องมือแพทย์">เครื่องมือแพทย์</option>
-        <option value="อื่นๆ">อื่นๆ</option>
-      </select>
+      <select id="catFilter" onchange="setActiveCat(this.value)"><option value="">ทุกหมวด</option><option value="MaxxLife">MaxxLife</option><option value="Mega">Mega</option><option value="ยาความดัน">ยาความดัน</option><option value="ยาจิตเวช">ยาจิตเวช</option><option value="ยาระบบทางเดินอาหาร">ยาระบบทางเดินอาหาร</option><option value="ยาระบบหายใจ">ยาระบบหายใจ</option><option value="ยาเบาหวาน">ยาเบาหวาน</option><option value="ยาแก้ปวด/ลดไข้">ยาแก้ปวด/ลดไข้</option><option value="ยาไขมัน">ยาไขมัน</option><option value="วิตามิน/อาหารเสริม">วิตามิน/อาหารเสริม</option><option value="อื่นๆ">อื่นๆ</option><option value="เครื่องมือแพทย์">เครื่องมือแพทย์</option></select>
     </div>
   </div>
 </header>
 
 <div class="stats-bar">
-  <div class="stat-chip">รายการทั้งหมด <strong id="totalCount">681</strong> รายการ</div>
+  <div class="stat-chip">รายการทั้งหมด <strong id="totalCount">696</strong> รายการ</div>
   <div class="stat-chip">ราคา <strong id="minPrice">18</strong> – <strong id="maxPrice">8,700</strong> บาท</div>
 </div>
 
 <div class="content">
-  <div class="cat-pills" id="catPills"><button class="cat-pill active">ทุกหมวด</button><button class="cat-pill">MaxxLife</button><button class="cat-pill">Mega</button><button class="cat-pill">ยาเบาหวาน</button><button class="cat-pill">ยาความดัน</button><button class="cat-pill">ยาไขมัน</button><button class="cat-pill">ยาแก้ปวด/ลดไข้</button><button class="cat-pill">ยาระบบหายใจ</button><button class="cat-pill">ยาจิตเวช</button><button class="cat-pill">ยาระบบทางเดินอาหาร</button><button class="cat-pill">วิตามิน/อาหารเสริม</button><button class="cat-pill">เครื่องมือแพทย์</button><button class="cat-pill">อื่นๆ</button></div>
+  <div class="cat-pills" id="catPills"><button class="cat-pill active">ทุกหมวด</button><button class="cat-pill">MaxxLife</button><button class="cat-pill">Mega</button><button class="cat-pill">ยาความดัน</button><button class="cat-pill">ยาจิตเวช</button><button class="cat-pill">ยาระบบทางเดินอาหาร</button><button class="cat-pill">ยาระบบหายใจ</button><button class="cat-pill">ยาเบาหวาน</button><button class="cat-pill">ยาแก้ปวด/ลดไข้</button><button class="cat-pill">ยาไขมัน</button><button class="cat-pill">วิตามิน/อาหารเสริม</button><button class="cat-pill">อื่นๆ</button><button class="cat-pill">เครื่องมือแพทย์</button></div>
   <div id="errorBox"></div>
-  <div class="count-info" id="countInfo">แสดง <span>681</span> รายการ จากทั้งหมด 681 รายการ</div>
+  <div class="count-info" id="countInfo">แสดง <span>696</span> รายการ จากทั้งหมด 696 รายการ</div>
   <div class="table-card">
     <table>
       <colgroup><col class="cn"><col class="cp"><col class="cu"><col class="cc"><col class="cq"></colgroup>
@@ -879,6 +865,17 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <input class="qty-input" id="qty_Atorvastatin_Sandoz_Hmbh_40mg_3x10_Tablets" type="number" value="1" min="1" max="999">
           <button class="qty-btn" onclick="changeQty(&#39;Atorvastatin_Sandoz_Hmbh_40mg_3x10_Tablets&#39;,1)">+</button>
           <button class="add-btn" data-id="Atorvastatin_Sandoz_Hmbh_40mg_3x10_Tablets" data-price="830" data-unit="&gt;=10กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+        </div></td>
+    </tr><tr>
+      <td title="ATORVIN 40 (Unison) 10x10 Tablets" data-name="ATORVIN 40 (Unison) 10x10 Tablets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">ATORVIN 40 (Unison) 10x10 Tablets</td>
+      <td class="cp-val">1,100 ฿</td>
+      <td class="cu-val">กล่อง</td>
+      <td><span class="badge b-other">อื่นๆ</span></td>
+      <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
+          <button class="qty-btn" onclick="changeQty(&#39;ATORVIN_40__Unison__10x10_Tablets&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_ATORVIN_40__Unison__10x10_Tablets" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;ATORVIN_40__Unison__10x10_Tablets&#39;,1)">+</button>
+          <button class="add-btn" data-id="ATORVIN_40__Unison__10x10_Tablets" data-price="1100" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td title="Atozet 10/10" data-name="Atozet 10/10" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Atozet 10/10</td>
@@ -1629,15 +1626,37 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <button class="add-btn" data-id="Cetilar_Cream" data-price="760" data-unit="หลอด" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
-      <td title="Cetrizine Medic 50x10 Tablets" data-name="Cetrizine Medic 50x10 Tablets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Cetrizine Medic 50x10 Tablets</td>
+      <td title="CETIRIZINE Medic 50x10 Tablets" data-name="CETIRIZINE Medic 50x10 Tablets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">CETIRIZINE Medic 50x10 Tablets</td>
       <td class="cp-val">135 ฿</td>
       <td class="cu-val">กล่อง</td>
-      <td><span class="badge b-resp">ยาระบบหายใจ</span></td>
+      <td><span class="badge b-other">อื่นๆ</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
-          <button class="qty-btn" onclick="changeQty(&#39;Cetrizine_Medic_50x10_Tablets&#39;,-1)">−</button>
-          <input class="qty-input" id="qty_Cetrizine_Medic_50x10_Tablets" type="number" value="1" min="1" max="999">
-          <button class="qty-btn" onclick="changeQty(&#39;Cetrizine_Medic_50x10_Tablets&#39;,1)">+</button>
-          <button class="add-btn" data-id="Cetrizine_Medic_50x10_Tablets" data-price="135" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+          <button class="qty-btn" onclick="changeQty(&#39;CETIRIZINE_Medic_50x10_Tablets&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_CETIRIZINE_Medic_50x10_Tablets" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;CETIRIZINE_Medic_50x10_Tablets&#39;,1)">+</button>
+          <button class="add-btn" data-id="CETIRIZINE_Medic_50x10_Tablets" data-price="135" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+        </div></td>
+    </tr><tr>
+      <td title="CETIRIZINE Medic 50x10 Tablets" data-name="CETIRIZINE Medic 50x10 Tablets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">CETIRIZINE Medic 50x10 Tablets</td>
+      <td class="cp-val">130 ฿</td>
+      <td class="cu-val">10 กล่อง</td>
+      <td><span class="badge b-other">อื่นๆ</span></td>
+      <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
+          <button class="qty-btn" onclick="changeQty(&#39;CETIRIZINE_Medic_50x10_Tablets&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_CETIRIZINE_Medic_50x10_Tablets" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;CETIRIZINE_Medic_50x10_Tablets&#39;,1)">+</button>
+          <button class="add-btn" data-id="CETIRIZINE_Medic_50x10_Tablets" data-price="130" data-unit="10 กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+        </div></td>
+    </tr><tr>
+      <td title="CETIRIZINE Medic 50x10 Tablets" data-name="CETIRIZINE Medic 50x10 Tablets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">CETIRIZINE Medic 50x10 Tablets</td>
+      <td class="cp-val">125 ฿</td>
+      <td class="cu-val">30 กล่อง</td>
+      <td><span class="badge b-other">อื่นๆ</span></td>
+      <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
+          <button class="qty-btn" onclick="changeQty(&#39;CETIRIZINE_Medic_50x10_Tablets&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_CETIRIZINE_Medic_50x10_Tablets" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;CETIRIZINE_Medic_50x10_Tablets&#39;,1)">+</button>
+          <button class="add-btn" data-id="CETIRIZINE_Medic_50x10_Tablets" data-price="125" data-unit="30 กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td title="Chovas 20mg" data-name="Chovas 20mg" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Chovas 20mg</td>
@@ -2089,6 +2108,28 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <input class="qty-input" id="qty_Dexpenten" type="number" value="1" min="1" max="999">
           <button class="qty-btn" onclick="changeQty(&#39;Dexpenten&#39;,1)">+</button>
           <button class="add-btn" data-id="Dexpenten" data-price="70" data-unit="หลอด" onclick="addFromRow(this)">+ ตะกร้า</button>
+        </div></td>
+    </tr><tr>
+      <td title="DEXTER-ST (PML) 10x10 Tablets" data-name="DEXTER-ST (PML) 10x10 Tablets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">DEXTER-ST (PML) 10x10 Tablets</td>
+      <td class="cp-val">195 ฿</td>
+      <td class="cu-val">กล่อง</td>
+      <td><span class="badge b-other">อื่นๆ</span></td>
+      <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
+          <button class="qty-btn" onclick="changeQty(&#39;DEXTER_ST__PML__10x10_Tablets&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_DEXTER_ST__PML__10x10_Tablets" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;DEXTER_ST__PML__10x10_Tablets&#39;,1)">+</button>
+          <button class="add-btn" data-id="DEXTER_ST__PML__10x10_Tablets" data-price="195" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+        </div></td>
+    </tr><tr>
+      <td title="DEXTER-ST (PML) 10x10 Tablets" data-name="DEXTER-ST (PML) 10x10 Tablets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">DEXTER-ST (PML) 10x10 Tablets</td>
+      <td class="cp-val">190 ฿</td>
+      <td class="cu-val">10 กล่อง</td>
+      <td><span class="badge b-other">อื่นๆ</span></td>
+      <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
+          <button class="qty-btn" onclick="changeQty(&#39;DEXTER_ST__PML__10x10_Tablets&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_DEXTER_ST__PML__10x10_Tablets" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;DEXTER_ST__PML__10x10_Tablets&#39;,1)">+</button>
+          <button class="add-btn" data-id="DEXTER_ST__PML__10x10_Tablets" data-price="190" data-unit="10 กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td title="Dextromethophan Bangkok Drug 50x10s&#39;" data-name="Dextromethophan Bangkok Drug 50x10s&#39;" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Dextromethophan Bangkok Drug 50x10s'</td>
@@ -2828,15 +2869,15 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <button class="add-btn" data-id="Ezuvas_20_10" data-price="1020" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
-      <td title="Fatec 50x10" data-name="Fatec 50x10" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Fatec 50x10</td>
+      <td title="Fatec 50x10 Tablets" data-name="Fatec 50x10 Tablets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Fatec 50x10 Tablets</td>
       <td class="cp-val">500 ฿</td>
       <td class="cu-val">กล่อง</td>
       <td><span class="badge b-other">อื่นๆ</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
-          <button class="qty-btn" onclick="changeQty(&#39;Fatec_50x10&#39;,-1)">−</button>
-          <input class="qty-input" id="qty_Fatec_50x10" type="number" value="1" min="1" max="999">
-          <button class="qty-btn" onclick="changeQty(&#39;Fatec_50x10&#39;,1)">+</button>
-          <button class="add-btn" data-id="Fatec_50x10" data-price="500" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+          <button class="qty-btn" onclick="changeQty(&#39;Fatec_50x10_Tablets&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_Fatec_50x10_Tablets" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;Fatec_50x10_Tablets&#39;,1)">+</button>
+          <button class="add-btn" data-id="Fatec_50x10_Tablets" data-price="500" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td title="Favotan 5/100" data-name="Favotan 5/100" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Favotan 5/100</td>
@@ -2850,15 +2891,15 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <button class="add-btn" data-id="Favotan_5_100" data-price="980" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
-      <td title="Favotan 5/50" data-name="Favotan 5/50" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Favotan 5/50</td>
-      <td class="cp-val">760 ฿</td>
+      <td title="FAVOTAN 5/50MG 3X10 TABLETS" data-name="FAVOTAN 5/50MG 3X10 TABLETS" onclick="openNamePopupFromEl(this)" style="cursor:pointer">FAVOTAN 5/50MG 3X10 TABLETS</td>
+      <td class="cp-val">795 ฿</td>
       <td class="cu-val">กล่อง</td>
       <td><span class="badge b-diabetes">ยาเบาหวาน</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
-          <button class="qty-btn" onclick="changeQty(&#39;Favotan_5_50&#39;,-1)">−</button>
-          <input class="qty-input" id="qty_Favotan_5_50" type="number" value="1" min="1" max="999">
-          <button class="qty-btn" onclick="changeQty(&#39;Favotan_5_50&#39;,1)">+</button>
-          <button class="add-btn" data-id="Favotan_5_50" data-price="760" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+          <button class="qty-btn" onclick="changeQty(&#39;FAVOTAN_5_50MG_3X10_TABLETS&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_FAVOTAN_5_50MG_3X10_TABLETS" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;FAVOTAN_5_50MG_3X10_TABLETS&#39;,1)">+</button>
+          <button class="add-btn" data-id="FAVOTAN_5_50MG_3X10_TABLETS" data-price="795" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td title="Feburic 80 mg" data-name="Feburic 80 mg" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Feburic 80 mg</td>
@@ -2925,6 +2966,28 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <input class="qty-input" id="qty_Ficef_10x10" type="number" value="1" min="1" max="999">
           <button class="qty-btn" onclick="changeQty(&#39;Ficef_10x10&#39;,1)">+</button>
           <button class="add-btn" data-id="Ficef_10x10" data-price="1380" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+        </div></td>
+    </tr><tr>
+      <td title="Finasteride Bangkok Drug 3x10 Tablets" data-name="Finasteride Bangkok Drug 3x10 Tablets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Finasteride Bangkok Drug 3x10 Tablets</td>
+      <td class="cp-val">188 ฿</td>
+      <td class="cu-val">กล่อง</td>
+      <td><span class="badge b-other">อื่นๆ</span></td>
+      <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
+          <button class="qty-btn" onclick="changeQty(&#39;Finasteride_Bangkok_Drug_3x10_Tablets&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_Finasteride_Bangkok_Drug_3x10_Tablets" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;Finasteride_Bangkok_Drug_3x10_Tablets&#39;,1)">+</button>
+          <button class="add-btn" data-id="Finasteride_Bangkok_Drug_3x10_Tablets" data-price="188" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+        </div></td>
+    </tr><tr>
+      <td title="Finasteride Bangkok Drug 3x10 Tablets" data-name="Finasteride Bangkok Drug 3x10 Tablets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Finasteride Bangkok Drug 3x10 Tablets</td>
+      <td class="cp-val">180 ฿</td>
+      <td class="cu-val">กล่อง</td>
+      <td><span class="badge b-other">อื่นๆ</span></td>
+      <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
+          <button class="qty-btn" onclick="changeQty(&#39;Finasteride_Bangkok_Drug_3x10_Tablets&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_Finasteride_Bangkok_Drug_3x10_Tablets" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;Finasteride_Bangkok_Drug_3x10_Tablets&#39;,1)">+</button>
+          <button class="add-btn" data-id="Finasteride_Bangkok_Drug_3x10_Tablets" data-price="180" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td title="Finax GPO" data-name="Finax GPO" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Finax GPO</td>
@@ -3114,15 +3177,15 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <button class="add-btn" data-id="Flotral_10_mg" data-price="420" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
-      <td title="Foexiga" data-name="Foexiga" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Foexiga</td>
+      <td title="forxiga 10mg (dapagliflozin) 30 tablets" data-name="forxiga 10mg (dapagliflozin) 30 tablets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">forxiga 10mg (dapagliflozin) 30 tablets</td>
       <td class="cp-val">1,500 ฿</td>
       <td class="cu-val">กล่อง</td>
-      <td><span class="badge b-diabetes">ยาเบาหวาน</span></td>
+      <td><span class="badge b-other">อื่นๆ</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
-          <button class="qty-btn" onclick="changeQty(&#39;Foexiga&#39;,-1)">−</button>
-          <input class="qty-input" id="qty_Foexiga" type="number" value="1" min="1" max="999">
-          <button class="qty-btn" onclick="changeQty(&#39;Foexiga&#39;,1)">+</button>
-          <button class="add-btn" data-id="Foexiga" data-price="1500" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+          <button class="qty-btn" onclick="changeQty(&#39;forxiga_10mg__dapagliflozin__30_tablets&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_forxiga_10mg__dapagliflozin__30_tablets" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;forxiga_10mg__dapagliflozin__30_tablets&#39;,1)">+</button>
+          <button class="add-btn" data-id="forxiga_10mg__dapagliflozin__30_tablets" data-price="1500" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td title="Folic CentralPoly" data-name="Folic CentralPoly" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Folic CentralPoly</td>
@@ -3719,6 +3782,17 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <button class="add-btn" data-id="Kadryl_Lotion" data-price="18" data-unit="ขวด" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
+      <td title="Kamistad-gel n 10g" data-name="Kamistad-gel n 10g" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Kamistad-gel n 10g</td>
+      <td class="cp-val">88 ฿</td>
+      <td class="cu-val">หลอด</td>
+      <td><span class="badge b-other">อื่นๆ</span></td>
+      <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
+          <button class="qty-btn" onclick="changeQty(&#39;Kamistad_gel_n_10g&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_Kamistad_gel_n_10g" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;Kamistad_gel_n_10g&#39;,1)">+</button>
+          <button class="add-btn" data-id="Kamistad_gel_n_10g" data-price="88" data-unit="หลอด" onclick="addFromRow(this)">+ ตะกร้า</button>
+        </div></td>
+    </tr><tr>
       <td title="Kamilonsan-M" data-name="Kamilonsan-M" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Kamilonsan-M</td>
       <td class="cp-val">142 ฿</td>
       <td class="cu-val">กล่อง</td>
@@ -4193,14 +4267,14 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
         </div></td>
     </tr><tr>
       <td title="Madiplot 20 mg" data-name="Madiplot 20 mg" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Madiplot 20 mg</td>
-      <td class="cp-val">1,200 ฿</td>
+      <td class="cp-val">1,150 ฿</td>
       <td class="cu-val">กล่อง</td>
       <td><span class="badge b-pressure">ยาความดัน</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Madiplot_20_mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Madiplot_20_mg" type="number" value="1" min="1" max="999">
           <button class="qty-btn" onclick="changeQty(&#39;Madiplot_20_mg&#39;,1)">+</button>
-          <button class="add-btn" data-id="Madiplot_20_mg" data-price="1200" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+          <button class="add-btn" data-id="Madiplot_20_mg" data-price="1150" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td title="Maforan 2 mg" data-name="Maforan 2 mg" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Maforan 2 mg</td>
@@ -5061,15 +5135,15 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <button class="add-btn" data-id="Methy___B" data-price="450" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
-      <td title="Metoprolol Stada 100 mg" data-name="Metoprolol Stada 100 mg" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Metoprolol Stada 100 mg</td>
-      <td class="cp-val">325 ฿</td>
+      <td title="Metoprolol Stada 100 mg 10x10 Tablets" data-name="Metoprolol Stada 100 mg 10x10 Tablets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Metoprolol Stada 100 mg 10x10 Tablets</td>
+      <td class="cp-val">315 ฿</td>
       <td class="cu-val">กล่อง</td>
       <td><span class="badge b-pressure">ยาความดัน</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
-          <button class="qty-btn" onclick="changeQty(&#39;Metoprolol_Stada_100_mg&#39;,-1)">−</button>
-          <input class="qty-input" id="qty_Metoprolol_Stada_100_mg" type="number" value="1" min="1" max="999">
-          <button class="qty-btn" onclick="changeQty(&#39;Metoprolol_Stada_100_mg&#39;,1)">+</button>
-          <button class="add-btn" data-id="Metoprolol_Stada_100_mg" data-price="325" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+          <button class="qty-btn" onclick="changeQty(&#39;Metoprolol_Stada_100_mg_10x10_Tablets&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_Metoprolol_Stada_100_mg_10x10_Tablets" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;Metoprolol_Stada_100_mg_10x10_Tablets&#39;,1)">+</button>
+          <button class="add-btn" data-id="Metoprolol_Stada_100_mg_10x10_Tablets" data-price="315" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td title="Metrotrexate 10x10" data-name="Metrotrexate 10x10" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Metrotrexate 10x10</td>
@@ -5182,6 +5256,17 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <button class="add-btn" data-id="Monural" data-price="400" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
+      <td title="Mora 100x10 Tablets" data-name="Mora 100x10 Tablets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Mora 100x10 Tablets</td>
+      <td class="cp-val">590 ฿</td>
+      <td class="cu-val">กล่อง</td>
+      <td><span class="badge b-pain">ยาแก้ปวด/ลดไข้</span></td>
+      <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
+          <button class="qty-btn" onclick="changeQty(&#39;Mora_100x10_Tablets&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_Mora_100x10_Tablets" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;Mora_100x10_Tablets&#39;,1)">+</button>
+          <button class="add-btn" data-id="Mora_100x10_Tablets" data-price="590" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+        </div></td>
+    </tr><tr>
       <td title="Mounjaro ทุกขนาด" data-name="Mounjaro ทุกขนาด" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Mounjaro ทุกขนาด</td>
       <td class="cp-val">สอบถามราคา</td>
       <td class="cu-val">ด้าม</td>
@@ -5202,6 +5287,17 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <input class="qty-input" id="qty_Muclaer" type="number" value="1" min="1" max="999">
           <button class="qty-btn" onclick="changeQty(&#39;Muclaer&#39;,1)">+</button>
           <button class="add-btn" data-id="Muclaer" data-price="115" data-unit="หลอด" onclick="addFromRow(this)">+ ตะกร้า</button>
+        </div></td>
+    </tr><tr>
+      <td title="Mucilax 10 ซอง" data-name="Mucilax 10 ซอง" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Mucilax 10 ซอง</td>
+      <td class="cp-val">115 ฿</td>
+      <td class="cu-val">กล่อง</td>
+      <td><span class="badge b-other">อื่นๆ</span></td>
+      <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
+          <button class="qty-btn" onclick="changeQty(&#39;Mucilax_10____&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_Mucilax_10____" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;Mucilax_10____&#39;,1)">+</button>
+          <button class="add-btn" data-id="Mucilax_10____" data-price="115" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td title="Mucosta 10x10" data-name="Mucosta 10x10" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Mucosta 10x10</td>
@@ -5246,6 +5342,17 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <input class="qty-input" id="qty_Myonal_50mg_3x10_Tablets" type="number" value="1" min="1" max="999">
           <button class="qty-btn" onclick="changeQty(&#39;Myonal_50mg_3x10_Tablets&#39;,1)">+</button>
           <button class="add-btn" data-id="Myonal_50mg_3x10_Tablets" data-price="188" data-unit="10 กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+        </div></td>
+    </tr><tr>
+      <td title="MYSOVEN 200mg 60 Sachets" data-name="MYSOVEN 200mg 60 Sachets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">MYSOVEN 200mg 60 Sachets</td>
+      <td class="cp-val">195 ฿</td>
+      <td class="cu-val">กล่อง</td>
+      <td><span class="badge b-other">อื่นๆ</span></td>
+      <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
+          <button class="qty-btn" onclick="changeQty(&#39;MYSOVEN_200mg_60_Sachets&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_MYSOVEN_200mg_60_Sachets" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;MYSOVEN_200mg_60_Sachets&#39;,1)">+</button>
+          <button class="add-btn" data-id="MYSOVEN_200mg_60_Sachets" data-price="195" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td title="Mytaff" data-name="Mytaff" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Mytaff</td>
@@ -5510,6 +5617,17 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <input class="qty-input" id="qty_Normetec_5_40" type="number" value="1" min="1" max="999">
           <button class="qty-btn" onclick="changeQty(&#39;Normetec_5_40&#39;,1)">+</button>
           <button class="add-btn" data-id="Normetec_5_40" data-price="880" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+        </div></td>
+    </tr><tr>
+      <td title="OLIGEST 2mg (OLIC) 2x14 Tablets สูตร Visane" data-name="OLIGEST 2mg (OLIC) 2x14 Tablets สูตร Visane" onclick="openNamePopupFromEl(this)" style="cursor:pointer">OLIGEST 2mg (OLIC) 2x14 Tablets สูตร Visane</td>
+      <td class="cp-val">920 ฿</td>
+      <td class="cu-val">กล่อง</td>
+      <td><span class="badge b-other">อื่นๆ</span></td>
+      <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
+          <button class="qty-btn" onclick="changeQty(&#39;OLIGEST_2mg__OLIC__2x14_Tablets______Visane&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_OLIGEST_2mg__OLIC__2x14_Tablets______Visane" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;OLIGEST_2mg__OLIC__2x14_Tablets______Visane&#39;,1)">+</button>
+          <button class="add-btn" data-id="OLIGEST_2mg__OLIC__2x14_Tablets______Visane" data-price="920" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td title="Opthazolin" data-name="Opthazolin" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Opthazolin</td>
@@ -6645,15 +6763,15 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <button class="add-btn" data-id="Tanzaril_100_mg" data-price="128" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
-      <td title="Tanzaril 50 mg" data-name="Tanzaril 50 mg" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Tanzaril 50 mg</td>
-      <td class="cp-val">1,700 ฿</td>
+      <td title="Tanzaril 50 mg 100x10 Tablets" data-name="Tanzaril 50 mg 100x10 Tablets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Tanzaril 50 mg 100x10 Tablets</td>
+      <td class="cp-val">1,580 ฿</td>
       <td class="cu-val">กล่อง</td>
       <td><span class="badge b-other">อื่นๆ</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
-          <button class="qty-btn" onclick="changeQty(&#39;Tanzaril_50_mg&#39;,-1)">−</button>
-          <input class="qty-input" id="qty_Tanzaril_50_mg" type="number" value="1" min="1" max="999">
-          <button class="qty-btn" onclick="changeQty(&#39;Tanzaril_50_mg&#39;,1)">+</button>
-          <button class="add-btn" data-id="Tanzaril_50_mg" data-price="1700" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+          <button class="qty-btn" onclick="changeQty(&#39;Tanzaril_50_mg_100x10_Tablets&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_Tanzaril_50_mg_100x10_Tablets" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;Tanzaril_50_mg_100x10_Tablets&#39;,1)">+</button>
+          <button class="add-btn" data-id="Tanzaril_50_mg_100x10_Tablets" data-price="1580" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td title="Taprazole" data-name="Taprazole" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Taprazole</td>
@@ -6986,6 +7104,28 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <button class="add-btn" data-id="Unisia_8_5" data-price="720" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
+      <td title="Urief 4mg 3x10 Tablets" data-name="Urief 4mg 3x10 Tablets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Urief 4mg 3x10 Tablets</td>
+      <td class="cp-val">450 ฿</td>
+      <td class="cu-val">กล่อง</td>
+      <td><span class="badge b-other">อื่นๆ</span></td>
+      <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
+          <button class="qty-btn" onclick="changeQty(&#39;Urief_4mg_3x10_Tablets&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_Urief_4mg_3x10_Tablets" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;Urief_4mg_3x10_Tablets&#39;,1)">+</button>
+          <button class="add-btn" data-id="Urief_4mg_3x10_Tablets" data-price="450" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+        </div></td>
+    </tr><tr>
+      <td title="Uritos 0.1mg 3x10 Tablets" data-name="Uritos 0.1mg 3x10 Tablets" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Uritos 0.1mg 3x10 Tablets</td>
+      <td class="cp-val">600 ฿</td>
+      <td class="cu-val">กล่อง</td>
+      <td><span class="badge b-other">อื่นๆ</span></td>
+      <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
+          <button class="qty-btn" onclick="changeQty(&#39;Uritos_0_1mg_3x10_Tablets&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_Uritos_0_1mg_3x10_Tablets" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;Uritos_0_1mg_3x10_Tablets&#39;,1)">+</button>
+          <button class="add-btn" data-id="Uritos_0_1mg_3x10_Tablets" data-price="600" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+        </div></td>
+    </tr><tr>
       <td title="Uroflow 3x10" data-name="Uroflow 3x10" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Uroflow 3x10</td>
       <td class="cp-val">520 ฿</td>
       <td class="cu-val">กล่อง</td>
@@ -7096,6 +7236,17 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <button class="add-btn" data-id="Vecin" data-price="92" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
+      <td title="VENUZ ONE (NEOCA) 10x1 Tablet" data-name="VENUZ ONE (NEOCA) 10x1 Tablet" onclick="openNamePopupFromEl(this)" style="cursor:pointer">VENUZ ONE (NEOCA) 10x1 Tablet</td>
+      <td class="cp-val">135 ฿</td>
+      <td class="cu-val">กล่อง</td>
+      <td><span class="badge b-other">อื่นๆ</span></td>
+      <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
+          <button class="qty-btn" onclick="changeQty(&#39;VENUZ_ONE__NEOCA__10x1_Tablet&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_VENUZ_ONE__NEOCA__10x1_Tablet" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;VENUZ_ONE__NEOCA__10x1_Tablet&#39;,1)">+</button>
+          <button class="add-btn" data-id="VENUZ_ONE__NEOCA__10x1_Tablet" data-price="135" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+        </div></td>
+    </tr><tr>
       <td title="Vessel" data-name="Vessel" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Vessel</td>
       <td class="cp-val">1,900 ฿</td>
       <td class="cu-val">กล่อง</td>
@@ -7140,15 +7291,15 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
           <button class="add-btn" data-id="Vicks_______" data-price="840" data-unit="โหล" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
-      <td title="Vidisic Gel" data-name="Vidisic Gel" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Vidisic Gel</td>
+      <td title="Vidisic Gel 10g" data-name="Vidisic Gel 10g" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Vidisic Gel 10g</td>
       <td class="cp-val">129 ฿</td>
       <td class="cu-val">หลอด</td>
       <td><span class="badge b-other">อื่นๆ</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
-          <button class="qty-btn" onclick="changeQty(&#39;Vidisic_Gel&#39;,-1)">−</button>
-          <input class="qty-input" id="qty_Vidisic_Gel" type="number" value="1" min="1" max="999">
-          <button class="qty-btn" onclick="changeQty(&#39;Vidisic_Gel&#39;,1)">+</button>
-          <button class="add-btn" data-id="Vidisic_Gel" data-price="129" data-unit="หลอด" onclick="addFromRow(this)">+ ตะกร้า</button>
+          <button class="qty-btn" onclick="changeQty(&#39;Vidisic_Gel_10g&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_Vidisic_Gel_10g" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;Vidisic_Gel_10g&#39;,1)">+</button>
+          <button class="add-btn" data-id="Vidisic_Gel_10g" data-price="129" data-unit="หลอด" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td title="Vilerm 200mg" data-name="Vilerm 200mg" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Vilerm 200mg</td>
@@ -7790,14 +7941,14 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
         </div></td>
     </tr><tr>
       <td title="สำลีก้อนชุบแอลกอฮอล์ Mega (10แผง)" data-name="สำลีก้อนชุบแอลกอฮอล์ Mega (10แผง)" onclick="openNamePopupFromEl(this)" style="cursor:pointer">สำลีก้อนชุบแอลกอฮอล์ Mega (10แผง)</td>
-      <td class="cp-val">581 ฿</td>
+      <td class="cp-val">58 ฿</td>
       <td class="cu-val">กล่อง</td>
       <td><span class="badge b-other">อื่นๆ</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;_____________________Mega__10____&#39;,-1)">−</button>
           <input class="qty-input" id="qty______________________Mega__10____" type="number" value="1" min="1" max="999">
           <button class="qty-btn" onclick="changeQty(&#39;_____________________Mega__10____&#39;,1)">+</button>
-          <button class="add-btn" data-id="_____________________Mega__10____" data-price="581" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
+          <button class="add-btn" data-id="_____________________Mega__10____" data-price="58" data-unit="กล่อง" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td title="หน้ากาก MediMask เขียว/ฟ้า" data-name="หน้ากาก MediMask เขียว/ฟ้า" onclick="openNamePopupFromEl(this)" style="cursor:pointer">หน้ากาก MediMask เขียว/ฟ้า</td>
@@ -7834,23 +7985,13 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
     <div class="cart-title">🛒 ตะกร้าสินค้า</div>
     <button class="cart-close" onclick="toggleCart()">✕</button>
   </div>
-  <div class="cart-body" id="cartBody"><div class="cart-item">
-      <div class="cart-item-name">
-        Atorvastatin Sandoz Hmbh 20mg 10x10
-        <small>กล่อง · 1,850 ฿/กล่อง</small>
-      </div>
-      <div class="cart-item-qty">
-        <button class="qty-btn" onclick="updateCartQty(&#39;Atorvastatin_Sandoz_Hmbh_20mg_10x10&#39;, -1)">−</button>
-        <span style="min-width:28px;text-align:center;font-weight:500">1</span>
-        <button class="qty-btn" onclick="updateCartQty(&#39;Atorvastatin_Sandoz_Hmbh_20mg_10x10&#39;, 1)">+</button>
-      </div>
-      <div class="cart-item-price">1,850 ฿</div>
-      <button class="cart-remove" onclick="removeFromCart(&#39;Atorvastatin_Sandoz_Hmbh_20mg_10x10&#39;)">🗑</button>
-    </div></div>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty">ยังไม่มีสินค้าในตะกร้า</div>
+  </div>
   <div class="cart-footer">
     <div class="cart-summary">
       <div class="cart-total-label">ยอดรวมทั้งหมด</div>
-      <div class="cart-total-val" id="cartTotal">1,850 ฿</div>
+      <div class="cart-total-val" id="cartTotal">0 ฿</div>
     </div>
     <div class="cart-actions">
       <button class="btn-clear" onclick="clearCart()">ล้างตะกร้า</button>
@@ -7933,7 +8074,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
 <div class="toast" id="toast"></div>
 
 <script>
-const API_URL = 'https://script.google.com/macros/s/AKfycbwOM15N23AIDPEZ-CIi8WIQyU_oR7-XptW5LIVjb8Vl5tTlPGBqxyfp_jaYDCw_L8ii/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycby9GJrp3t8JYsZhtda_wh2cZYL49tuZQAOa5ep8yFg7BPsZBo9EW8m56c9z3gvzpNnf/exec';
 const ORDER_URL = 'https://script.google.com/macros/s/AKfycbzKmSzS6J6gRzLySRH4fxSxJrR8VZCtOO0eDJ0YS7bfwFMb8NtcOgch9ksUBlzSo6qSgw/exec';
 
 // DARK MODE
@@ -7977,16 +8118,33 @@ function catOf(n) {
 const CATS = ["ทุกหมวด","MaxxLife","Mega","ยาเบาหวาน","ยาความดัน","ยาไขมัน","ยาแก้ปวด/ลดไข้","ยาระบบหายใจ","ยาจิตเวช","ยาระบบทางเดินอาหาร","วิตามิน/อาหารเสริม","เครื่องมือแพทย์","อื่นๆ"];
 let allData = [], activeCat = "";
 
-// CATEGORY PILLS — clear and rebuild
-const pillsEl = document.getElementById('catPills');
-pillsEl.innerHTML = '';
-CATS.forEach(c => {
-  const btn = document.createElement('button');
-  btn.className = 'cat-pill' + (c === "ทุกหมวด" ? ' active' : '');
-  btn.textContent = c;
-  btn.onclick = () => setActiveCat(c === "ทุกหมวด" ? "" : c);
-  pillsEl.appendChild(btn);
-});
+function buildCatPills() {
+  // รวบรวมหมวดหมู่ทั้งหมดจากข้อมูล
+  const catSet = new Set();
+  allData.forEach(d => {
+    d.category.split(',').map(c => c.trim()).filter(Boolean).forEach(c => catSet.add(c));
+  });
+  const cats = ["ทุกหมวด", ...Array.from(catSet).sort()];
+
+  const pillsEl = document.getElementById('catPills');
+  pillsEl.innerHTML = '';
+  cats.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-pill' + (c === "ทุกหมวด" ? ' active' : '');
+    btn.textContent = c;
+    btn.onclick = () => setActiveCat(c === "ทุกหมวด" ? "" : c);
+    pillsEl.appendChild(btn);
+  });
+
+  // อัปเดต dropdown
+  const select = document.getElementById('catFilter');
+  select.innerHTML = '<option value="">ทุกหมวด</option>';
+  Array.from(catSet).sort().forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c; opt.textContent = c;
+    select.appendChild(opt);
+  });
+}
 
 function setActiveCat(val) {
   activeCat = val;
@@ -8388,10 +8546,10 @@ async function loadSheet() {
     allData = json
       .filter(r => r.name && r.name.toString().trim() !== '')
       .map(r => ({
-        name:  r.name.toString().trim(),
-        price: typeof r.price === 'number' ? r.price : parseFloat(r.price) || r.price || '',
-        unit:  (r.unit || '').toString().trim(),
-        category: catOf(r.name.toString().trim())
+        name:     r.name.toString().trim(),
+        price:    typeof r.price === 'number' ? r.price : parseFloat(r.price) || r.price || '',
+        unit:     (r.unit || '').toString().trim(),
+        category: (r.category || '').toString().trim() || catOf(r.name.toString().trim())
       }));
     const nums = allData.map(d => d.price).filter(p => typeof p === 'number' && p > 0);
     document.getElementById('totalCount').textContent = allData.length.toLocaleString();
@@ -8399,6 +8557,7 @@ async function loadSheet() {
     document.getElementById('maxPrice').textContent   = Math.max(...nums).toLocaleString();
     document.getElementById('updatedAt').textContent  =
       'โหลดข้อมูลเมื่อ ' + new Date().toLocaleString('th-TH', {day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    buildCatPills();
     render();
   } catch(e) {
     document.getElementById('tbody').innerHTML = '';
@@ -8409,10 +8568,11 @@ async function loadSheet() {
 
 function render() {
   const q = document.getElementById('search').value.toLowerCase().trim();
-  const filtered = allData.filter(d =>
-    (!q || d.name.toLowerCase().includes(q)) &&
-    (!activeCat || d.category === activeCat)
-  );
+  const filtered = allData.filter(d => {
+    const matchQ = !q || d.name.toLowerCase().includes(q);
+    const matchC = !activeCat || d.category.split(',').map(c => c.trim()).includes(activeCat);
+    return matchQ && matchC;
+  });
   document.getElementById('countInfo').innerHTML =
     `แสดง <span>${filtered.length.toLocaleString()}</span> รายการ จากทั้งหมด ${allData.length.toLocaleString()} รายการ`;
   const tbody = document.getElementById('tbody');
@@ -8445,7 +8605,7 @@ function render() {
       <td title="${d.name}" data-name="${d.name.replace(/"/g,'&quot;')}" onclick="openNamePopupFromEl(this)" style="cursor:pointer">${d.name}</td>
       <td class="cp-val">${p}</td>
       <td class="cu-val">${d.unit}</td>
-      <td><span class="badge ${CAT_CLASS[d.category]||'b-other'}">${d.category}</span></td>
+      <td>${d.category.split(',').map(c => c.trim()).filter(Boolean).map(c => `<span class="badge ${CAT_CLASS[c]||'b-other'}">${c}</span>`).join(' ')}</td>
       <td style="text-align:center">${qtyWrap}</td>
     </tr>`;
   }).join('');
