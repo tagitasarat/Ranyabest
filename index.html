@@ -102,27 +102,45 @@ tbody tr:last-child td { border-bottom: none; }
 .b-diabetes{ background:#EBF3FF; color:#1E4D9B; }
 .b-pressure{ background:#E8F7EF; color:#1A5C3A; }
 .b-lipid   { background:#FFF5E6; color:#7A4500; }
-.b-pain    { background:#FFEBE8; color:#7A2510; }
-.b-resp    { background:#EAF7F1; color:#14593A; }
-.b-psych   { background:#F0EEFF; color:#3D2A9E; }
+.b-pain    { background:#FDE8F4; color:#9C1565; }
+.b-resp    { background:#E8FDE8; color:#156515; }
+.b-psych   { background:#FDFDE8; color:#7A7A15; }
 .b-vitamin { background:#F0FAF4; color:#1B5E35; }
 .b-device  { background:#FFF3E0; color:#7A4200; }
 .b-gi      { background:#FFF8E6; color:#7A5500; }
 .b-maxxlife{ background:#E8F0FF; color:#1A3A8F; }
 .b-mega    { background:#FFE8F5; color:#8F1A5A; }
 .b-other   { background:#F2EFE9; color:#5A5248; }
+.b-antiseptic{ background:#FDF4E8; color:#A06515; }
+.b-external{ background:#FDE8E8; color:#A01515; }
+.b-herbal  { background:#FDE8E8; color:#A01515; }
+.b-hormone { background:#E8FDFD; color:#157A7A; }
+.b-eye     { background:#E8FDF0; color:#157A55; }
+.b-tears   { background:#E8FDF0; color:#157A55; }
+.b-biopharm{ background:#E8FDFD; color:#157A7A; }
+.b-siam    { background:#F4E8FD; color:#6515A0; }
+.b-special { background:#F4E8FD; color:#6515A0; }
 [data-theme="dark"] .b-diabetes{ background:#0D1F3C; color:#7DAEE8; }
 [data-theme="dark"] .b-pressure{ background:#0D2218; color:#52B788; }
 [data-theme="dark"] .b-lipid   { background:#2A1A00; color:#D4923A; }
-[data-theme="dark"] .b-pain    { background:#2A0D08; color:#E07060; }
+[data-theme="dark"] .b-pain    { background:#3C0D25; color:#E87AB0; }
 [data-theme="dark"] .b-resp    { background:#0D2218; color:#52B788; }
-[data-theme="dark"] .b-psych   { background:#1A1030; color:#9B85E8; }
+[data-theme="dark"] .b-psych   { background:#2A2A0D; color:#C9C93A; }
 [data-theme="dark"] .b-vitamin { background:#0D2010; color:#52B788; }
 [data-theme="dark"] .b-device  { background:#2A1800; color:#D4923A; }
 [data-theme="dark"] .b-gi      { background:#2A1E00; color:#D4A830; }
 [data-theme="dark"] .b-maxxlife{ background:#0D1A3C; color:#7A9AE8; }
 [data-theme="dark"] .b-mega    { background:#3C0D25; color:#E87AB0; }
 [data-theme="dark"] .b-other   { background:#1A1A16; color:#8A9080; }
+[data-theme="dark"] .b-antiseptic{ background:#2A1E0D; color:#D4A86A; }
+[data-theme="dark"] .b-external{ background:#2E0D0D; color:#E88A8A; }
+[data-theme="dark"] .b-herbal  { background:#2E0D0D; color:#E88A8A; }
+[data-theme="dark"] .b-hormone { background:#0D2A2A; color:#52C4C4; }
+[data-theme="dark"] .b-eye     { background:#0D2A1C; color:#52B788; }
+[data-theme="dark"] .b-tears   { background:#0D2A1C; color:#52B788; }
+[data-theme="dark"] .b-biopharm{ background:#0D2A2A; color:#52C4C4; }
+[data-theme="dark"] .b-siam    { background:#1E0D2A; color:#B585E8; }
+[data-theme="dark"] .b-special { background:#1E0D2A; color:#B585E8; }
 
 /* QTY INPUT */
 .qty-wrap { display: flex; align-items: center; gap: 4px; }
@@ -462,7 +480,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="ABILIFY 5mg (3x10&#39;S)" data-name="ABILIFY 5mg (3x10&#39;S)" data-unit="กล่อง" data-generic="Aripiprazole" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">ABILIFY 5mg (3x10'S)</span></div></td>
       <td class="cp-val" data-name="ABILIFY 5mg (3x10&#39;S)" data-unit="กล่อง" data-generic="Aripiprazole" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">2,650 ฿</td>
       <td class="cu-val" data-name="ABILIFY 5mg (3x10&#39;S)" data-unit="กล่อง" data-generic="Aripiprazole" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;ABILIFY_5mg__3x10_S_&#39;,-1)">−</button>
           <input class="qty-input" id="qty_ABILIFY_5mg__3x10_S_" type="number" value="1" min="1" step="1" max="999">
@@ -506,7 +524,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Acetazolamide 10x10 Tablets" data-name="Acetazolamide 10x10 Tablets" data-unit="กล่อง" data-generic="Acetazolamide" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Acetazolamide 10x10 Tablets</span></div></td>
       <td class="cp-val" data-name="Acetazolamide 10x10 Tablets" data-unit="กล่อง" data-generic="Acetazolamide" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">275 ฿</td>
       <td class="cu-val" data-name="Acetazolamide 10x10 Tablets" data-unit="กล่อง" data-generic="Acetazolamide" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Acetazolamide_10x10_Tablets&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Acetazolamide_10x10_Tablets" type="number" value="1" min="1" step="1" max="999">
@@ -847,7 +865,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Apalife 10 mg" data-name="Apalife 10 mg" data-unit="กล่อง" data-generic="Aripiprazole" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Apalife 10 mg</span></div></td>
       <td class="cp-val" data-name="Apalife 10 mg" data-unit="กล่อง" data-generic="Aripiprazole" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">2,450 ฿</td>
       <td class="cu-val" data-name="Apalife 10 mg" data-unit="กล่อง" data-generic="Aripiprazole" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Apalife_10_mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Apalife_10_mg" type="number" value="1" min="1" step="1" max="999">
@@ -858,7 +876,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Apalife 5 mg" data-name="Apalife 5 mg" data-unit="กล่อง" data-generic="Aripiprazole" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Apalife 5 mg</span></div></td>
       <td class="cp-val" data-name="Apalife 5 mg" data-unit="กล่อง" data-generic="Aripiprazole" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">1,550 ฿</td>
       <td class="cu-val" data-name="Apalife 5 mg" data-unit="กล่อง" data-generic="Aripiprazole" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Apalife_5_mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Apalife_5_mg" type="number" value="1" min="1" step="1" max="999">
@@ -1287,7 +1305,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Betaserc" data-name="Betaserc" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Betaserc</span></div></td>
       <td class="cp-val" data-name="Betaserc" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">400 ฿</td>
       <td class="cu-val" data-name="Betaserc" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Betaserc&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Betaserc" type="number" value="1" min="1" step="1" max="999">
@@ -1518,7 +1536,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><img class="drug-thumb" src="./index_files/1779545712413.png" alt="" onclick="event.stopPropagation();openImgPopup(&#39;https://drive.google.com/thumbnail?id=1v78ntFvNk1fs5Q8LQzqMirtxtb6VHICN&amp;sz=w400&#39;,&#39;Brintellix 10mg 28 Tablets&#39;)"><span title="Brintellix 10mg 28 Tablets" data-name="Brintellix 10mg 28 Tablets" data-unit="กล่อง" data-generic="Vortioxetine" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1v78ntFvNk1fs5Q8LQzqMirtxtb6VHICN%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Brintellix 10mg 28 Tablets</span></div></td>
       <td class="cp-val" data-name="Brintellix 10mg 28 Tablets" data-unit="กล่อง" data-generic="Vortioxetine" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1v78ntFvNk1fs5Q8LQzqMirtxtb6VHICN%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">1,570 ฿</td>
       <td class="cu-val" data-name="Brintellix 10mg 28 Tablets" data-unit="กล่อง" data-generic="Vortioxetine" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1v78ntFvNk1fs5Q8LQzqMirtxtb6VHICN%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Brintellix_10mg_28_Tablets&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Brintellix_10mg_28_Tablets" type="number" value="1" min="1" step="1" max="999">
@@ -1870,7 +1888,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Cephadol 20x10 Tablets" data-name="Cephadol 20x10 Tablets" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Cephadol 20x10 Tablets</span></div></td>
       <td class="cp-val" data-name="Cephadol 20x10 Tablets" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">390 ฿</td>
       <td class="cu-val" data-name="Cephadol 20x10 Tablets" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Cephadol_20x10_Tablets&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Cephadol_20x10_Tablets" type="number" value="1" min="1" step="1" max="999">
@@ -1969,7 +1987,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Circadin" data-name="Circadin" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Circadin</span></div></td>
       <td class="cp-val" data-name="Circadin" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">415 ฿</td>
       <td class="cu-val" data-name="Circadin" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Circadin&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Circadin" type="number" value="1" min="1" step="1" max="999">
@@ -2037,10 +2055,10 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td class="cu-val" data-name="Cold&amp;Hot Pad Longmed เล็ก" data-unit="ชิ้น" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">ชิ้น</td>
       <td><span class="badge b-other">อื่นๆ</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
-          <button class="qty-btn" onclick="changeQty(&#39;Cold_Hot_Pad_Longmed_____&#39;,-1)">−</button>
-          <input class="qty-input" id="qty_Cold_Hot_Pad_Longmed_____" type="number" value="1" min="1" step="1" max="999">
-          <button class="qty-btn" onclick="changeQty(&#39;Cold_Hot_Pad_Longmed_____&#39;,1)">+</button>
-          <button class="add-btn" data-id="Cold_Hot_Pad_Longmed_____" data-price="45" data-unit="ชิ้น" onclick="addFromRow(this)">+ ตะกร้า</button>
+          <button class="qty-btn" onclick="changeQty(&#39;Cold_Hot_Pad_Longmed_เล็ก&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_Cold_Hot_Pad_Longmed_เล็ก" type="number" value="1" min="1" step="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;Cold_Hot_Pad_Longmed_เล็ก&#39;,1)">+</button>
+          <button class="add-btn" data-id="Cold_Hot_Pad_Longmed_เล็ก" data-price="45" data-unit="ชิ้น" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td><div class="drug-name-wrap"><span title="Cold&amp;Hot Pad Longmed ใหญ่" data-name="Cold&amp;Hot Pad Longmed ใหญ่" data-unit="ชิ้น" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Cold&amp;Hot Pad Longmed ใหญ่</span></div></td>
@@ -2048,10 +2066,10 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td class="cu-val" data-name="Cold&amp;Hot Pad Longmed ใหญ่" data-unit="ชิ้น" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">ชิ้น</td>
       <td><span class="badge b-other">อื่นๆ</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
-          <button class="qty-btn" onclick="changeQty(&#39;Cold_Hot_Pad_Longmed_____&#39;,-1)">−</button>
-          <input class="qty-input" id="qty_Cold_Hot_Pad_Longmed_____" type="number" value="1" min="1" step="1" max="999">
-          <button class="qty-btn" onclick="changeQty(&#39;Cold_Hot_Pad_Longmed_____&#39;,1)">+</button>
-          <button class="add-btn" data-id="Cold_Hot_Pad_Longmed_____" data-price="80" data-unit="ชิ้น" onclick="addFromRow(this)">+ ตะกร้า</button>
+          <button class="qty-btn" onclick="changeQty(&#39;Cold_Hot_Pad_Longmed_ใหญ่&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_Cold_Hot_Pad_Longmed_ใหญ่" type="number" value="1" min="1" step="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;Cold_Hot_Pad_Longmed_ใหญ่&#39;,1)">+</button>
+          <button class="add-btn" data-id="Cold_Hot_Pad_Longmed_ใหญ่" data-price="80" data-unit="ชิ้น" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td><div class="drug-name-wrap"><span title="Colpermin" data-name="Colpermin" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Colpermin</span></div></td>
@@ -2233,7 +2251,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Cytisine GPO 1.5mg (เลิกบุหรี่)" data-name="Cytisine GPO 1.5mg (เลิกบุหรี่)" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Cytisine GPO 1.5mg (เลิกบุหรี่)</span></div></td>
       <td class="cp-val" data-name="Cytisine GPO 1.5mg (เลิกบุหรี่)" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">680 ฿</td>
       <td class="cu-val" data-name="Cytisine GPO 1.5mg (เลิกบุหรี่)" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Cytisine_GPO_1_5mg_____________&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Cytisine_GPO_1_5mg_____________" type="number" value="1" min="1" step="1" max="999">
@@ -2299,7 +2317,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Deanxit" data-name="Deanxit" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Deanxit</span></div></td>
       <td class="cp-val" data-name="Deanxit" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">580 ฿</td>
       <td class="cu-val" data-name="Deanxit" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Deanxit&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Deanxit" type="number" value="1" min="1" step="1" max="999">
@@ -2629,7 +2647,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Dozemo 10 mg" data-name="Dozemo 10 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Dozemo 10 mg</span></div></td>
       <td class="cp-val" data-name="Dozemo 10 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">1,200 ฿</td>
       <td class="cu-val" data-name="Dozemo 10 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Dozemo_10_mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Dozemo_10_mg" type="number" value="1" min="1" step="1" max="999">
@@ -2640,7 +2658,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Dozemo 5 mg" data-name="Dozemo 5 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Dozemo 5 mg</span></div></td>
       <td class="cp-val" data-name="Dozemo 5 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">750 ฿</td>
       <td class="cu-val" data-name="Dozemo 5 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Dozemo_5_mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Dozemo_5_mg" type="number" value="1" min="1" step="1" max="999">
@@ -2651,7 +2669,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Duloz 30" data-name="Duloz 30" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Duloz 30</span></div></td>
       <td class="cp-val" data-name="Duloz 30" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">1,300 ฿</td>
       <td class="cu-val" data-name="Duloz 30" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Duloz_30&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Duloz_30" type="number" value="1" min="1" step="1" max="999">
@@ -2662,7 +2680,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Duloz 60" data-name="Duloz 60" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Duloz 60</span></div></td>
       <td class="cp-val" data-name="Duloz 60" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">1,700 ฿</td>
       <td class="cu-val" data-name="Duloz 60" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Duloz_60&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Duloz_60" type="number" value="1" min="1" step="1" max="999">
@@ -2706,7 +2724,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Efexor XR 37.5mg" data-name="Efexor XR 37.5mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Efexor XR 37.5mg</span></div></td>
       <td class="cp-val" data-name="Efexor XR 37.5mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">340 ฿</td>
       <td class="cu-val" data-name="Efexor XR 37.5mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Efexor_XR_37_5mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Efexor_XR_37_5mg" type="number" value="1" min="1" step="1" max="999">
@@ -2717,7 +2735,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><img class="drug-thumb" src="./index_files/EFEXOR XR 75mg 2x14 Capsules.jpg" alt="" onclick="event.stopPropagation();openImgPopup(&#39;https://drive.google.com/thumbnail?id=1SJALbByow-vxvdN9eXvkEX6Pxf7tixeU&amp;sz=w400&#39;,&#39;EFEXOR XR 75mg 2x14 Capsules&#39;)"><span title="EFEXOR XR 75mg 2x14 Capsules" data-name="EFEXOR XR 75mg 2x14 Capsules" data-unit="กล่อง" data-generic="Venlafaxine HCl" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1SJALbByow-vxvdN9eXvkEX6Pxf7tixeU%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">EFEXOR XR 75mg 2x14 Capsules</span></div></td>
       <td class="cp-val" data-name="EFEXOR XR 75mg 2x14 Capsules" data-unit="กล่อง" data-generic="Venlafaxine HCl" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1SJALbByow-vxvdN9eXvkEX6Pxf7tixeU%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">1,580 ฿</td>
       <td class="cu-val" data-name="EFEXOR XR 75mg 2x14 Capsules" data-unit="กล่อง" data-generic="Venlafaxine HCl" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1SJALbByow-vxvdN9eXvkEX6Pxf7tixeU%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;EFEXOR_XR_75mg_2x14_Capsules&#39;,-1)">−</button>
           <input class="qty-input" id="qty_EFEXOR_XR_75mg_2x14_Capsules" type="number" value="1" min="1" step="1" max="999">
@@ -2838,7 +2856,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Escitalopram Sandoz 10mg" data-name="Escitalopram Sandoz 10mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Escitalopram Sandoz 10mg</span></div></td>
       <td class="cp-val" data-name="Escitalopram Sandoz 10mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">650 ฿</td>
       <td class="cu-val" data-name="Escitalopram Sandoz 10mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Escitalopram_Sandoz_10mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Escitalopram_Sandoz_10mg" type="number" value="1" min="1" step="1" max="999">
@@ -2849,7 +2867,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><img class="drug-thumb" src="./index_files/1778940174572.png" alt="" onclick="event.stopPropagation();openImgPopup(&#39;https://drive.google.com/thumbnail?id=1I9-RcVJhET9Lq9P9-vwt-LRQmC7lVlLG&amp;sz=w400&#39;,&#39;ESIDEP 10mg 4x7 Tablets&#39;)"><span title="ESIDEP 10mg 4x7 Tablets" data-name="ESIDEP 10mg 4x7 Tablets" data-unit="กล่อง" data-generic="Escitalopram Oxalate" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1I9-RcVJhET9Lq9P9-vwt-LRQmC7lVlLG%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">ESIDEP 10mg 4x7 Tablets</span></div></td>
       <td class="cp-val" data-name="ESIDEP 10mg 4x7 Tablets" data-unit="กล่อง" data-generic="Escitalopram Oxalate" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1I9-RcVJhET9Lq9P9-vwt-LRQmC7lVlLG%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">330 ฿</td>
       <td class="cu-val" data-name="ESIDEP 10mg 4x7 Tablets" data-unit="กล่อง" data-generic="Escitalopram Oxalate" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1I9-RcVJhET9Lq9P9-vwt-LRQmC7lVlLG%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;ESIDEP_10mg_4x7_Tablets&#39;,-1)">−</button>
           <input class="qty-input" id="qty_ESIDEP_10mg_4x7_Tablets" type="number" value="1" min="1" step="1" max="999">
@@ -3115,10 +3133,10 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td class="cu-val" data-name="Ezerra ชมพู 25g" data-unit="หลอด" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">หลอด</td>
       <td><span class="badge b-other">อื่นๆ</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
-          <button class="qty-btn" onclick="changeQty(&#39;Ezerra______25g&#39;,-1)">−</button>
-          <input class="qty-input" id="qty_Ezerra______25g" type="number" value="1" min="1" step="1" max="999">
-          <button class="qty-btn" onclick="changeQty(&#39;Ezerra______25g&#39;,1)">+</button>
-          <button class="add-btn" data-id="Ezerra______25g" data-price="405" data-unit="หลอด" onclick="addFromRow(this)">+ ตะกร้า</button>
+          <button class="qty-btn" onclick="changeQty(&#39;Ezerra_ชมพู_25g&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_Ezerra_ชมพู_25g" type="number" value="1" min="1" step="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;Ezerra_ชมพู_25g&#39;,1)">+</button>
+          <button class="add-btn" data-id="Ezerra_ชมพู_25g" data-price="405" data-unit="หลอด" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td><div class="drug-name-wrap"><span title="Ezerra ม่วง 25g" data-name="Ezerra ม่วง 25g" data-unit="หลอด" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Ezerra ม่วง 25g</span></div></td>
@@ -3126,10 +3144,10 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td class="cu-val" data-name="Ezerra ม่วง 25g" data-unit="หลอด" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">หลอด</td>
       <td><span class="badge b-other">อื่นๆ</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
-          <button class="qty-btn" onclick="changeQty(&#39;Ezerra______25g&#39;,-1)">−</button>
-          <input class="qty-input" id="qty_Ezerra______25g" type="number" value="1" min="1" step="1" max="999">
-          <button class="qty-btn" onclick="changeQty(&#39;Ezerra______25g&#39;,1)">+</button>
-          <button class="add-btn" data-id="Ezerra______25g" data-price="380" data-unit="หลอด" onclick="addFromRow(this)">+ ตะกร้า</button>
+          <button class="qty-btn" onclick="changeQty(&#39;Ezerra_ม่วง_25g&#39;,-1)">−</button>
+          <input class="qty-input" id="qty_Ezerra_ม่วง_25g" type="number" value="1" min="1" step="1" max="999">
+          <button class="qty-btn" onclick="changeQty(&#39;Ezerra_ม่วง_25g&#39;,1)">+</button>
+          <button class="add-btn" data-id="Ezerra_ม่วง_25g" data-price="380" data-unit="หลอด" onclick="addFromRow(this)">+ ตะกร้า</button>
         </div></td>
     </tr><tr>
       <td><div class="drug-name-wrap"><span title="Ezerra ม่วง 50g" data-name="Ezerra ม่วง 50g" data-unit="หลอด" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Ezerra ม่วง 50g</span></div></td>
@@ -3861,7 +3879,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><img class="drug-thumb" src="./index_files/GPO Amitriptyline 10 mg 50x10 Tablets.jpg" alt="" onclick="event.stopPropagation();openImgPopup(&#39;https://drive.google.com/thumbnail?id=1oPzp4Hw6jNYcjqmOZUYSivpD9KoGpiCC&amp;sz=w400&#39;,&#39;GPO Amitriptyline 10 mg 50x10 Tablets&#39;)"><span title="GPO Amitriptyline 10 mg 50x10 Tablets" data-name="GPO Amitriptyline 10 mg 50x10 Tablets" data-unit="กล่อง" data-generic="Amitriptyline" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1oPzp4Hw6jNYcjqmOZUYSivpD9KoGpiCC%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">GPO Amitriptyline 10 mg 50x10 Tablets</span></div></td>
       <td class="cp-val" data-name="GPO Amitriptyline 10 mg 50x10 Tablets" data-unit="กล่อง" data-generic="Amitriptyline" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1oPzp4Hw6jNYcjqmOZUYSivpD9KoGpiCC%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">250 ฿</td>
       <td class="cu-val" data-name="GPO Amitriptyline 10 mg 50x10 Tablets" data-unit="กล่อง" data-generic="Amitriptyline" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1oPzp4Hw6jNYcjqmOZUYSivpD9KoGpiCC%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;GPO_Amitriptyline_10_mg_50x10_Tablets&#39;,-1)">−</button>
           <input class="qty-input" id="qty_GPO_Amitriptyline_10_mg_50x10_Tablets" type="number" value="1" min="1" step="1" max="999">
@@ -3872,7 +3890,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="GPO Amitriptyline 25 mg 50x10 Tablets" data-name="GPO Amitriptyline 25 mg 50x10 Tablets" data-unit="กล่อง" data-generic="Amitriptyline" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">GPO Amitriptyline 25 mg 50x10 Tablets</span></div></td>
       <td class="cp-val" data-name="GPO Amitriptyline 25 mg 50x10 Tablets" data-unit="กล่อง" data-generic="Amitriptyline" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">325 ฿</td>
       <td class="cu-val" data-name="GPO Amitriptyline 25 mg 50x10 Tablets" data-unit="กล่อง" data-generic="Amitriptyline" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;GPO_Amitriptyline_25_mg_50x10_Tablets&#39;,-1)">−</button>
           <input class="qty-input" id="qty_GPO_Amitriptyline_25_mg_50x10_Tablets" type="number" value="1" min="1" step="1" max="999">
@@ -3894,7 +3912,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><img class="drug-thumb" src="./index_files/1778768111655.png" alt="" onclick="event.stopPropagation();openImgPopup(&#39;https://drive.google.com/thumbnail?id=1uhx0FdfkfC5Y864_bh-Wuc2XQ15D-ZuH&amp;sz=w400&#39;,&#39;GPO Gabapentin 100mg 10x10 Capsules&#39;)"><span title="GPO Gabapentin 100mg 10x10 Capsules" data-name="GPO Gabapentin 100mg 10x10 Capsules" data-unit="กล่อง" data-generic="Gabapentin" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1uhx0FdfkfC5Y864_bh-Wuc2XQ15D-ZuH%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">GPO Gabapentin 100mg 10x10 Capsules</span></div></td>
       <td class="cp-val" data-name="GPO Gabapentin 100mg 10x10 Capsules" data-unit="กล่อง" data-generic="Gabapentin" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1uhx0FdfkfC5Y864_bh-Wuc2XQ15D-ZuH%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">195 ฿</td>
       <td class="cu-val" data-name="GPO Gabapentin 100mg 10x10 Capsules" data-unit="กล่อง" data-generic="Gabapentin" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1uhx0FdfkfC5Y864_bh-Wuc2XQ15D-ZuH%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span> <span class="badge" style="background:#F4E8FD;color:#6515A0">ราคาพิเศษ</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span> <span class="badge" style="background:#F4E8FD;color:#6515A0">ราคาพิเศษ</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;GPO_Gabapentin_100mg_10x10_Capsules&#39;,-1)">−</button>
           <input class="qty-input" id="qty_GPO_Gabapentin_100mg_10x10_Capsules" type="number" value="1" min="1" step="1" max="999">
@@ -3905,7 +3923,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><img class="drug-thumb" src="./index_files/1778768113371.png" alt="" onclick="event.stopPropagation();openImgPopup(&#39;https://drive.google.com/thumbnail?id=1m95_sZpsRFL4Ez1ZWa8uI3mojjHnN9vz&amp;sz=w400&#39;,&#39;GPO Gabapentin 300mg 10x10 Capsules&#39;)"><span title="GPO Gabapentin 300mg 10x10 Capsules" data-name="GPO Gabapentin 300mg 10x10 Capsules" data-unit="กล่อง" data-generic="Gabapentin" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1m95_sZpsRFL4Ez1ZWa8uI3mojjHnN9vz%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">GPO Gabapentin 300mg 10x10 Capsules</span></div></td>
       <td class="cp-val" data-name="GPO Gabapentin 300mg 10x10 Capsules" data-unit="กล่อง" data-generic="Gabapentin" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1m95_sZpsRFL4Ez1ZWa8uI3mojjHnN9vz%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">370 ฿</td>
       <td class="cu-val" data-name="GPO Gabapentin 300mg 10x10 Capsules" data-unit="กล่อง" data-generic="Gabapentin" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1m95_sZpsRFL4Ez1ZWa8uI3mojjHnN9vz%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span> <span class="badge" style="background:#F4E8FD;color:#6515A0">ราคาพิเศษ</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span> <span class="badge" style="background:#F4E8FD;color:#6515A0">ราคาพิเศษ</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;GPO_Gabapentin_300mg_10x10_Capsules&#39;,-1)">−</button>
           <input class="qty-input" id="qty_GPO_Gabapentin_300mg_10x10_Capsules" type="number" value="1" min="1" step="1" max="999">
@@ -4290,7 +4308,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Keppra 500 6x10 Tablets" data-name="Keppra 500 6x10 Tablets" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Keppra 500 6x10 Tablets</span></div></td>
       <td class="cp-val" data-name="Keppra 500 6x10 Tablets" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">2,050 ฿</td>
       <td class="cu-val" data-name="Keppra 500 6x10 Tablets" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Keppra_500_6x10_Tablets&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Keppra_500_6x10_Tablets" type="number" value="1" min="1" step="1" max="999">
@@ -4422,7 +4440,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Lecetam 500 (6x10)" data-name="Lecetam 500 (6x10)" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Lecetam 500 (6x10)</span></div></td>
       <td class="cp-val" data-name="Lecetam 500 (6x10)" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">1,180 ฿</td>
       <td class="cu-val" data-name="Lecetam 500 (6x10)" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Lecetam_500__6x10_&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Lecetam_500__6x10_" type="number" value="1" min="1" step="1" max="999">
@@ -4477,7 +4495,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Lexapro 10 mg" data-name="Lexapro 10 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Lexapro 10 mg</span></div></td>
       <td class="cp-val" data-name="Lexapro 10 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">1,150 ฿</td>
       <td class="cu-val" data-name="Lexapro 10 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Lexapro_10_mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Lexapro_10_mg" type="number" value="1" min="1" step="1" max="999">
@@ -5786,7 +5804,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><img class="drug-thumb" src="./index_files/Migana 40x10 Tablets (T.man).jpg" alt="" onclick="event.stopPropagation();openImgPopup(&#39;https://drive.google.com/thumbnail?id=1HwV9qzKsFPj9qHffNosYpnLXHrRjw8z5&amp;sz=w400&#39;,&#39;Migana 40x10 Tablets (T.man)&#39;)"><span title="Migana 40x10 Tablets (T.man)" data-name="Migana 40x10 Tablets (T.man)" data-unit="กล่อง" data-generic="Ergotamine Tartrate + Caffeine" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1HwV9qzKsFPj9qHffNosYpnLXHrRjw8z5%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Migana 40x10 Tablets (T.man)</span></div></td>
       <td class="cp-val" data-name="Migana 40x10 Tablets (T.man)" data-unit="กล่อง" data-generic="Ergotamine Tartrate + Caffeine" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1HwV9qzKsFPj9qHffNosYpnLXHrRjw8z5%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">800 ฿</td>
       <td class="cu-val" data-name="Migana 40x10 Tablets (T.man)" data-unit="กล่อง" data-generic="Ergotamine Tartrate + Caffeine" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1HwV9qzKsFPj9qHffNosYpnLXHrRjw8z5%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Migana_40x10_Tablets__T_man_&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Migana_40x10_Tablets__T_man_" type="number" value="1" min="1" step="1" max="999">
@@ -6072,7 +6090,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Neupentin 300 mg" data-name="Neupentin 300 mg" data-unit="กล่อง" data-generic="Gabapentin" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Neupentin 300 mg</span></div></td>
       <td class="cp-val" data-name="Neupentin 300 mg" data-unit="กล่อง" data-generic="Gabapentin" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">300 ฿</td>
       <td class="cu-val" data-name="Neupentin 300 mg" data-unit="กล่อง" data-generic="Gabapentin" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Neupentin_300_mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Neupentin_300_mg" type="number" value="1" min="1" step="1" max="999">
@@ -6083,7 +6101,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><img class="drug-thumb" src="./index_files/1778766274657.png" alt="" onclick="event.stopPropagation();openImgPopup(&#39;https://drive.google.com/thumbnail?id=1ri-jZL1_iT8HxnBEso8w0UipNPY8Lj_l&amp;sz=w400&#39;,&#39;Neupentin 600mg 10x10 Tablets&#39;)"><span title="Neupentin 600mg 10x10 Tablets" data-name="Neupentin 600mg 10x10 Tablets" data-unit="กล่อง" data-generic="Gabapentin" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1ri-jZL1_iT8HxnBEso8w0UipNPY8Lj_l%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Neupentin 600mg 10x10 Tablets</span></div></td>
       <td class="cp-val" data-name="Neupentin 600mg 10x10 Tablets" data-unit="กล่อง" data-generic="Gabapentin" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1ri-jZL1_iT8HxnBEso8w0UipNPY8Lj_l%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">580 ฿</td>
       <td class="cu-val" data-name="Neupentin 600mg 10x10 Tablets" data-unit="กล่อง" data-generic="Gabapentin" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1ri-jZL1_iT8HxnBEso8w0UipNPY8Lj_l%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Neupentin_600mg_10x10_Tablets&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Neupentin_600mg_10x10_Tablets" type="number" value="1" min="1" step="1" max="999">
@@ -6094,7 +6112,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Neutapin 100 mg" data-name="Neutapin 100 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Neutapin 100 mg</span></div></td>
       <td class="cp-val" data-name="Neutapin 100 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">460 ฿</td>
       <td class="cu-val" data-name="Neutapin 100 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Neutapin_100_mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Neutapin_100_mg" type="number" value="1" min="1" step="1" max="999">
@@ -6105,7 +6123,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Neutapin 200mg" data-name="Neutapin 200mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Neutapin 200mg</span></div></td>
       <td class="cp-val" data-name="Neutapin 200mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">600 ฿</td>
       <td class="cu-val" data-name="Neutapin 200mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Neutapin_200mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Neutapin_200mg" type="number" value="1" min="1" step="1" max="999">
@@ -6116,7 +6134,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Neutapin 25 mg" data-name="Neutapin 25 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Neutapin 25 mg</span></div></td>
       <td class="cp-val" data-name="Neutapin 25 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">350 ฿</td>
       <td class="cu-val" data-name="Neutapin 25 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Neutapin_25_mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Neutapin_25_mg" type="number" value="1" min="1" step="1" max="999">
@@ -6666,7 +6684,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Pristiq 50 mg" data-name="Pristiq 50 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Pristiq 50 mg</span></div></td>
       <td class="cp-val" data-name="Pristiq 50 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">1,600 ฿</td>
       <td class="cu-val" data-name="Pristiq 50 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Pristiq_50_mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Pristiq_50_mg" type="number" value="1" min="1" step="1" max="999">
@@ -6743,7 +6761,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Quantia 200 mg" data-name="Quantia 200 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Quantia 200 mg</span></div></td>
       <td class="cp-val" data-name="Quantia 200 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">780 ฿</td>
       <td class="cu-val" data-name="Quantia 200 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Quantia_200_mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Quantia_200_mg" type="number" value="1" min="1" step="1" max="999">
@@ -6754,7 +6772,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Quantia 25 mg" data-name="Quantia 25 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Quantia 25 mg</span></div></td>
       <td class="cp-val" data-name="Quantia 25 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">380 ฿</td>
       <td class="cu-val" data-name="Quantia 25 mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Quantia_25_mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Quantia_25_mg" type="number" value="1" min="1" step="1" max="999">
@@ -6853,7 +6871,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Risperidone GPO 1mg (6x10)" data-name="Risperidone GPO 1mg (6x10)" data-unit="กล่อง" data-generic="Risperidone" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Risperidone GPO 1mg (6x10)</span></div></td>
       <td class="cp-val" data-name="Risperidone GPO 1mg (6x10)" data-unit="กล่อง" data-generic="Risperidone" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">240 ฿</td>
       <td class="cu-val" data-name="Risperidone GPO 1mg (6x10)" data-unit="กล่อง" data-generic="Risperidone" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Risperidone_GPO_1mg__6x10_&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Risperidone_GPO_1mg__6x10_" type="number" value="1" min="1" step="1" max="999">
@@ -6864,7 +6882,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Risperidone GPO 2mg (6x10)" data-name="Risperidone GPO 2mg (6x10)" data-unit="กล่อง" data-generic="Risperidone" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Risperidone GPO 2mg (6x10)</span></div></td>
       <td class="cp-val" data-name="Risperidone GPO 2mg (6x10)" data-unit="กล่อง" data-generic="Risperidone" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">320 ฿</td>
       <td class="cu-val" data-name="Risperidone GPO 2mg (6x10)" data-unit="กล่อง" data-generic="Risperidone" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Risperidone_GPO_2mg__6x10_&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Risperidone_GPO_2mg__6x10_" type="number" value="1" min="1" step="1" max="999">
@@ -7007,7 +7025,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Sergoline 30mg" data-name="Sergoline 30mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Sergoline 30mg</span></div></td>
       <td class="cp-val" data-name="Sergoline 30mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">280 ฿</td>
       <td class="cu-val" data-name="Sergoline 30mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Sergoline_30mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Sergoline_30mg" type="number" value="1" min="1" step="1" max="999">
@@ -7018,7 +7036,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><img class="drug-thumb" src="./index_files/1778940202402.png" alt="" onclick="event.stopPropagation();openImgPopup(&#39;https://drive.google.com/thumbnail?id=1bi3PsAIso58xWvCcbQQP3MYL_pawo53D&amp;sz=w400&#39;,&#39;Serlift 50mg 30 Tablets&#39;)"><span title="Serlift 50mg 30 Tablets" data-name="Serlift 50mg 30 Tablets" data-unit="กล่อง" data-generic="Sertraline Hydrochloride" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1bi3PsAIso58xWvCcbQQP3MYL_pawo53D%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Serlift 50mg 30 Tablets</span></div></td>
       <td class="cp-val" data-name="Serlift 50mg 30 Tablets" data-unit="กล่อง" data-generic="Sertraline Hydrochloride" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1bi3PsAIso58xWvCcbQQP3MYL_pawo53D%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">110 ฿</td>
       <td class="cu-val" data-name="Serlift 50mg 30 Tablets" data-unit="กล่อง" data-generic="Sertraline Hydrochloride" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1bi3PsAIso58xWvCcbQQP3MYL_pawo53D%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Serlift_50mg_30_Tablets&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Serlift_50mg_30_Tablets" type="number" value="1" min="1" step="1" max="999">
@@ -7051,7 +7069,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Seroquel 25" data-name="Seroquel 25" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Seroquel 25</span></div></td>
       <td class="cp-val" data-name="Seroquel 25" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">940 ฿</td>
       <td class="cu-val" data-name="Seroquel 25" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Seroquel_25&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Seroquel_25" type="number" value="1" min="1" step="1" max="999">
@@ -7073,7 +7091,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><img class="drug-thumb" src="./index_files/1778768120265.png" alt="" onclick="event.stopPropagation();openImgPopup(&#39;https://drive.google.com/thumbnail?id=1ylZi7hsffWMcmj7rMxJy0mU2XWXeuaWB&amp;sz=w400&#39;,&#39;Sertraline 50mg GPO 2x15 Tablets&#39;)"><span title="Sertraline 50mg GPO 2x15 Tablets" data-name="Sertraline 50mg GPO 2x15 Tablets" data-unit="กล่อง" data-generic="Sertraline" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1ylZi7hsffWMcmj7rMxJy0mU2XWXeuaWB%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Sertraline 50mg GPO 2x15 Tablets</span></div></td>
       <td class="cp-val" data-name="Sertraline 50mg GPO 2x15 Tablets" data-unit="กล่อง" data-generic="Sertraline" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1ylZi7hsffWMcmj7rMxJy0mU2XWXeuaWB%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">130 ฿</td>
       <td class="cu-val" data-name="Sertraline 50mg GPO 2x15 Tablets" data-unit="กล่อง" data-generic="Sertraline" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1ylZi7hsffWMcmj7rMxJy0mU2XWXeuaWB%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Sertraline_50mg_GPO_2x15_Tablets&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Sertraline_50mg_GPO_2x15_Tablets" type="number" value="1" min="1" step="1" max="999">
@@ -7645,7 +7663,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Trazadone 25x10" data-name="Trazadone 25x10" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Trazadone 25x10</span></div></td>
       <td class="cp-val" data-name="Trazadone 25x10" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">450 ฿</td>
       <td class="cu-val" data-name="Trazadone 25x10" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Trazadone_25x10&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Trazadone_25x10" type="number" value="1" min="1" step="1" max="999">
@@ -7865,7 +7883,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><img class="drug-thumb" src="./index_files/Valdoxan 25mg 28 Tablets.jpg" alt="" onclick="event.stopPropagation();openImgPopup(&#39;https://drive.google.com/thumbnail?id=1z8ROl0lD2W0NWFnFO6qXAhx_dpkwVSAU&amp;sz=w400&#39;,&#39;Valdoxan 25mg 28 Tablets&#39;)"><span title="Valdoxan 25mg 28 Tablets" data-name="Valdoxan 25mg 28 Tablets" data-unit="กล่อง" data-generic="Agomelatine" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1z8ROl0lD2W0NWFnFO6qXAhx_dpkwVSAU%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Valdoxan 25mg 28 Tablets</span></div></td>
       <td class="cp-val" data-name="Valdoxan 25mg 28 Tablets" data-unit="กล่อง" data-generic="Agomelatine" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1z8ROl0lD2W0NWFnFO6qXAhx_dpkwVSAU%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">1,680 ฿</td>
       <td class="cu-val" data-name="Valdoxan 25mg 28 Tablets" data-unit="กล่อง" data-generic="Agomelatine" data-image="https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1z8ROl0lD2W0NWFnFO6qXAhx_dpkwVSAU%2Fview%3Fusp%3Ddrive_link" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Valdoxan_25mg_28_Tablets&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Valdoxan_25mg_28_Tablets" type="number" value="1" min="1" step="1" max="999">
@@ -8085,7 +8103,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
       <td><div class="drug-name-wrap"><span title="Voldoxan 25mg" data-name="Voldoxan 25mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">Voldoxan 25mg</span></div></td>
       <td class="cp-val" data-name="Voldoxan 25mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">1,700 ฿</td>
       <td class="cu-val" data-name="Voldoxan 25mg" data-unit="กล่อง" data-generic="" data-image="" onclick="openNamePopupFromEl(this)" style="cursor:pointer">กล่อง</td>
-      <td><span class="badge" style="background:#FDFD E8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
+      <td><span class="badge" style="background:#FDFDE8;color:#7A7A15">ยาระบบประสาทและสมอง</span></td>
       <td style="text-align:center"><div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty(&#39;Voldoxan_25mg&#39;,-1)">−</button>
           <input class="qty-input" id="qty_Voldoxan_25mg" type="number" value="1" min="1" step="1" max="999">
@@ -8986,9 +9004,12 @@ if (savedTheme === 'dark') {
 // CATEGORIES
 const CAT_CLASS = {
   "ยาเบาหวาน":"b-diabetes","ยาความดัน":"b-pressure","ยาไขมัน":"b-lipid",
-  "ยาแก้ปวด/ลดไข้":"b-pain","ยาระบบหายใจ":"b-resp","ยาจิตเวช":"b-psych",
+  "ยาระบบกระดูกและกล้ามเนื้อ":"b-pain","ยาระบบทางเดินหายใจ":"b-resp","ยาระบบประสาทและสมอง":"b-psych",
   "ยาระบบทางเดินอาหาร":"b-gi","วิตามิน/อาหารเสริม":"b-vitamin",
-  "เครื่องมือแพทย์":"b-device","MaxxLife":"b-maxxlife","Mega":"b-mega","อื่นๆ":"b-other"
+  "เครื่องมือแพทย์":"b-device","MaxxLife":"b-maxxlife","Mega":"b-mega","อื่นๆ":"b-other",
+  "ยาฆ่าเชื้อ":"b-antiseptic","ยาใช้ภายนอก":"b-external","สมุนไพร":"b-herbal",
+  "ฮอร์โมน":"b-hormone","ยาหยอดตา":"b-eye","น้ำตาเทียม":"b-tears",
+  "Biopharm":"b-biopharm","Siam":"b-siam","ราคาพิเศษ":"b-special"
 };
 
 // สีสำหรับหมวดหมู่ที่ไม่ได้กำหนดไว้ — auto generate จากชื่อ
@@ -8996,7 +9017,7 @@ const AUTO_COLORS = [
   {bg:'#E8F4FD',text:'#1565A0'},{bg:'#FDE8F4',text:'#9C1565'},
   {bg:'#E8FDE8',text:'#156515'},{bg:'#FDF4E8',text:'#A06515'},
   {bg:'#F4E8FD',text:'#6515A0'},{bg:'#FDE8E8',text:'#A01515'},
-  {bg:'#E8FDFD',text:'#157A7A'},{bg:'#FDFD E8',text:'#7A7A15'},
+  {bg:'#E8FDFD',text:'#157A7A'},{bg:'#FDFDE8',text:'#7A7A15'},
   {bg:'#F0E8FD',text:'#5515A0'},{bg:'#E8FDF0',text:'#157A55'},
 ];
 
@@ -9023,9 +9044,9 @@ function catOf(n) {
   if (/glucoph|metfor|diamicron|jardiance|januv|janumet|foexiga|glyxabi|glucovia|glizid|glycedieb|ozempic|wegovy|monjaro|rybesus|trajenta|tenelia|sucovia|sitagliptin|zemiglo|zemidapa|oseni|xigduo|favotan|dafomin/.test(l)) return "ยาเบาหวาน";
   if (/blopress|diovan|exforge|dafiro|lanzaar|losartan|valsartan|micardis|edarbi|caraten|normetec|twynstar|unisia|amlod|amlopine|amlopress|madiplot|manidipin|zandip|felopine|lercardip|tritace|bisoprolol|bisoven|prenolol|metoprolol/.test(l)) return "ยาความดัน";
   if (/crestor|atorvast|bestatin|chovas|rosucor|lipanthyl|lipostat|mevalotin|pitavast|pravast|surotin|roacta|livalo|atozet|ezetimibe|ezetrol|ezuvas|vytorin|xarator|xatrel|tovastatin|vivacor/.test(l)) return "ยาไขมัน";
-  if (/cemol|bakamol|diclof|volta|napro|probufen|umafen|solufen|ultracet|celxib|b-coxib|exib|torixib|melcalm|mel-od|naproxen|sinprofen|duocet|norgesic/.test(l)) return "ยาแก้ปวด/ลดไข้";
-  if (/anoro|symbicort|seretide|relvar|flixot|salda|busonase|rhinoc|nasonex|momemsa|mometha|aerius|bilaxten|telfast|alerest|deztanex|cetrizine|deslorat|bliztine|lorsedin|loridine|singulair/.test(l)) return "ยาระบบหายใจ";
-  if (/abilify|seroquel|apalife|neutapin|risperidone|deanxit|efexor|escitalop|lexapro|pristiq|voldoxan|duloz|quantia|trazadone/.test(l)) return "ยาจิตเวช";
+  if (/cemol|bakamol|diclof|volta|napro|probufen|umafen|solufen|ultracet|celxib|b-coxib|exib|torixib|melcalm|mel-od|naproxen|sinprofen|duocet|norgesic/.test(l)) return "ยาระบบกระดูกและกล้ามเนื้อ";
+  if (/anoro|symbicort|seretide|relvar|flixot|salda|busonase|rhinoc|nasonex|momemsa|mometha|aerius|bilaxten|telfast|alerest|deztanex|cetrizine|deslorat|bliztine|lorsedin|loridine|singulair/.test(l)) return "ยาระบบทางเดินหายใจ";
+  if (/abilify|seroquel|apalife|neutapin|risperidone|deanxit|efexor|escitalop|lexapro|pristiq|voldoxan|duloz|quantia|trazadone/.test(l)) return "ยาระบบประสาทและสมอง";
   if (/nexium|buscopan|omeprazole|pantoprazole|pariet|controloc|axiago|taprazole|miracid|gasmotin|domperidone|smecta|gaviscon|colpermin|eno|kremil|dexilant|prevacid|sucralfate|ulcefate|mucosta|diasgest|motilium|spasmex|cencopan|corilax/.test(l)) return "ยาระบบทางเดินอาหาร";
   if (/^everest |vitamin|calcium|fish oil|collagen|probiotic|glucosamine|bioactive|albumin|albu quick|lamoon|bioflor|caltab/.test(l)) return "วิตามิน/อาหารเสริม";
   if (/yuwell|accucheck|contour|rossmax|nipro|bd ultra|oral quick|เครื่อง/.test(l)) return "เครื่องมือแพทย์";
@@ -9045,7 +9066,6 @@ const CAT_SPECIAL_STYLE = {
   "ราคาพิเศษ": { bg: "#FF5252", text: "#fff", border: "#FF5252", activeBg: "#D32F2F", glow: true },
 };
 
-const CATS = ["ทุกหมวด","MaxxLife","Mega","ยาเบาหวาน","ยาความดัน","ยาไขมัน","ยาแก้ปวด/ลดไข้","ยาระบบหายใจ","ยาจิตเวช","ยาระบบทางเดินอาหาร","วิตามิน/อาหารเสริม","เครื่องมือแพทย์","อื่นๆ"];
 let allData = [], activeCat = "";
 
 function buildCatPills() {
@@ -9130,7 +9150,9 @@ function saveCart() {
 }
 
 function getCartId(name) {
-  return name.replace(/['\s\W]/g, '_');
+  // เก็บตัวอักษรไทย (฀-๿) ไว้ด้วย ไม่งั้น \W จะแปลงเป็น _ ทั้งหมด
+  // ทำให้สินค้าที่ต่างกันแค่คำไทย (เช่น เล็ก/ใหญ่, ชมพู/ม่วง) ได้ id ชนกัน
+  return name.replace(/[^A-Za-z0-9_฀-๿]/g, '_');
 }
 
 function getTiers(baseName) {
