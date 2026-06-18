@@ -8919,6 +8919,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
     <div class="name-popup-text" id="namePopupText"></div>
     <div id="namePopupGeneric" style="font-size:12px;color:var(--text-muted);margin-top:-6px;margin-bottom:10px;display:none">🔬 <span id="namePopupGenericText"></span></div>
     <div id="namePopupUnit" style="font-size:13px;color:var(--text-muted);margin-bottom:10px;display:none">📦 หน่วย: <span id="namePopupUnitText"></span></div>
+    <div id="namePopupGroup" style="font-size:13px;margin-bottom:10px;display:none;background:rgba(45,106,79,0.10);color:var(--accent);border-radius:8px;padding:8px 12px;line-height:1.6"></div>
     <div id="namePopupTiers" style="font-size:13px;margin-bottom:12px;display:none;background:var(--card-bg,#1e1e1e);border-radius:8px;padding:8px 12px;line-height:2"></div>
     <div class="name-popup-actions">
       <button class="btn-copy-name" onclick="copyName()">📋 Copy ชื่อ</button>
@@ -9417,6 +9418,18 @@ function openNamePopup(name, generic, image, unit) {
     unitEl.style.display = 'block';
   } else {
     unitEl.style.display = 'none';
+  }
+  // ขั้นต่ำกลุ่ม (สั่งรวมเป็นเท่าของ N คละสินค้าในกลุ่มได้)
+  const groupEl = document.getElementById('namePopupGroup');
+  const grp = getProductGroup(name);
+  if (grp && grp.step > 1) {
+    const gUnit = (unit || '').replace(/^\d+\s*/, '');
+    groupEl.innerHTML = `📦 <b>สั่งขั้นต่ำ ${grp.step} ${gUnit}</b><br>` +
+      `<span style="color:var(--text-muted);font-size:12px">สั่งรวมเป็นเท่าของ ${grp.step} (${grp.step}, ${grp.step*2}, ${grp.step*3}…) ` +
+      `คละกับสินค้ากลุ่ม “${grp.label}” ได้</span>`;
+    groupEl.style.display = 'block';
+  } else {
+    groupEl.style.display = 'none';
   }
   // รูปสินค้า (รองรับหลายรูปคั่น ,)
   const imgWrap = document.getElementById('namePopupImgWrap');
@@ -9926,7 +9939,7 @@ function render() {
     const grp = parseGroup(d.group);
     const grpUnit = (d.unit || '').replace(/^\d+\s*/, '');
     const groupHint = grp && grp.step > 1
-      ? `<br><small style="color:var(--accent,#2D6A4F);font-weight:500">📦 ขั้นต่ำกลุ่ม ${grp.label} ${grp.step} ${grpUnit} (คละได้)</small>`
+      ? `<br><small style="color:var(--accent,#2D6A4F);font-weight:500;white-space:nowrap">📦 ขั้นต่ำ ${grp.step} ${grpUnit}</small>`
       : '';
     const p = (typeof d.price === 'number'
       ? d.price.toLocaleString() + ' ฿' + (hasTiers ? '<br><small style="color:var(--accent-2,#f59e0b);font-weight:500">🏷️ ราคาดีลพิเศษ</small>' : '')
