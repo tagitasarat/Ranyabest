@@ -99,6 +99,11 @@ tbody tr:last-child td { border-bottom: none; }
 .cp-val { font-weight: 600; color: var(--accent); text-align: right; }
 .cu-val { color: var(--text-muted); font-size: 13px; text-align: center; }
 .badge { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 500; white-space: nowrap; }
+.badge-link { cursor: pointer; transition: filter .15s, transform .15s; }
+.badge-link:hover { filter: brightness(0.94); transform: translateY(-1px); }
+/* คอลัมน์หมวดหมู่: แสดงชื่อเต็ม ตัดบรรทัดแทนการตัดทิ้ง */
+td.cat-cell { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.9; }
+td.cat-cell .badge { white-space: normal; }
 .b-diabetes{ background:#EBF3FF; color:#1E4D9B; }
 .b-pressure{ background:#E8F7EF; color:#1A5C3A; }
 .b-lipid   { background:#FFF5E6; color:#7A4500; }
@@ -9037,9 +9042,11 @@ function getAutoColor(cat) {
 }
 
 function getBadgeHtml(cat) {
-  if (CAT_CLASS[cat]) return `<span class="badge ${CAT_CLASS[cat]}">${cat}</span>`;
+  const esc = cat.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+  const click = ` onclick="event.stopPropagation();setActiveCat('${esc}')" title="กรองเฉพาะ ${cat}"`;
+  if (CAT_CLASS[cat]) return `<span class="badge badge-link ${CAT_CLASS[cat]}"${click}>${cat}</span>`;
   const c = getAutoColor(cat);
-  return `<span class="badge" style="background:${c.bg};color:${c.text}">${cat}</span>`;
+  return `<span class="badge badge-link" style="background:${c.bg};color:${c.text}"${click}>${cat}</span>`;
 }
 
 function catOf(n) {
@@ -9974,7 +9981,7 @@ function render() {
       <td><div class="drug-name-wrap">${imgHtml}<span title="${d.name}" ${dClickAttr} onclick="openNamePopupFromEl(this)" style="cursor:pointer">${d.name}</span></div></td>
       <td class="cp-val" ${dClickAttr} onclick="openNamePopupFromEl(this)" style="cursor:pointer">${p}</td>
       <td class="cu-val" ${dClickAttr} onclick="openNamePopupFromEl(this)" style="cursor:pointer">${d.unit}</td>
-      <td>${d.category.split(',').map(c => c.trim()).filter(Boolean).map(c => getBadgeHtml(c)).join(' ')}</td>
+      <td class="cat-cell">${d.category.split(',').map(c => c.trim()).filter(Boolean).map(c => getBadgeHtml(c)).join(' ')}</td>
       <td style="text-align:center">${qtyWrap}</td>
     </tr>`;
   }).join('');
