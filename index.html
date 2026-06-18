@@ -431,7 +431,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
     <div class="search-row">
       <div class="search-wrap">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
-        <input type="text" id="search" placeholder="ค้นหาชื่อยา / Generic / Barcode..." oninput="render()">
+        <input type="text" id="search" placeholder="ค้นหาชื่อยา / Generic / Barcode..." oninput="onSearchInput()">
       </div>
       <button class="barcode-btn" onclick="openBarcodeScanner()" title="สแกน Barcode">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="3" width="3" height="18"></rect><rect x="6" y="3" width="1.5" height="18"></rect><rect x="9.5" y="3" width="2.5" height="18"></rect><rect x="14" y="3" width="1.5" height="18"></rect><rect x="17.5" y="3" width="3" height="18"></rect></svg>
@@ -9134,7 +9134,16 @@ function buildCatPills() {
   });
 }
 
+// พิมพ์ในช่องค้นหา: ถ้ามีคำค้นและกำลังเลือกหมวดอยู่ ให้รีเซ็ตเป็นทุกหมวด (ค้นทั้งหมด)
+function onSearchInput() {
+  const q = document.getElementById('search').value.trim();
+  if (q && activeCat) { setActiveCat(''); }
+  else render();
+}
+
 function setActiveCat(val) {
+  // เลือกหมวด = ล้างคำค้นที่ค้างอยู่ เพื่อไม่ให้บังรายการในหมวด
+  if (val) { const s = document.getElementById('search'); if (s) s.value = ''; }
   activeCat = val;
   document.getElementById('catFilter').value = val;
   document.querySelectorAll('.cat-pill').forEach(el => {
@@ -9922,7 +9931,8 @@ function render() {
       d.name.toLowerCase().includes(q) ||
       (d.generic && d.generic.toLowerCase().includes(q)) ||
       (d.barcode && d.barcode.includes(q));
-    const matchC = !activeCat || d.category.split(',').map(c => c.trim()).includes(activeCat);
+    // มีคำค้นหา = ค้นทั้งหมดทุกหมวด (ไม่ติดหมวดที่เลือกอยู่)
+    const matchC = q ? true : (!activeCat || d.category.split(',').map(c => c.trim()).includes(activeCat));
     return matchQ && matchC;
   });
   // Deduplicate: keep only first row per name
