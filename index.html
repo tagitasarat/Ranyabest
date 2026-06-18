@@ -275,6 +275,10 @@ tbody tr:last-child td { border-bottom: none; }
 .cart-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-muted); padding: 0 4px; }
 .cart-body { overflow-y: auto; flex: 1; padding: 0.75rem 1.25rem; }
 .cart-empty { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 14px; }
+.group-notice { border-radius: 8px; padding: 8px 10px; margin: 6px 0; font-size: 12.5px; line-height: 1.5; }
+.group-notice.ok { background: rgba(45,106,79,0.10); color: var(--accent); }
+.group-notice.warn { background: rgba(255,82,82,0.10); color: #C0392B; }
+[data-theme="dark"] .group-notice.warn { color: #FF8A80; }
 .cart-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--row-border); }
 .cart-item:last-child { border-bottom: none; }
 .cart-item-name { flex: 1; font-size: 14px; min-width: 0; }
@@ -9194,6 +9198,61 @@ function getTierHtml(name) {
   return tiers.map(t => `${t.minQty}+ → ${(t.price/t.minQty).toLocaleString()} ฿`).join(' | ');
 }
 
+// ── กลุ่มสั่งขั้นต่ำรวม (mix group) ──
+// อ่านจากคอลัมน์ "group" ใน Sheet รูปแบบ "ชื่อกลุ่ม:จำนวนเท่า" เช่น "Glucerna:24"
+// สินค้าที่อยู่กลุ่มเดียวกันนับยอดรวมข้ามกัน คละได้ แต่ยอดรวมต้องเป็นเท่าของจำนวนที่กำหนด
+function parseGroup(val) {
+  if (!val) return null;
+  const m = String(val).trim().match(/^(.*?):(\d+)\s*$/);
+  if (m && m[1].trim()) return { label: m[1].trim(), step: parseInt(m[2]) || 1 };
+  const label = String(val).trim();
+  return label ? { label, step: 1 } : null;
+}
+
+function getProductGroup(name) {
+  const item = allData.find(d => d.name.trim() === name.trim());
+  return item ? parseGroup(item.group) : null;
+}
+
+// รวมยอดสินค้าในตะกร้าตามกลุ่ม และหากลุ่มที่ยอดยังไม่เป็นเท่าของขั้นต่ำ
+function getCartGroups() {
+  const groups = {}; // label -> {step, qty, unit}
+  Object.values(cart).forEach(item => {
+    const g = getProductGroup(item.name);
+    if (!g) return;
+    if (!groups[g.label]) groups[g.label] = { step: g.step, qty: 0, unit: item.unit };
+    groups[g.label].qty += item.qty;
+    groups[g.label].step = Math.max(groups[g.label].step, g.step);
+  });
+  const issues = [];
+  Object.entries(groups).forEach(([label, g]) => {
+    if (g.step > 1 && g.qty % g.step !== 0) {
+      const target = Math.ceil(g.qty / g.step) * g.step;
+      issues.push({ label, qty: g.qty, step: g.step, need: target - g.qty, target, unit: g.unit });
+    }
+  });
+  return { groups, issues };
+}
+
+function groupNoticesHtml() {
+  const { groups } = getCartGroups();
+  const labels = Object.keys(groups).filter(l => groups[l].step > 1);
+  if (!labels.length) return '';
+  return labels.map(label => {
+    const g = groups[label];
+    const ok = g.qty % g.step === 0;
+    const target = Math.ceil(g.qty / g.step) * g.step;
+    const need = target - g.qty;
+    const gUnit = (g.unit || '').replace(/^\d+\s*/, '');
+    return `<div class="group-notice ${ok ? 'ok' : 'warn'}">
+      📦 กลุ่ม <b>${label}</b> · รวม ${g.qty} ${gUnit} ` +
+      (ok
+        ? `✅ ครบเงื่อนไข (เท่าของ ${g.step})`
+        : `<br>⚠️ ต้องสั่งเป็นเท่าของ ${g.step} — เพิ่มอีก <b>${need}</b> ให้ครบ ${target}`) +
+      `</div>`;
+  }).join('');
+}
+
 function addToCart(name, price, unit, qty) {
   qty = parseInt(qty) || 1;
   if (qty <= 0) return;
@@ -9257,7 +9316,7 @@ function renderCartBody() {
     body.innerHTML = '<div class="cart-empty">ยังไม่มีสินค้าในตะกร้า</div>';
     return;
   }
-  body.innerHTML = items.map(([id, item]) => {
+  body.innerHTML = groupNoticesHtml() + items.map(([id, item]) => {
     const effPrice = getEffectivePrice(item.name, item.qty);
     const priceStr = typeof item.price === 'number'
       ? (effPrice * item.qty).toLocaleString() + ' ฿'
@@ -9415,6 +9474,16 @@ function copyName() {
 function openOrderPopup() {
   const items = Object.values(cart);
   if (!items.length) { showToast('ตะกร้าว่างอยู่ครับ'); return; }
+  // ตรวจกลุ่มสั่งขั้นต่ำรวม — ถ้ายอดรวมในกลุ่มยังไม่เป็นเท่าของขั้นต่ำ ให้บล็อกและบอกให้เพิ่ม
+  const { issues } = getCartGroups();
+  if (issues.length) {
+    const i = issues[0];
+    showToast(`⚠️ กลุ่ม ${i.label} ต้องสั่งเป็นเท่าของ ${i.step} (ตอนนี้ ${i.qty}) — เพิ่มอีก ${i.need} ให้ครบ ${i.target}`);
+    const panel = document.getElementById('cartPanel');
+    if (!panel.classList.contains('open')) panel.classList.add('open');
+    renderCartBody();
+    return;
+  }
   const total = items.reduce((s, i) => s + (typeof i.price === 'number' ? i.price * i.qty : 0), 0);
 
   // แสดงสรุปออเดอร์
@@ -9446,6 +9515,14 @@ async function submitOrder() {
 
   if (!name || !phone || !address) {
     showToast('กรุณากรอกข้อมูลให้ครบครับ');
+    return;
+  }
+
+  // กันเหนียว: ตรวจกลุ่มสั่งขั้นต่ำรวมอีกครั้งก่อนส่งจริง
+  const { issues } = getCartGroups();
+  if (issues.length) {
+    const i = issues[0];
+    showToast(`⚠️ กลุ่ม ${i.label} ต้องสั่งเป็นเท่าของ ${i.step} (ตอนนี้ ${i.qty}) — เพิ่มอีก ${i.need} ให้ครบ ${i.target}`);
     return;
   }
 
@@ -9790,7 +9867,8 @@ function loadSheet() {
           category: (r.category || '').toString().trim() || catOf(r.name.toString().trim()),
           generic:  (r.generic || '').toString().trim(),
           barcode:  (r.barcode || '').toString().trim(),
-          image:    (r.image || '').toString().trim()
+          image:    (r.image || '').toString().trim(),
+          group:    (r.group || '').toString().trim()
         }));
       const nums = allData.map(d => d.price).filter(p => typeof p === 'number' && p > 0);
       document.getElementById('totalCount').textContent = allData.length.toLocaleString();
@@ -9845,12 +9923,18 @@ function render() {
   tbody.innerHTML = filtered.map(d => {
     const id = getCartId(d.name);
     const hasTiers = getTiers(d.name) && getTiers(d.name).length > 1;
-    const p = typeof d.price === 'number'
+    const grp = parseGroup(d.group);
+    const grpUnit = (d.unit || '').replace(/^\d+\s*/, '');
+    const groupHint = grp && grp.step > 1
+      ? `<br><small style="color:var(--accent,#2D6A4F);font-weight:500">📦 ขั้นต่ำกลุ่ม ${grp.label} ${grp.step} ${grpUnit} (คละได้)</small>`
+      : '';
+    const p = (typeof d.price === 'number'
       ? d.price.toLocaleString() + ' ฿' + (hasTiers ? '<br><small style="color:var(--accent-2,#f59e0b);font-weight:500">🏷️ ราคาดีลพิเศษ</small>' : '')
-      : (d.price || 'สอบถามราคา');
+      : (d.price || 'สอบถามราคา')) + groupHint;
     const isMobile = window.innerWidth <= 600;
     const price = typeof d.price === 'number' ? d.price : 0;
-    const minQ = extractMinQty(d.unit);
+    // สินค้าในกลุ่มสั่งขั้นต่ำรวม: ปลดล็อกให้เลือกทีละ 1 (คละข้ามสินค้าได้) ขั้นต่ำคุมที่ยอดรวมกลุ่มตอนสั่ง
+    const minQ = grp && grp.step > 1 ? 1 : extractMinQty(d.unit);
     const addBtn = `<button class="add-btn" data-id="${id}" data-price="${price}" data-unit="${d.unit}" onclick="addFromRow(this)">+ ตะกร้า</button>`;
     const qtyWrap = isMobile
       ? `<div class="qty-wrap" style="justify-content:center">${addBtn}</div>`
