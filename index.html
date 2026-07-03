@@ -4,6 +4,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ร้านยา Best — แคตตาล็อกสินค้า</title>
+<meta name="theme-color" content="#2D6A4F">
+<link rel="icon" type="image/png" href="./icon-192.png">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ร้านยา Best">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -418,6 +425,9 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
         <div class="updated" id="updatedAt">กำลังโหลดข้อมูล…</div>
       </div>
       <div class="header-actions">
+        <button class="cart-btn-header" onclick="manualRefresh()" title="โหลดข้อมูลล่าสุด">
+          🔄
+        </button>
         <button class="cart-btn-header" onclick="toggleHistory()">
           🕐 ประวัติ
         </button>
@@ -743,10 +753,15 @@ function buildCatPills() {
 }
 
 // พิมพ์ในช่องค้นหา: ถ้ามีคำค้นและกำลังเลือกหมวดอยู่ ให้รีเซ็ตเป็นทุกหมวด (ค้นทั้งหมด)
+// debounce: รอหยุดพิมพ์ 250ms ค่อยเรนเดอร์ — ไม่สร้างตาราง 800 แถวใหม่ทุกตัวอักษร
+let searchDebounce = null;
 function onSearchInput() {
-  const q = document.getElementById('search').value.trim();
-  if (q && activeCat) { setActiveCat(''); }
-  else render();
+  clearTimeout(searchDebounce);
+  searchDebounce = setTimeout(() => {
+    const q = document.getElementById('search').value.trim();
+    if (q && activeCat) { setActiveCat(''); }
+    else render();
+  }, 250);
 }
 
 function setActiveCat(val) {
@@ -807,7 +822,7 @@ function getEffectivePrice(name, qty) {
   const tiers = getTiers(name);
   if (!tiers) {
     const item = allData.find(d => d.name.trim() === name.trim());
-    return typeof item?.price === 'number' ? item.price : 0;
+    return item ? getBasePrice(item) : 0; // คิดราคาโปรให้ด้วย (ถ้ามี)
   }
   // Find best tier: largest minQty that qty >= minQty
   let best = tiers[0];
@@ -821,6 +836,74 @@ function getTierHtml(name) {
   const tiers = getTiers(name);
   if (!tiers || tiers.length <= 1) return '';
   return tiers.map(t => `${t.minQty}+ → ${(t.price/t.minQty).toLocaleString()} ฿`).join(' | ');
+}
+
+// ── สต็อก / โปรโมชั่นราคา / ของแถม ──
+// คอลัมน์ "สถานะ" ในชีต: พิมพ์ "หมด" = สินค้าหมด, เว้นว่าง = มีของ
+function isOutOfStock(d) {
+  return /หมด/.test(d.stock || '');
+}
+
+// วันหมดโปร: รับทั้งวันที่จากชีต (ISO) และพิมพ์เอง dd/mm/yyyy (รองรับปี พ.ศ.)
+function parsePromoUntil(v) {
+  if (!v) return null;
+  const s = String(v).trim();
+  const m = s.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})$/);
+  let dt;
+  if (m) {
+    let y = parseInt(m[3]);
+    if (y < 100) y += 2500;        // "69" → 2569
+    if (y > 2200) y -= 543;        // พ.ศ. → ค.ศ.
+    dt = new Date(y, parseInt(m[2]) - 1, parseInt(m[1]));
+  } else {
+    dt = new Date(s);
+  }
+  if (isNaN(dt)) return null;
+  dt.setHours(23, 59, 59, 999);    // โปรใช้ได้ถึงสิ้นวันนั้น
+  return dt;
+}
+
+// โปรราคา: คืน {price, until} ถ้ายังไม่หมดเขต — หมดเขตแล้วกลับราคาเดิมอัตโนมัติ
+function getActivePromo(d) {
+  if (!d || !(d.promoPrice > 0)) return null;
+  const until = parsePromoUntil(d.promoUntil);
+  if (until && Date.now() > until.getTime()) return null;
+  return { price: d.promoPrice, until };
+}
+
+// ราคาที่ใช้จริงของแถวนี้ (คิดโปรแล้ว)
+function getBasePrice(d) {
+  const promo = getActivePromo(d);
+  if (promo) return promo.price;
+  return typeof d.price === 'number' ? d.price : 0;
+}
+
+// ของแถม: คอลัมน์รูปแบบ "10:แถม 1 กล่อง" หรือหลายขั้น "10:แถม 1 กล่อง|30:แถม 4 กล่อง"
+function parseFreebieRules(val) {
+  if (!val) return [];
+  return String(val).split('|').map(part => {
+    const m = part.trim().match(/^(\d+)\s*[:=]\s*(.+)$/);
+    return m ? { min: parseInt(m[1]), gift: m[2].trim() } : null;
+  }).filter(Boolean).sort((a, b) => a.min - b.min);
+}
+
+// หาของแถมที่ได้ตามจำนวนที่สั่ง (เลือกขั้นสูงสุดที่ถึงเงื่อนไข)
+function getFreebie(name, qty) {
+  const item = allData.find(d => d.name.trim() === name.trim());
+  if (!item) return null;
+  const rules = parseFreebieRules(item.freebie);
+  let hit = null;
+  for (const r of rules) if (qty >= r.min) hit = r;
+  return hit;
+}
+
+// ป้ายบอกเงื่อนไขของแถมใต้ราคาในตาราง
+function freebieHintHtml(d) {
+  const rules = parseFreebieRules(d.freebie);
+  if (!rules.length) return '';
+  const u = (d.unit || '').replace(/^\d+\s*/, '');
+  const txt = rules.map(r => `ซื้อ ${r.min} ${u} ${r.gift}`).join(' · ');
+  return `<br><small style="color:#d97706;font-weight:500">🎁 ${txt}</small>`;
 }
 
 // ── กลุ่มสั่งขั้นต่ำรวม (mix group) ──
@@ -949,10 +1032,13 @@ function renderCartBody() {
     const tiers = getTiers(item.name);
     const tierHint = tiers ? `<small style="color:var(--accent-2,#f59e0b)">${getTierHtml(item.name)}</small>` : `<small>${item.unit} · ${typeof item.price === 'number' ? item.price.toLocaleString() + ' ฿/'+item.unit : 'สอบถามราคา'}</small>`;
     const priceHint = tierHint;
+    const fb = getFreebie(item.name, item.qty);
+    const fbHint = fb ? `<small style="color:#d97706;font-weight:600">🎁 ได้ของแถม: ${fb.gift}</small>` : '';
     return `<div class="cart-item">
       <div class="cart-item-name">
         ${item.name}
         ${priceHint}
+        ${fbHint}
       </div>
       <div class="cart-item-qty">
         <button class="qty-btn" onclick="updateCartQty('${id}', -1)">−</button>
@@ -980,6 +1066,8 @@ function sendToLine() {
   items.forEach((item, i) => {
     const lineTotal = typeof item.price === 'number' ? (item.price * item.qty).toLocaleString() + ' ฿' : 'สอบถามราคา';
     text += `${i+1}. ${item.name}\n   จำนวน: ${item.qty} ${item.unit} · รวม: ${lineTotal}\n`;
+    const fb = getFreebie(item.name, item.qty);
+    if (fb) text += `   🎁 ของแถม: ${fb.gift}\n`;
   });
   text += '─────────────────\n';
   text += `ยอดรวม: ${total.toLocaleString()} ฿`;
@@ -1002,6 +1090,8 @@ function copyCart() {
   items.forEach((item, i) => {
     const lineTotal = typeof item.price === 'number' ? (item.price * item.qty).toLocaleString() + ' ฿' : 'สอบถามราคา';
     text += `${i+1}. ${item.name}\n   จำนวน: ${item.qty} ${item.unit} · รวม: ${lineTotal}\n`;
+    const fb = getFreebie(item.name, item.qty);
+    if (fb) text += `   🎁 ของแถม: ${fb.gift}\n`;
   });
   text += '─────────────────\n';
   text += `ยอดรวม: ${total.toLocaleString()} ฿`;
@@ -1172,7 +1262,9 @@ async function submitOrder() {
   // สร้างข้อความ
   let itemsText = items.map((item, i) => {
     const lineTotal = typeof item.price === 'number' ? (item.price * item.qty).toLocaleString() + ' ฿' : 'สอบถามราคา';
-    return `${i+1}. ${item.name} x${item.qty} ${item.unit} = ${lineTotal}`;
+    const fb = getFreebie(item.name, item.qty);
+    return `${i+1}. ${item.name} x${item.qty} ${item.unit} = ${lineTotal}`
+      + (fb ? `\n   🎁 ของแถม: ${fb.gift}` : '');
   }).join('\n');
 
   const orderText = `📋 รายการสั่งซื้อ
@@ -1423,7 +1515,9 @@ async function openBarcodeScanner() {
       ZXing.BarcodeFormat.QR_CODE
     ]);
     zxingReader = new ZXing.BrowserMultiFormatReader(hints);
-    zxingReader.decodeFromVideoElement(video, (result, err) => {
+    // ต้องใช้ decodeContinuously: video เล่นอยู่แล้ว ถ้าใช้ decodeFromVideoElement
+    // มันจะรอ event 'playing' ที่ยิงไปแล้ว → ค้างเงียบ สแกนไม่ติด (โดยเฉพาะ iPhone)
+    zxingReader.decodeContinuously(video, (result, err) => {
       if (result) {
         searchByBarcode(result.getText(), true);
       }
@@ -1455,6 +1549,13 @@ function searchByBarcode(code, fromCamera = false) {
       const st = document.getElementById('scannerStatus');
       st.className = 'scanner-status error';
       st.textContent = `⚠️ ไม่พบยา barcode: ${code}`;
+      // ZXing สแกนต่อเนื่องอยู่แล้ว — แค่รีเซ็ตข้อความสถานะ
+      if (zxingReader) {
+        setTimeout(() => {
+          st.className = 'scanner-status';
+          st.textContent = '🔍 เล็งกล้องไปที่ barcode ครับ';
+        }, 2000);
+      }
       // เริ่มสแกนใหม่หลัง 2 วิ
       if (barcodeDetector) {
         setTimeout(() => {
@@ -1521,7 +1622,12 @@ function normalizeRows(json) {
       generic:  (r.generic || '').toString().trim(),
       barcode:  (r.barcode || '').toString().trim(),
       image:    (r.image || '').toString().trim(),
-      group:    (r.group || '').toString().trim()
+      group:    (r.group || '').toString().trim(),
+      // คอลัมน์ใหม่ (ถ้า Apps Script ยังไม่ส่งมา จะเป็นค่าว่าง = ไม่มีผลอะไร)
+      stock:      (r.stock || '').toString().trim(),
+      freebie:    (r.freebie || '').toString().trim(),
+      promoPrice: typeof r.promoPrice === 'number' ? r.promoPrice : parseFloat(r.promoPrice) || 0,
+      promoUntil: (r.promoUntil || '').toString().trim()
     }));
 }
 
@@ -1606,6 +1712,20 @@ function loadSheet(attempt) {
   document.head.appendChild(script);
 }
 
+// ปุ่ม 🔄 — บังคับโหลดข้อมูลล่าสุดจากชีตทันที
+function manualRefresh() {
+  document.getElementById('errorBox').innerHTML = '';
+  showToast('🔄 กำลังโหลดข้อมูลล่าสุด…');
+  loadSheet();
+}
+
+// สลับกลับมาที่แท็บ/แอป แล้วข้อมูลเก่ากว่า 5 นาที → โหลดใหม่ให้อัตโนมัติ
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState !== 'visible') return;
+  const ts = parseInt(localStorage.getItem(CACHE_TS_KEY)) || 0;
+  if (Date.now() - ts > 5 * 60 * 1000) loadSheet();
+});
+
 function render() {
   const q = document.getElementById('search').value.toLowerCase().trim();
   const allFiltered = allData.filter(d => {
@@ -1640,15 +1760,31 @@ function render() {
     const groupHint = grp && grp.step > 1
       ? `<br><small style="color:var(--accent,#2D6A4F);font-weight:500;white-space:nowrap">📦 ขั้นต่ำ ${grp.step} ${grpUnit}</small>`
       : '';
-    const p = (typeof d.price === 'number'
-      ? d.price.toLocaleString() + ' ฿' + (hasTiers ? '<br><small style="color:var(--accent-2,#f59e0b);font-weight:500">🏷️ ราคาดีลพิเศษ</small>' : '')
-      : (d.price || 'สอบถามราคา')) + groupHint;
+    const oos = isOutOfStock(d);
+    const promo = getActivePromo(d);
+    let priceHtml;
+    if (promo && typeof d.price === 'number') {
+      // โปรราคา: ขีดฆ่าราคาเดิม โชว์ราคาโปร + วันหมดเขต
+      const untilTxt = promo.until
+        ? ' ถึง ' + promo.until.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' })
+        : '';
+      priceHtml = `<s style="opacity:.55">${d.price.toLocaleString()} ฿</s> <b style="color:#dc2626">${promo.price.toLocaleString()} ฿</b>` +
+        `<br><small style="color:#dc2626;font-weight:600;white-space:nowrap">🔥 โปรพิเศษ${untilTxt}</small>`;
+    } else {
+      priceHtml = typeof d.price === 'number' ? d.price.toLocaleString() + ' ฿' : (d.price || 'สอบถามราคา');
+    }
+    const p = priceHtml
+      + (hasTiers && typeof d.price === 'number' ? '<br><small style="color:var(--accent-2,#f59e0b);font-weight:500">🏷️ ราคาดีลพิเศษ</small>' : '')
+      + freebieHintHtml(d)
+      + groupHint;
     const isMobile = window.innerWidth <= 600;
-    const price = typeof d.price === 'number' ? d.price : 0;
+    const price = getBasePrice(d);
     // สินค้าในกลุ่มสั่งขั้นต่ำรวม: ปลดล็อกให้เลือกทีละ 1 (คละข้ามสินค้าได้) ขั้นต่ำคุมที่ยอดรวมกลุ่มตอนสั่ง
     const minQ = grp && grp.step > 1 ? 1 : extractMinQty(d.unit);
     const addBtn = `<button class="add-btn" data-id="${id}" data-price="${price}" data-unit="${d.unit}" onclick="addFromRow(this)">+ ตะกร้า</button>`;
-    const qtyWrap = isMobile
+    const qtyWrap = oos
+      ? `<span class="badge" style="background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;font-weight:600;white-space:nowrap">❌ สินค้าหมด</span>`
+      : isMobile
       ? `<div class="qty-wrap" style="justify-content:center">${addBtn}</div>`
       : `<div class="qty-wrap" style="justify-content:center">
           <button class="qty-btn" onclick="changeQty('${id}',-${minQ})">−</button>
@@ -1660,7 +1796,7 @@ function render() {
       const firstImg = d.image ? d.image.split(',')[0].trim() : '';
       const imgHtml = firstImg ? `<img class="drug-thumb" src="${getDriveImgUrl(firstImg)}" alt="" onclick="event.stopPropagation();openImgPopup('${getDriveImgUrl(firstImg)}','${d.name.replace(/'/g,"\\'")}')">` : '';
       const clickAttr = `data-name="${d.name.replace(/"/g,'&quot;')}" data-unit="${d.unit.replace(/"/g,'&quot;')}" data-generic="${(d.generic||'').replace(/"/g,'&quot;')}" data-image="${encodeURIComponent(d.image||'')}"`;
-      return `<tr>
+      return `<tr${oos ? ' style="opacity:.6"' : ''}>
         <td><div class="drug-name-wrap">${imgHtml}<span title="${d.name}" ${clickAttr} onclick="openNamePopupFromEl(this)" style="cursor:pointer">${d.name}</span></div></td>
         <td class="cp-val" ${clickAttr} onclick="openNamePopupFromEl(this)" style="cursor:pointer">${p}</td>
         <td style="text-align:center">${qtyWrap}</td>
@@ -1669,7 +1805,7 @@ function render() {
     const firstImgD = d.image ? d.image.split(',')[0].trim() : '';
     const imgHtml = firstImgD ? `<img class="drug-thumb" src="${getDriveImgUrl(firstImgD)}" alt="" onclick="event.stopPropagation();openImgPopup('${getDriveImgUrl(firstImgD)}','${d.name.replace(/'/g,"\\'")}')">` : '';
     const dClickAttr = `data-name="${d.name.replace(/"/g,'&quot;')}" data-unit="${d.unit.replace(/"/g,'&quot;')}" data-generic="${(d.generic||'').replace(/"/g,'&quot;')}" data-image="${encodeURIComponent(d.image||'')}"`;
-    return `<tr>
+    return `<tr${oos ? ' style="opacity:.6"' : ''}>
       <td><div class="drug-name-wrap">${imgHtml}<span title="${d.name}" ${dClickAttr} onclick="openNamePopupFromEl(this)" style="cursor:pointer">${d.name}</span></div></td>
       <td class="cp-val" ${dClickAttr} onclick="openNamePopupFromEl(this)" style="cursor:pointer">${p}</td>
       <td class="cu-val" ${dClickAttr} onclick="openNamePopupFromEl(this)" style="cursor:pointer">${d.unit}</td>
@@ -1711,6 +1847,11 @@ function openNamePopupFromEl(el) {
 
 loadSheet();
 updateCartUI();
+
+// PWA: ให้ติดตั้งเป็นแอปได้ + เปิดดูราคาแบบ offline ได้
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch(() => {});
+}
 </script>
 
 
