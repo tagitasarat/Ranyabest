@@ -1,0 +1,14 @@
+{
+  "name": "ร้านยา Best — แคตตาล็อกสินค้า",
+  "short_name": "ร้านยา Best",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F7F5F0",
+  "theme_color": "#2D6A4F",
+  "icons": [
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
