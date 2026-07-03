@@ -105,7 +105,7 @@ tbody tr { transition: background 0.1s; }
 tbody tr:hover { background: var(--row-hover); }
 tbody td { padding: 9px 16px; border-bottom: 1px solid var(--row-border); font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: var(--transition); vertical-align: middle; }
 tbody tr:last-child td { border-bottom: none; }
-.cp-val { font-weight: 600; color: var(--accent); text-align: right; }
+.cp-val { font-weight: 600; color: var(--accent); text-align: right; white-space: normal; text-overflow: clip; line-height: 1.5; }
 .cu-val { color: var(--text-muted); font-size: 13px; text-align: center; }
 .badge { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 500; white-space: nowrap; }
 .badge-link { cursor: pointer; transition: filter .15s, transform .15s; }
@@ -405,7 +405,7 @@ footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text
   .stats-bar { padding: 0 1rem; }
   .table-card { overflow: hidden; }
   table { min-width: unset; width: 100%; table-layout: fixed; }
-  col.cn { width: 45%; } col.cp { width: 22%; } col.cu { display: none; } col.cc { display: none; } col.cq { width: 33%; }
+  col.cn { width: 40%; } col.cp { width: 28%; } col.cu { display: none; } col.cc { display: none; } col.cq { width: 32%; }
   thead th:nth-child(3), thead th:nth-child(4) { display: none; }
   .cart-panel { max-height: 85vh; }
   .add-btn { font-size: 12px; padding: 7px 8px; width: 100%; }
@@ -1770,8 +1770,9 @@ function render() {
       const untilTxt = promo.until
         ? ' ถึง ' + promo.until.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' })
         : '';
-      priceHtml = `<s style="opacity:.55">${d.price.toLocaleString()} ฿</s> <b style="color:#dc2626">${promo.price.toLocaleString()} ฿</b>` +
-        `<br><small style="color:#dc2626;font-weight:600;white-space:nowrap">🔥 ${promo.name}${untilTxt}</small>`;
+      priceHtml = `<s style="opacity:.5;font-size:.85em">${d.price.toLocaleString()} ฿</s><br>` +
+        `<b style="color:#dc2626;font-size:1.2em">${promo.price.toLocaleString()} ฿</b><br>` +
+        `<small style="display:inline-block;background:#dc2626;color:#fff;font-weight:600;padding:2px 8px;border-radius:8px;margin-top:2px;line-height:1.4">🔥 ${promo.name}${untilTxt}</small>`;
     } else {
       priceHtml = typeof d.price === 'number' ? d.price.toLocaleString() + ' ฿' : (d.price || 'สอบถามราคา');
     }
