@@ -863,12 +863,12 @@ function parsePromoUntil(v) {
   return dt;
 }
 
-// โปรราคา: คืน {price, until} ถ้ายังไม่หมดเขต — หมดเขตแล้วกลับราคาเดิมอัตโนมัติ
+// โปรราคา: คืน {price, until, name} ถ้ายังไม่หมดเขต — หมดเขตแล้วกลับราคาเดิมอัตโนมัติ
 function getActivePromo(d) {
   if (!d || !(d.promoPrice > 0)) return null;
   const until = parsePromoUntil(d.promoUntil);
   if (until && Date.now() > until.getTime()) return null;
-  return { price: d.promoPrice, until };
+  return { price: d.promoPrice, until, name: d.promoName || 'โปรพิเศษ' };
 }
 
 // ราคาที่ใช้จริงของแถวนี้ (คิดโปรแล้ว)
@@ -878,10 +878,11 @@ function getBasePrice(d) {
   return typeof d.price === 'number' ? d.price : 0;
 }
 
-// ของแถม: คอลัมน์รูปแบบ "10:แถม 1 กล่อง" หรือหลายขั้น "10:แถม 1 กล่อง|30:แถม 4 กล่อง"
+// ของแถม: คอลัมน์รูปแบบ "10:แถม 1 กล่อง" หรือหลายขั้น "10:แถม 1 กล่อง/30:แถม 4 กล่อง"
+// ตัดขั้นเฉพาะ / หรือ | ที่ตามด้วย "ตัวเลข:" — เครื่องหมาย / ในข้อความของแถมเองไม่โดนตัด
 function parseFreebieRules(val) {
   if (!val) return [];
-  return String(val).split('|').map(part => {
+  return String(val).split(/\s*[\/|]\s*(?=\d+\s*[:=])/).map(part => {
     const m = part.trim().match(/^(\d+)\s*[:=]\s*(.+)$/);
     return m ? { min: parseInt(m[1]), gift: m[2].trim() } : null;
   }).filter(Boolean).sort((a, b) => a.min - b.min);
@@ -1627,7 +1628,8 @@ function normalizeRows(json) {
       stock:      (r.stock || '').toString().trim(),
       freebie:    (r.freebie || '').toString().trim(),
       promoPrice: typeof r.promoPrice === 'number' ? r.promoPrice : parseFloat(r.promoPrice) || 0,
-      promoUntil: (r.promoUntil || '').toString().trim()
+      promoUntil: (r.promoUntil || '').toString().trim(),
+      promoName:  (r.promoName || '').toString().trim()
     }));
 }
 
@@ -1769,7 +1771,7 @@ function render() {
         ? ' ถึง ' + promo.until.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' })
         : '';
       priceHtml = `<s style="opacity:.55">${d.price.toLocaleString()} ฿</s> <b style="color:#dc2626">${promo.price.toLocaleString()} ฿</b>` +
-        `<br><small style="color:#dc2626;font-weight:600;white-space:nowrap">🔥 โปรพิเศษ${untilTxt}</small>`;
+        `<br><small style="color:#dc2626;font-weight:600;white-space:nowrap">🔥 ${promo.name}${untilTxt}</small>`;
     } else {
       priceHtml = typeof d.price === 'number' ? d.price.toLocaleString() + ' ฿' : (d.price || 'สอบถามราคา');
     }
