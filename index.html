@@ -114,7 +114,7 @@ select option { color: var(--text); background: var(--surface); }
 /* TABLE */
 .table-card { background: var(--surface); border-radius: 16px; border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
 table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-col.cn { width: 32%; } col.cp { width: 12%; } col.cu { width: 9%; } col.cc { width: 22%; } col.cq { width: 25%; }
+col.cn { width: 30%; } col.cp { width: 16%; } col.cu { width: 9%; } col.cc { width: 20%; } col.cq { width: 25%; }
 thead th { background: var(--thead); padding: 11px 16px; text-align: left; font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid var(--border); transition: var(--transition); }
 tbody tr { transition: background 0.1s; }
 tbody tr:hover { background: var(--row-hover); }
@@ -1800,8 +1800,17 @@ function render() {
     seen.add(key);
     return true;
   });
+  // เปิดแท็บโปรอยู่: โชว์ชื่อโปร + วันหมดเขตรวมไว้ที่หัวรายการทีเดียว (แถวในตารางไม่ต้องแปะป้ายซ้ำ)
+  let promoHeader = '';
+  if (activeCat.startsWith('promo:') && filtered.length) {
+    const firstPromo = getActivePromo(filtered[0]);
+    const untilTxt = firstPromo && firstPromo.until
+      ? ' ถึง ' + firstPromo.until.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' })
+      : '';
+    promoHeader = ` · <b style="color:#dc2626">🔥 ${activeCat.slice(6)}${untilTxt}</b>`;
+  }
   document.getElementById('countInfo').innerHTML =
-    `แสดง <span>${filtered.length.toLocaleString()}</span> รายการ จากทั้งหมด ${allData.length.toLocaleString()} รายการ`;
+    `แสดง <span>${filtered.length.toLocaleString()}</span> รายการ จากทั้งหมด ${allData.length.toLocaleString()} รายการ${promoHeader}`;
   const tbody = document.getElementById('tbody');
   if (!filtered.length) {
     tbody.innerHTML = '<tr><td colspan="5"><div class="state-box"><p>ไม่พบรายการที่ค้นหา</p></div></td></tr>';
@@ -1817,15 +1826,18 @@ function render() {
       : '';
     const oos = isOutOfStock(d);
     const promo = getActivePromo(d);
+    // ตอนเปิดแท็บโปรอยู่: ทุกตัวคือโปรเดียวกัน ไม่ต้องแปะป้ายแดงซ้ำทุกแถว (แถวเตี้ยลง ดูง่าย)
+    const inPromoTab = activeCat.startsWith('promo:');
     let priceHtml;
     if (promo && typeof d.price === 'number') {
       // โปรราคา: ขีดฆ่าราคาเดิม โชว์ราคาโปร + วันหมดเขต
       const untilTxt = promo.until
         ? ' ถึง ' + promo.until.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' })
         : '';
-      priceHtml = `<s style="opacity:.5;font-size:.85em">${d.price.toLocaleString()} ฿</s><br>` +
-        `<b style="color:#dc2626;font-size:1.2em">${promo.price.toLocaleString()} ฿</b><br>` +
-        `<small style="display:inline-block;background:#dc2626;color:#fff;font-weight:600;padding:2px 8px;border-radius:8px;margin-top:2px;line-height:1.4">🔥 ${promo.name}${untilTxt}</small>`;
+      priceHtml = `<s style="opacity:.5;font-size:.85em">${d.price.toLocaleString()} ฿</s> ` +
+        `<b style="color:#dc2626;font-size:1.2em;white-space:nowrap">${promo.price.toLocaleString()} ฿</b>` +
+        (inPromoTab ? '' :
+          `<br><small style="display:inline-block;background:#dc2626;color:#fff;font-weight:600;padding:2px 8px;border-radius:8px;margin-top:2px;line-height:1.4">🔥 ${promo.name}${untilTxt}</small>`);
     } else {
       priceHtml = typeof d.price === 'number' ? d.price.toLocaleString() + ' ฿' : (d.price || 'สอบถามราคา');
     }
