@@ -85,6 +85,21 @@ select option { color: var(--text); background: var(--surface); }
 .cat-pill:hover { border-color: var(--accent); color: var(--accent); }
 .cat-pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 .cat-pill-special { animation: pillGlow 2.5s ease-in-out infinite; }
+/* แท็บหมวดโปรโมชั่น — สร้างอัตโนมัติจากชื่อโปรที่ยัง active */
+.cat-pill-promo {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff; border-color: #ef4444; font-weight: 700;
+  animation: promoPulse 1.5s ease-in-out infinite;
+}
+.cat-pill-promo:hover { color: #fff; border-color: #fca5a5; }
+.cat-pill-promo.active {
+  background: linear-gradient(135deg, #b91c1c, #991b1b);
+  color: #fff; border-color: #fca5a5;
+}
+@keyframes promoPulse {
+  0%, 100% { box-shadow: 0 0 5px rgba(239,68,68,.45); }
+  50%      { box-shadow: 0 0 18px rgba(239,68,68,.95), 0 0 30px rgba(239,68,68,.4); }
+}
 @keyframes pillGlow {
   0%,100% { box-shadow: 0 0 8px rgba(255,82,82,0.5); }
   50%      { box-shadow: 0 0 16px rgba(255,82,82,0.85); }
@@ -698,6 +713,16 @@ const CAT_SPECIAL_STYLE = {
 
 let allData = [], activeCat = "";
 
+// ชื่อโปรทั้งหมดที่ยังไม่หมดเขต (ไว้สร้างแท็บหมวดโปรอัตโนมัติ)
+function getActivePromoNames() {
+  const names = new Set();
+  allData.forEach(d => {
+    const promo = getActivePromo(d);
+    if (promo) names.add(promo.name);
+  });
+  return Array.from(names);
+}
+
 function buildCatPills() {
   // รวบรวมหมวดหมู่ทั้งหมดจากข้อมูล
   const catSet = new Set();
@@ -709,9 +734,21 @@ function buildCatPills() {
   const pinned = CAT_PINNED.filter(c => catSet.has(c));
   const rest = Array.from(catSet).filter(c => !CAT_PINNED.includes(c)).sort();
   const cats = ["ทุกหมวด", ...pinned, ...rest];
+  const promoNames = getActivePromoNames();
 
   const pillsEl = document.getElementById('catPills');
   pillsEl.innerHTML = '';
+
+  // แท็บโปรโมชั่น — อยู่หน้าสุด ลูกไฟกระพริบ กดแล้วเห็นเฉพาะสินค้าโปรนั้น
+  promoNames.forEach(pn => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-pill cat-pill-promo';
+    btn.textContent = '🔥 ' + pn;
+    btn.dataset.cat = 'promo:' + pn;
+    btn.onclick = () => setActiveCat('promo:' + pn);
+    pillsEl.appendChild(btn);
+  });
+
   cats.forEach(c => {
     const btn = document.createElement('button');
     const isActive = c === "ทุกหมวด";
@@ -742,9 +779,14 @@ function buildCatPills() {
     pillsEl.appendChild(btn);
   });
 
-  // อัปเดต dropdown
+  // อัปเดต dropdown (แท็บโปรอยู่บนสุดเช่นกัน)
   const select = document.getElementById('catFilter');
   select.innerHTML = '<option value="">ทุกหมวด</option>';
+  promoNames.forEach(pn => {
+    const opt = document.createElement('option');
+    opt.value = 'promo:' + pn; opt.textContent = '🔥 ' + pn;
+    select.appendChild(opt);
+  });
   [...pinned, ...rest].forEach(c => {
     const opt = document.createElement('option');
     opt.value = c; opt.textContent = c;
@@ -770,7 +812,9 @@ function setActiveCat(val) {
   activeCat = val;
   document.getElementById('catFilter').value = val;
   document.querySelectorAll('.cat-pill').forEach(el => {
-    const isActive = val === "" ? el.textContent === "ทุกหมวด" : el.textContent === val;
+    // แท็บโปรเก็บค่าจริงไว้ใน data-cat (textContent มี 🔥 นำหน้า)
+    const catVal = el.dataset.cat || el.textContent;
+    const isActive = val === "" ? el.textContent === "ทุกหมวด" : catVal === val;
     el.classList.toggle('active', isActive);
 
     // restore special style สำหรับ pill พิเศษที่ไม่ได้ active
@@ -1736,7 +1780,16 @@ function render() {
       (d.generic && d.generic.toLowerCase().includes(q)) ||
       (d.barcode && d.barcode.includes(q));
     // มีคำค้นหา = ค้นทั้งหมดทุกหมวด (ไม่ติดหมวดที่เลือกอยู่)
-    const matchC = q ? true : (!activeCat || d.category.split(',').map(c => c.trim()).includes(activeCat));
+    let matchC;
+    if (q) {
+      matchC = true;
+    } else if (activeCat.startsWith('promo:')) {
+      // แท็บโปร: เอาเฉพาะสินค้าที่ติดโปรชื่อนั้นและยังไม่หมดเขต
+      const promo = getActivePromo(d);
+      matchC = !!promo && promo.name === activeCat.slice(6);
+    } else {
+      matchC = !activeCat || d.category.split(',').map(c => c.trim()).includes(activeCat);
+    }
     return matchQ && matchC;
   });
   // Deduplicate: keep only first row per name
