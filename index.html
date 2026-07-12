@@ -1591,7 +1591,15 @@ function closeBarcodeScanner() {
 function searchByBarcode(code, fromCamera = false) {
   if (!code || !code.trim()) return;
   code = code.trim();
-  const found = allData.filter(d => d.barcode && d.barcode === code);
+  const matches = allData.filter(d => d.barcode && d.barcode === code);
+  const found = matches.filter(d => !isOutOfStock(d));
+  // เจอแต่ตัวที่หมด: บอกตรงๆ ว่าหมด (ไม่ใช่หาไม่เจอ)
+  if (!found.length && matches.length) {
+    const st = document.getElementById('scannerStatus');
+    st.className = 'scanner-status error';
+    st.textContent = `⚠️ ${matches[0].name} — สินค้าหมดชั่วคราว`;
+    return;
+  }
   if (found.length > 0) {
     closeBarcodeScanner();
     document.getElementById('search').value = code;
@@ -1686,10 +1694,11 @@ function normalizeRows(json) {
     }));
 }
 
-// อัปเดตหัวสถิติ + ตารางจาก allData ปัจจุบัน
+// อัปเดตหัวสถิติ + ตารางจาก allData ปัจจุบัน (นับเฉพาะสินค้าที่มีของ)
 function applyData(loadedAt) {
-  const nums = allData.map(d => d.price).filter(p => typeof p === 'number' && p > 0);
-  document.getElementById('totalCount').textContent = allData.length.toLocaleString();
+  const inStock = allData.filter(d => !isOutOfStock(d));
+  const nums = inStock.map(d => d.price).filter(p => typeof p === 'number' && p > 0);
+  document.getElementById('totalCount').textContent = inStock.length.toLocaleString();
   if (nums.length) {
     document.getElementById('minPrice').textContent = Math.min(...nums).toLocaleString();
     document.getElementById('maxPrice').textContent = Math.max(...nums).toLocaleString();
@@ -1784,6 +1793,7 @@ document.addEventListener('visibilitychange', () => {
 function render() {
   const q = document.getElementById('search').value.toLowerCase().trim();
   const allFiltered = allData.filter(d => {
+    if (isOutOfStock(d)) return false; // สินค้าหมด: ซ่อนจากลูกค้า (ข้อมูลยังอยู่ในชีต)
     const matchQ = !q ||
       d.name.toLowerCase().includes(q) ||
       (d.generic && d.generic.toLowerCase().includes(q)) ||
@@ -1818,8 +1828,9 @@ function render() {
       : '';
     promoHeader = ` · <b style="color:#dc2626">🔥 ${activeCat.slice(6)}${untilTxt}</b>`;
   }
+  const totalVisible = allData.filter(d => !isOutOfStock(d)).length;
   document.getElementById('countInfo').innerHTML =
-    `แสดง <span>${filtered.length.toLocaleString()}</span> รายการ จากทั้งหมด ${allData.length.toLocaleString()} รายการ${promoHeader}`;
+    `แสดง <span>${filtered.length.toLocaleString()}</span> รายการ จากทั้งหมด ${totalVisible.toLocaleString()} รายการ${promoHeader}`;
   const tbody = document.getElementById('tbody');
   if (!filtered.length) {
     tbody.innerHTML = '<tr><td colspan="5"><div class="state-box"><p>ไม่พบรายการที่ค้นหา</p></div></td></tr>';
