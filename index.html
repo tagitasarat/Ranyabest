@@ -888,7 +888,7 @@ function getEffectivePrice(name, qty) {
 function getTierHtml(name) {
   const tiers = getTiers(name);
   if (!tiers || tiers.length <= 1) return '';
-  return tiers.map(t => `${t.minQty}+ → ${(t.price/t.minQty).toLocaleString()} ฿`).join(' | ');
+  return tiers.map(t => `${t.minQty}+ → ${(Math.round((t.price/t.minQty)*100)/100).toLocaleString()} ฿`).join(' | ');
 }
 
 // ── สต็อก / โปรโมชั่นราคา / ของแถม ──
@@ -1219,12 +1219,15 @@ function openNamePopup(name, generic, image, unit) {
     const unitBase = tiers[0].unit.replace(/^\d+\s*/, '').trim() || tiers[0].unit;
     tiersEl.innerHTML = '<div style="font-weight:600;margin-bottom:4px;color:var(--accent)">💰 ราคาตามจำนวน</div>' +
       tiers.map((t, i) => {
-        const pricePerUnit = Math.round(t.price / t.minQty);
+        // ห้ามปัดเป็นจำนวนเต็ม: 1450/100 = 14.5 ต้องโชว์ 14.5 ไม่ใช่ 15 (ปัดแค่ทศนิยม 2 ตำแหน่ง)
+        const pricePerUnit = Math.round((t.price / t.minQty) * 100) / 100;
+        // ใช้หน่วยของแถวนั้นเอง (เช่น "100 กล่อง" → กล่อง) ไม่ใช่หน่วยของแถวแรก
+        const tUnit = (t.unit || '').replace(/^\d+\s*/, '').trim() || unitBase;
         const nextMin = tiers[i+1] ? tiers[i+1].minQty - 1 : null;
-        const range = nextMin ? `${t.minQty}–${nextMin} ${unitBase}` : `${t.minQty}+ ${unitBase}`;
+        const range = nextMin ? `${t.minQty}–${nextMin} ${tUnit}` : `${t.minQty}+ ${tUnit}`;
         return `<div style="display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.06)">
           <span>${range}</span>
-          <span style="color:var(--accent);font-weight:600">${pricePerUnit.toLocaleString()} ฿/${unitBase}</span>
+          <span style="color:var(--accent);font-weight:600">${pricePerUnit.toLocaleString()} ฿/${tUnit}</span>
         </div>`;
       }).join('');
     tiersEl.style.display = 'block';
