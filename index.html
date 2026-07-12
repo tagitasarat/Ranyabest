@@ -415,7 +415,16 @@ textarea.form-input { resize: vertical; min-height: 80px; }
 footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); transition: var(--transition); margin-bottom: 0; }
 
 @media (max-width: 600px) {
-  header { padding: 1.25rem 1rem 1rem; }
+  header { padding: 1rem 1rem 0.9rem; }
+  /* มือถือ: ชื่อร้านเต็มความกว้างบรรทัดเดียว ปุ่มย้ายลงแถวถัดไป — ไม่เบียดกันจน header สูงครึ่งจอ */
+  .header-top { flex-wrap: wrap; gap: 6px; }
+  .header-top > div:first-child { flex: 1 1 100%; }
+  .shop-title { font-size: 20px; display: inline; white-space: nowrap; }
+  .shop-sub { display: inline; margin-left: 8px; white-space: nowrap; }
+  .updated { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .header-actions { flex: 1 1 100%; justify-content: flex-start; gap: 8px; }
+  .cart-btn-header { font-size: 12px; padding: 6px 11px; }
+  .theme-btn { margin-left: auto; }
   .content { padding: 1rem 1rem 5rem; }
   .stats-bar { padding: 0 1rem; }
   .table-card { overflow: hidden; }
