@@ -348,7 +348,6 @@ td.cat-cell .badge { white-space: normal; }
 .history-items-preview { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
 .history-total { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 8px; }
 .history-actions { display: flex; gap: 6px; }
-.btn-history-copy { flex: 1; padding: 7px; border-radius: 8px; border: 1.5px solid var(--accent); background: transparent; color: var(--accent); font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer; }
 .btn-history-reorder { flex: 1; padding: 7px; border-radius: 8px; border: none; background: var(--accent); color: #fff; font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer; }
 .history-empty { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 14px; }
 
@@ -1419,60 +1418,10 @@ function renderHistory() {
       <div class="history-items-preview">${preview}</div>
       <div class="history-total">ยอดรวม: ${typeof order.total === 'number' ? order.total.toLocaleString() : order.total} ฿</div>
       <div class="history-actions">
-        ${isLatest ? `<button class="btn-history-copy" onclick="copyFromHistory(${idx})">📋 Copy จากประวัติ</button>` : ''}
-        <button class="btn-history-reorder" onclick="reorder(${idx})" style="${isLatest ? '' : 'flex:1'}">🔄 สั่งซื้อซ้ำ</button>
+        <button class="btn-history-reorder" onclick="reorder(${idx})" style="flex:1">🔄 สั่งซื้อซ้ำ</button>
       </div>
     </div>`;
   }).join('');
-}
-
-async function copyFromHistory(idx) {
-  const history = JSON.parse(localStorage.getItem('orderHistory') || '[]');
-  const order = history[idx];
-  if (!order) return;
-
-  const itemsText = order.items.map((item, i) => {
-    return `${i+1}. ${item.name} x${item.qty} ${item.unit}`;
-  }).join('\n');
-
-  const totalStr = typeof order.total === 'number' ? order.total.toLocaleString() : order.total;
-
-  const copyText = `📋 รายการสั่งซื้อ (Copy จากประวัติ)
-─────────────────
-👤 ผู้สั่งซื้อ
-ชื่อ: ${order.name}
-เบอร์: ${order.phone}
-ที่อยู่: ${order.address}
-─────────────────
-${itemsText}
-─────────────────
-⚠️⚠️⚠️ ราคา ณ วันที่สั่งเดิม: ${totalStr} ฿
-ราคาอาจมีการเปลี่ยนแปลง กรุณาตรวจสอบกับทางร้าน ⚠️⚠️⚠️`;
-
-  // บันทึก Sheets สถานะ "Copy จากประวัติ"
-  try {
-    const itemsSheetText = order.items.map((item, i) => `${i+1}. ${item.name} x${item.qty} ${item.unit}`).join('\n');
-    await fetch(ORDER_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: order.name,
-        phone: order.phone,
-        address: order.address,
-        items: itemsSheetText,
-        total: totalStr + ' ฿ (Copy จากประวัติ)',
-        status: 'Copy จากประวัติ'
-      })
-    });
-  } catch(e) { console.log(e); }
-
-  try {
-    await navigator.clipboard.writeText(copyText);
-    showToast('📋 Copy จากประวัติแล้วครับ!');
-  } catch(e) {
-    showToast('Copy ไม่ได้ครับ ลองใหม่');
-  }
 }
 
 function reorder(idx) {
