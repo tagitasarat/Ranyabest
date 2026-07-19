@@ -622,10 +622,11 @@ footer { text-align:center; padding:22px; font-size:12px; color:var(--muted); bo
 const API_URL = 'https://script.google.com/macros/s/AKfycbw4FAQ43SmQEnQ4lIJ720D9fHvSGlxiY6cBtik-651jnwPO1ShT5T4Kj-W9eUr-taYw/exec';
 const ORDER_URL = 'https://script.google.com/macros/s/AKfycbzKmSzS6J6gRzLySRH4fxSxJrR8VZCtOO0eDJ0YS7bfwFMb8NtcOgch9ksUBlzSo6qSgw/exec';
 
-// ── กติกาค่าจัดส่ง (ยืนยันกับร้านแล้ว: 3,000 ไม่รวมยาคุม / 6,000 รวมทั้งบิล) ──
+// ── กติกาส่งฟรี (ยืนยันกับร้านแล้ว: 3,000 ไม่รวมยาคุม / 6,000 รวมทั้งบิล) ──
+// ไม่ถึงเกณฑ์ = ค่าส่งคิดตามพื้นที่จริง (ร้านแจ้งตอนยืนยัน) — ไม่บวกลงยอดในเว็บ
 const FREE_NORMAL = 3000;   // สินค้าทั่วไป (ไม่รวมยาคุม) ครบเท่านี้ → ส่งฟรี
 const FREE_CONTRA = 6000;   // หรือยอดรวมทั้งบิลครบเท่านี้ → ส่งฟรี
-const SHIP_FEE    = 50;     // ค่าส่งกรณีไม่เข้าเงื่อนไข
+const SHIP_AREA_TEXT = 'คิดตามพื้นที่จัดส่ง';
 
 // ── THEME ──
 function applyTheme(t) {
@@ -875,13 +876,13 @@ function calcCartInfo() {
   const nonContra = total - contraTotal;
   const hasContra = contraTotal > 0;
   const freeShip = total > 0 && (nonContra >= FREE_NORMAL || total >= FREE_CONTRA);
-  const shipping = freeShip ? 0 : (total > 0 ? SHIP_FEE : 0);
   const pct = freeShip ? 100 : (hasContra
     ? Math.min(100, Math.round(Math.max(nonContra / FREE_NORMAL, total / FREE_CONTRA) * 100))
     : Math.min(100, Math.round(total / FREE_NORMAL * 100)));
   return {
-    items, count, total, contraTotal, nonContra, hasContra, freeShip, shipping,
-    grand: total + shipping, pct,
+    items, count, total, contraTotal, nonContra, hasContra, freeShip,
+    shipText: freeShip ? 'ฟรี' : SHIP_AREA_TEXT,
+    grand: total, pct,   // ค่าส่งตามพื้นที่ไม่บวกลงยอดในเว็บ
     remainNormal: Math.max(0, FREE_NORMAL - nonContra),
   };
 }
@@ -979,8 +980,9 @@ function renderCartPanel() {
       <div class="sum-wrap-sticky"><div class="sum-card">
         <div class="sum-ttl">สรุปคำสั่งซื้อ</div>
         <div class="sum-row"><span class="lbl">ยอดรวมสินค้า (${info.count} รายการ)</span><span class="val num">${info.total.toLocaleString()} ฿</span></div>
-        <div class="sum-row"><span class="lbl">ค่าจัดส่ง</span><span class="val ship num">${info.shipping === 0 ? 'ฟรี' : info.shipping.toLocaleString() + ' ฿'}</span></div>
+        <div class="sum-row"><span class="lbl">ค่าจัดส่ง</span><span class="val ship num" style="${info.freeShip ? '' : 'font-size:12.5px;font-weight:600;color:var(--muted)'}">${info.shipText}</span></div>
         <div class="sum-grand"><span class="lbl">ยอดชำระทั้งหมด</span><span class="val num">${info.grand.toLocaleString()} ฿</span></div>
+        ${info.freeShip ? '' : `<div style="font-size:11.5px;color:var(--muted);margin-top:7px;text-align:right">* ยังไม่รวมค่าจัดส่ง — ทางร้านจะแจ้งตามพื้นที่ตอนยืนยันคำสั่งซื้อ</div>`}
         <button class="cta" onclick="openOrderPopup()">ดำเนินการสั่งซื้อ
           <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
@@ -1016,7 +1018,9 @@ function renderOrderSummary() {
     </div>`;
   }).join('');
   document.getElementById('oSumSub').textContent = info.total.toLocaleString() + ' ฿';
-  document.getElementById('oSumShip').textContent = info.shipping === 0 ? 'ฟรี' : info.shipping.toLocaleString() + ' ฿';
+  const shipEl = document.getElementById('oSumShip');
+  shipEl.textContent = info.shipText;
+  shipEl.style.cssText = info.freeShip ? '' : 'font-size:12.5px;font-weight:600;color:var(--muted)';
   document.getElementById('oSumGrand').textContent = info.grand.toLocaleString() + ' ฿';
 }
 
@@ -1066,7 +1070,7 @@ async function submitOrder() {
   }).join('\n');
 
   const orderId = new Date().toLocaleDateString('th-TH', {year:'2-digit',month:'2-digit',day:'2-digit'}).replace(/\//g,'') + '-' + Date.now().toString().slice(-4);
-  const shipText = info.shipping === 0 ? 'ฟรี' : info.shipping.toLocaleString() + ' ฿';
+  const shipText = info.shipText;
   const orderText = `📋 รายการสั่งซื้อ #${orderId}
 ─────────────────
 👤 ผู้สั่งซื้อ
@@ -1077,8 +1081,7 @@ async function submitOrder() {
 ${itemsText}
 ─────────────────
 ยอดรวมสินค้า: ${info.total.toLocaleString()} ฿
-ค่าจัดส่ง: ${shipText}
-ยอดชำระ: ${info.grand.toLocaleString()} ฿`;
+ค่าจัดส่ง: ${shipText}`;
 
   const btn = document.getElementById('confirmBtn');
   btn.disabled = true;
