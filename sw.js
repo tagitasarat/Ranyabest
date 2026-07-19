@@ -1,8 +1,8 @@
 // Service Worker — ร้านยา Best
 // index.html ใช้ network-first (deploy ใหม่แล้วเห็นทันที, offline ใช้ตัวที่แคชไว้)
 // ไฟล์อื่น (ไลบรารี/ไอคอน) ใช้ cache-first
-const CACHE = 'ranyabest-v1';
-const ASSETS = ['./', './index.html', './zxing.min.js', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
+const CACHE = 'ranyabest-v2';
+const ASSETS = ['./', './index.html', './zxing.min.js', './manifest.webmanifest', './logo.png', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
