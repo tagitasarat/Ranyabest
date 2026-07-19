@@ -159,13 +159,6 @@ td.cq-cell { padding:11px 14px; }
 footer { text-align:center; padding:22px; font-size:12px; color:var(--muted); border-top:1px solid var(--border); }
 
 /* ===== BOTTOM CART BAR (mobile) ===== */
-#bottomBar { display:none; position:fixed; left:0; right:0; bottom:0; z-index:90; justify-content:center; padding:12px 16px calc(12px + env(safe-area-inset-bottom)); pointer-events:none; }
-#bottomBar .bb-btn { pointer-events:auto; width:100%; max-width:398px; height:56px; border-radius:16px; border:none; background:var(--accent); color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:space-between; padding:0 8px 0 20px; box-shadow:0 12px 30px -10px rgba(0,0,0,.5); }
-.bb-left { display:flex; align-items:center; gap:10px; font-size:15px; font-weight:700; }
-.bb-cart-ico { position:relative; display:grid; place-items:center; }
-.bb-count { position:absolute; top:-7px; right:-9px; background:var(--gold); color:#2e2405; border-radius:20px; min-width:18px; height:18px; padding:0 4px; display:grid; place-items:center; font-size:10.5px; font-weight:800; }
-.bb-right { display:flex; align-items:center; gap:9px; background:rgba(255,255,255,.16); height:40px; padding:0 16px; border-radius:12px; font-size:16px; font-weight:800; }
-
 #histFab { display:none; position:fixed; bottom:calc(16px + env(safe-area-inset-bottom)); right:16px; z-index:89; width:52px; height:52px; border-radius:50%; background:var(--surface); color:var(--accent); border:1px solid var(--border); cursor:pointer; place-items:center; box-shadow:var(--shadow); }
 
 /* ===== FULL-SCREEN OVERLAYS ===== */
@@ -325,9 +318,9 @@ footer { text-align:center; padding:22px; font-size:12px; color:var(--muted); bo
   .content { padding:14px 14px 100px; }
   .table-card { display:none; }
   #cardList { display:flex; }
-  #bottomBar { display:flex; }
   #histFab { display:grid; }
-  body.has-bb #histFab { bottom:calc(84px + env(safe-area-inset-bottom)); }
+  .hbtn-lbl { display:none; }
+  .hbtn.gold { padding:0 11px; }
   .ovl-ttl { font-size:18px; }
   .steps { display:none; }
   .cart-wrap { display:block; padding:16px 14px 0; }
@@ -373,9 +366,9 @@ footer { text-align:center; padding:22px; font-size:12px; color:var(--muted); bo
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
           ประวัติ
         </button>
-        <button class="hbtn gold desk" onclick="toggleCart()">
+        <button class="hbtn gold" onclick="toggleCart()">
           <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.4 12.2a1.5 1.5 0 0 0 1.5 1.2h8.3a1.5 1.5 0 0 0 1.5-1.2L22 7H6"/></svg>
-          ตะกร้า
+          <span class="hbtn-lbl">ตะกร้า</span>
           <span class="cart-badge num" id="cartBadge">0</span>
         </button>
         <button class="theme-btn desk" onclick="toggleTheme()" title="สลับโหมด"><span class="knob" id="themeIcon">🌙</span></button>
@@ -436,22 +429,6 @@ footer { text-align:center; padding:22px; font-size:12px; color:var(--muted); bo
 </div>
 
 <footer>ร้านยา Best · ราคาอาจมีการเปลี่ยนแปลงโดยไม่แจ้งล่วงหน้า · สอบถามเพิ่มเติมติดต่อร้าน</footer>
-
-<!-- mobile bottom cart bar -->
-<div id="bottomBar" style="display:none">
-  <button class="bb-btn" onclick="toggleCart()">
-    <span class="bb-left">
-      <span class="bb-cart-ico">
-        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.4 12.2a1.5 1.5 0 0 0 1.5 1.2h8.3a1.5 1.5 0 0 0 1.5-1.2L22 7H6"/></svg>
-        <span class="bb-count num" id="bbCount">0</span>
-      </span>
-      ดูตะกร้า
-    </span>
-    <span class="bb-right num"><span id="bbTotal">0 ฿</span>
-      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </span>
-  </button>
-</div>
 
 <!-- mobile history fab -->
 <button id="histFab" onclick="toggleHistory()" title="ประวัติการสั่งซื้อ">
@@ -678,9 +655,10 @@ const CAT_STYLE = {
   'ราคาพิเศษ':['#ffe5e5','#c0392b'], 'ยาคุมกำเนิด':['#fde8f4','#9c1565'], 'สมุนไพร':['#e8fde8','#156515'],
   'ยาเบาหวาน ':['#ebf3ff','#1e4d9b'], 'อื่นๆ':['#f2efe9','#5a5248']
 };
+// ป้ายหมวดกดได้ = กรองหมวดนั้นทันที (ฟีเจอร์เดิมก่อน redesign)
 function getBadgeHtml(cat) {
   const c = CAT_STYLE[cat] || CAT_STYLE['อื่นๆ'];
-  return `<span class="badge" style="background:${c[0]};color:${c[1]}">${cat}</span>`;
+  return `<span class="badge" style="background:${c[0]};color:${c[1]};cursor:pointer" data-c="${cat.replace(/"/g,'&quot;')}" onclick="event.stopPropagation();setActiveCat(this.dataset.c)" title="ดูหมวด ${cat}">${cat}</span>`;
 }
 
 let allData = [], activeCat = "", sortMode = 'featured';
@@ -892,10 +870,6 @@ function updateCartUI() {
   const badge = document.getElementById('cartBadge');
   badge.textContent = info.count;
   badge.classList.toggle('show', info.count > 0);
-  document.getElementById('bbCount').textContent = info.count;
-  document.getElementById('bbTotal').textContent = info.total.toLocaleString() + ' ฿';
-  document.getElementById('bottomBar').style.display = info.count > 0 ? 'flex' : 'none';
-  document.body.classList.toggle('has-bb', info.count > 0);
   document.getElementById('cartPanelCount').textContent = `${info.count} รายการ · ร้านยา Best`;
   if (document.getElementById('cartPanel').classList.contains('open')) renderCartPanel();
   if (document.getElementById('orderPopup').classList.contains('open')) renderOrderSummary();
