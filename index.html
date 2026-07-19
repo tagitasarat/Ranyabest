@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- saved from url=(0045)file:///C:/Users/acer/Downloads/index_61.html -->
-<html lang="th" data-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="th" data-theme="dark">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ร้านยา Best — แคตตาล็อกสินค้า</title>
-<meta name="theme-color" content="#2D6A4F">
+<meta name="theme-color" content="#184e36">
 <link rel="icon" type="image/png" href="./icon-192.png">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-180.png">
@@ -13,890 +13,680 @@
 <meta name="apple-mobile-web-app-title" content="ร้านยา Best">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
 :root {
-  --bg: #F7F5F0; --surface: #FFFFFF; --border: #E2DDD6;
-  --text: #1A1714; --text-muted: #7A746C;
-  --accent: #2D6A4F; --accent-dark: #52B788;
-  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
-  --thead: #F2EFE9; --row-hover: #FAFAF8; --row-border: #F0EDE8;
-  --transition: background 0.25s, color 0.25s, border-color 0.25s;
+  --bg:#f4f1e9; --surface:#ffffff; --surface-2:#faf7f0;
+  --text:#182a20; --muted:#77746b; --border:#e7e1d3; --border-2:#f0ece0;
+  --accent:#256a4a; --accent-deep:#184e36; --accent-soft:#e8f0ea;
+  --gold:#c19a2e; --gold-deep:#a5811d; --gold-soft:#f5edd7;
+  --head:#f3efe6; --row-hover:#faf8f1;
+  --hdr-a:#184e36; --hdr-b:#256a4a; --hdr-line:transparent;
+  --shadow:0 1px 2px rgba(24,78,54,.05), 0 12px 30px -16px rgba(24,78,54,.2);
+  --shadow-lg:0 30px 70px -24px rgba(24,78,54,.5);
 }
 [data-theme="dark"] {
-  --bg: #0F1210; --surface: #1A1F1C; --border: #2A332D;
-  --text: #E8F0EB; --text-muted: #7A9082;
-  --accent: #52B788; --accent-dark: #52B788;
-  --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.25);
-  --thead: #141A16; --row-hover: #1F2820; --row-border: #222E26;
+  --bg:#080c0a; --surface:#101613; --surface-2:#161f1a;
+  --text:#eef3ee; --muted:#93a597; --border:#26332c; --border-2:#1a231e;
+  --accent:#43b17e; --accent-deep:#5ec894; --accent-soft:#122019;
+  --gold:#e0c264; --gold-deep:#c9a63a; --gold-soft:#221d0e;
+  --head:#0d1310; --row-hover:#141d18;
+  --hdr-a:#0a110d; --hdr-b:#13201a; --hdr-line:rgba(224,194,100,.28);
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 16px 40px -18px rgba(0,0,0,.9);
+  --shadow-lg:0 34px 84px -24px rgba(0,0,0,.92);
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Sarabun', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; min-height: 100vh; transition: var(--transition); }
+body { font-family:'Sarabun', system-ui, sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; font-size:15px; line-height:1.6; min-height:100vh; }
+input, button, select, textarea { font-family:inherit; }
+::-webkit-scrollbar { width:9px; height:9px; }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:9px; }
+.num { font-family:'Manrope','Sarabun',sans-serif; font-feature-settings:"tnum"; }
+.noscroll::-webkit-scrollbar { display:none; }
+.noscroll { scrollbar-width:none; }
+@keyframes slideUp { from{transform:translateY(100%);} to{transform:translateY(0);} }
+@keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+@keyframes pop { 0%{transform:scale(.85);} 60%{transform:scale(1.08);} 100%{transform:scale(1);} }
+@keyframes scanLine { 0%{top:14%;} 50%{top:82%;} 100%{top:14%;} }
+@keyframes promoPulse { 0%,100%{box-shadow:0 0 5px rgba(224,74,58,.45);} 50%{box-shadow:0 0 16px rgba(224,74,58,.95);} }
 
-/* HEADER */
-header { background: var(--accent); padding: 1.5rem 1.5rem 1.25rem; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(45,106,79,0.25); transition: var(--transition); }
-.header-inner { max-width: 900px; margin: 0 auto; }
-.header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.shop-title { font-size: 22px; font-weight: 600; color: #fff; }
-.shop-sub { font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 2px; }
-.updated { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; }
-.header-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+/* ===== HEADER ===== */
+header.app-hdr { background:linear-gradient(135deg,var(--hdr-a),var(--hdr-b)); border-bottom:1px solid var(--hdr-line); position:sticky; top:0; z-index:100; box-shadow:0 4px 24px -8px rgba(0,0,0,.5); }
+.hdr-in { max-width:1060px; margin:0 auto; padding:16px clamp(14px,3vw,26px) 16px; }
+.hdr-row1 { display:flex; align-items:center; justify-content:space-between; gap:14px; }
+.hdr-brand { display:flex; align-items:center; gap:12px; min-width:0; }
+.hdr-logo { width:46px; height:46px; border-radius:50%; box-shadow:0 4px 14px -4px rgba(0,0,0,.5); border:2px solid rgba(255,255,255,.35); flex-shrink:0; }
+.hdr-titles { line-height:1.2; min-width:0; }
+.hdr-title { font-size:21px; font-weight:700; color:#fff; letter-spacing:-.01em; white-space:nowrap; }
+.hdr-sub { font-size:12.5px; color:rgba(255,255,255,.72); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.hdr-upd { font-size:11px; color:rgba(255,255,255,.5); margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.hdr-acts { display:flex; align-items:center; gap:9px; flex-shrink:0; }
+.hbtn { display:flex; align-items:center; justify-content:center; gap:7px; height:38px; border-radius:11px; border:none; background:rgba(255,255,255,.16); color:#fff; cursor:pointer; font-size:13.5px; font-weight:500; padding:0 14px; transition:background .15s; }
+.hbtn:hover { background:rgba(255,255,255,.28); }
+.hbtn.icon { width:38px; padding:0; }
+.hbtn.gold { background:var(--gold); color:#2e2405; font-weight:700; box-shadow:0 6px 16px -8px rgba(0,0,0,.5); position:relative; }
+.hbtn.gold:hover { filter:brightness(1.05); background:var(--gold); }
+.cart-badge { background:#c62828; color:#fff; border-radius:20px; min-width:20px; height:20px; padding:0 6px; display:none; place-items:center; font-size:11px; font-weight:800; }
+.cart-badge.show { display:grid; animation:pop .3s; }
+.theme-btn { width:56px; height:32px; border-radius:20px; border:none; background:rgba(255,255,255,.16); cursor:pointer; position:relative; flex-shrink:0; }
+.theme-btn .knob { position:absolute; top:4px; left:4px; width:24px; height:24px; border-radius:50%; background:#fff; display:grid; place-items:center; font-size:12px; transition:left .28s cubic-bezier(.34,1.56,.64,1); }
+[data-theme="dark"] .theme-btn .knob { left:28px; }
+.hdr-row2 { display:flex; gap:9px; margin-top:14px; }
+.search-wrap { position:relative; flex:1; min-width:0; }
+.search-wrap svg { position:absolute; left:13px; top:50%; transform:translateY(-50%); pointer-events:none; }
+#search { width:100%; height:44px; padding:0 14px 0 40px; border:none; border-radius:12px; background:rgba(255,255,255,.16); color:#fff; font-size:14.5px; outline:none; }
+#search::placeholder { color:rgba(255,255,255,.55); }
+.scan-btn { display:flex; align-items:center; justify-content:center; gap:7px; height:44px; padding:0 17px; border-radius:12px; border:none; background:rgba(255,255,255,.16); color:#fff; font-size:14px; font-weight:600; cursor:pointer; flex-shrink:0; }
+.scan-btn:hover { background:rgba(255,255,255,.3); }
+.sort-sel { height:44px; border:none; border-radius:12px; background:rgba(255,255,255,.16); color:#fff; padding:0 14px; font-size:14px; font-weight:600; cursor:pointer; outline:none; flex-shrink:0; }
+.sort-sel option { color:var(--text); background:var(--surface); }
+#pillsSlotHeader { display:none; }
 
-/* CART BUTTON IN HEADER */
-.cart-btn-header {
-  position: relative; background: rgba(255,255,255,0.2); border: none;
-  border-radius: 99px; padding: 6px 14px 6px 10px; cursor: pointer;
-  color: #fff; font-family: inherit; font-size: 13px; font-weight: 500;
-  display: flex; align-items: center; gap: 6px; transition: background 0.2s;
-}
-.cart-btn-header:hover { background: rgba(255,255,255,0.3); }
-.cart-badge {
-  background: #FF5252; color: #fff; border-radius: 99px;
-  font-size: 11px; font-weight: 700; padding: 1px 6px;
-  display: none;
-}
-.cart-badge.show { display: inline-block; }
+/* ===== PILLS ===== */
+#catPills { display:flex; gap:7px; flex-wrap:wrap; }
+.pill { padding:7px 16px; border-radius:20px; font-size:12.5px; font-weight:600; cursor:pointer; white-space:nowrap; transition:all .15s; border:1.5px solid var(--border); background:var(--surface); color:var(--muted); }
+.pill:hover { border-color:var(--accent); color:var(--accent); }
+.pill.active { border-color:transparent; background:var(--accent); color:#fff; }
+.pill-special { border-color:#e07a6a; background:linear-gradient(135deg,#ff6b5a,#e04a3a); color:#fff; }
+.pill-special:hover { color:#fff; border-color:#ffb3a8; }
+.pill-special.active { border-color:transparent; background:#c0392b; color:#fff; }
+.pill-promo { border-color:#e07a6a; background:linear-gradient(135deg,#ff6b5a,#e04a3a); color:#fff; font-weight:700; animation:promoPulse 1.5s ease-in-out infinite; }
+.pill-promo:hover { color:#fff; border-color:#ffb3a8; }
+.pill-promo.active { background:#c0392b; border-color:#ffb3a8; }
 
-.theme-btn { flex-shrink: 0; background: rgba(255,255,255,0.15); border: none; border-radius: 99px; width: 52px; height: 28px; cursor: pointer; position: relative; transition: background 0.3s; }
-.theme-btn:hover { background: rgba(255,255,255,0.25); }
-.theme-btn .knob { position: absolute; top: 4px; left: 4px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); display: flex; align-items: center; justify-content: center; font-size: 12px; line-height: 1; }
-[data-theme="dark"] .theme-btn .knob { transform: translateX(24px); }
+/* ===== CONTENT ===== */
+.content { max-width:1060px; margin:0 auto; padding:20px clamp(14px,3vw,26px) 60px; }
+#pillsSlotContent { margin-bottom:16px; }
+#errorBox .error-box { background:#fde8e8; border:1px solid #f5b5b5; color:#a01515; border-radius:12px; padding:12px 16px; margin-bottom:14px; font-size:13.5px; }
+.list-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px; }
+#countInfo { font-size:13px; color:var(--muted); }
+#countInfo .cnt { color:var(--accent); font-weight:700; }
+#sortSelM { display:none; height:34px; border:1px solid var(--border); border-radius:9px; background:var(--surface); color:var(--text); padding:0 10px; font-size:12.5px; font-weight:600; cursor:pointer; outline:none; }
 
-.search-row { display: flex; gap: 8px; margin-top: 1rem; flex-wrap: wrap; }
-.search-wrap { position: relative; flex: 1; min-width: 200px; }
-.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.5; pointer-events: none; }
-#search { width: 100%; padding: 10px 12px 10px 38px; border: none; border-radius: 10px; font-family: inherit; font-size: 14px; background: rgba(255,255,255,0.15); color: #fff; outline: none; transition: background 0.2s; }
-#search::placeholder { color: rgba(255,255,255,0.55); }
-#search:focus { background: rgba(255,255,255,0.25); }
-select { padding: 10px 14px; border: none; border-radius: 10px; font-family: inherit; font-size: 13px; background: rgba(255,255,255,0.15); color: #fff; outline: none; cursor: pointer; min-width: 140px; }
-select option { color: var(--text); background: var(--surface); }
-[data-theme="dark"] select option { background: #1A1F1C; color: #E8F0EB; }
+/* desktop table */
+.table-card { background:var(--surface); border:1px solid var(--border); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); }
+table { width:100%; border-collapse:collapse; table-layout:fixed; }
+col.cn{width:37%;} col.cp{width:17%;} col.cu{width:10%;} col.cc{width:17%;} col.cq{width:19%;}
+thead th { background:var(--head); text-align:left; padding:13px 18px; font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.07em; border-bottom:1px solid var(--border); }
+thead th.thp { text-align:right; } thead th.thu, thead th.thq { text-align:center; padding:13px 12px; }
+tbody td { padding:11px 18px; border-bottom:1px solid var(--border-2); vertical-align:middle; font-size:14px; }
+tbody tr { transition:background .12s; }
+tbody tr:hover { background:var(--row-hover); }
+.drug-name-wrap { display:flex; align-items:center; gap:11px; min-width:0; cursor:pointer; }
+.drug-thumb { width:40px; height:40px; border-radius:9px; object-fit:cover; border:1px solid var(--border); background:var(--surface-2); flex-shrink:0; }
+.thumb-ph { width:40px; height:40px; border-radius:9px; background:var(--surface-2); background-image:repeating-linear-gradient(135deg,var(--border-2) 0 7px,transparent 7px 14px); border:1px solid var(--border); flex-shrink:0; }
+.d-name { font-size:14.5px; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.d-gen { font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.d-hints { font-size:11.5px; line-height:1.5; margin-top:2px; }
+.hint-tier { color:var(--gold-deep); font-weight:600; }
+.hint-free { color:#d97706; font-weight:600; }
+.hint-grp { color:var(--accent); font-weight:600; }
+.hint-promo { color:#dc2626; font-weight:700; }
+td.cp-val { text-align:right; }
+.p-old { font-size:11.5px; color:var(--muted); text-decoration:line-through; }
+.p-cur { font-size:16px; font-weight:700; color:var(--accent); white-space:nowrap; }
+td.cu-val { text-align:center; font-size:12.5px; color:var(--muted); padding:11px 12px; }
+td.cat-cell { padding:11px 12px; }
+.badge { display:inline-block; padding:4px 11px; border-radius:20px; font-size:11.5px; font-weight:600; margin:1px 0; }
+td.cq-cell { padding:11px 14px; }
+.add-btn { width:100%; height:34px; border-radius:9px; border:none; background:var(--accent); color:#fff; font-size:12.5px; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:5px; transition:background .15s; }
+.add-btn:hover { background:var(--accent-deep); }
+.stepper { display:flex; align-items:center; justify-content:center; gap:8px; }
+.stepper .sbtn { width:30px; height:30px; border-radius:8px; border:1.5px solid var(--border); background:var(--surface); color:var(--text); font-size:17px; cursor:pointer; line-height:1; padding:0; }
+.stepper .sbtn:hover { border-color:var(--accent); color:var(--accent); }
+.stepper .sbtn.inc { border-color:var(--accent); background:var(--accent-soft); color:var(--accent); }
+.stepper .sbtn.inc:hover { background:var(--accent); color:#fff; }
+.stepper .sqty { min-width:22px; text-align:center; font-size:15px; font-weight:700; color:var(--accent); }
+.state-box { padding:48px; text-align:center; color:var(--muted); font-size:14px; }
 
-/* STATS */
-.stats-bar { max-width: 900px; margin: 1.25rem auto 0; padding: 0 1.5rem; display: flex; gap: 10px; flex-wrap: wrap; }
-.stat-chip { background: var(--surface); border: 1px solid var(--border); border-radius: 99px; padding: 5px 14px; font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; box-shadow: var(--shadow); transition: var(--transition); }
-.stat-chip strong { color: var(--accent); font-weight: 600; }
+/* mobile cards */
+#cardList { display:none; flex-direction:column; gap:11px; }
+.pcard { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:13px; box-shadow:var(--shadow); display:flex; gap:13px; align-items:center; }
+.pcard .thumb-ph, .pcard .drug-thumb { width:60px; height:60px; border-radius:13px; }
+.pcard-mid { flex:1; min-width:0; cursor:pointer; }
+.pcard-name { font-size:15px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.pcard-sub { font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.pcard-price-row { display:flex; align-items:baseline; gap:7px; margin-top:4px; flex-wrap:wrap; }
+.pcard-price-row .p-cur { font-size:18px; font-weight:800; }
+.pcard-hints { font-size:11px; line-height:1.5; }
+.pcard-ctl { flex-shrink:0; }
+.pcard-add { width:44px; height:44px; border-radius:12px; border:none; background:var(--accent); color:#fff; font-size:24px; cursor:pointer; display:grid; place-items:center; line-height:1; box-shadow:0 6px 14px -8px var(--accent); padding:0; }
+.vstep { display:flex; flex-direction:column; align-items:center; border:1.5px solid var(--accent); border-radius:12px; overflow:hidden; }
+.vstep .vinc { width:44px; height:34px; border:none; background:var(--accent-soft); color:var(--accent); font-size:18px; cursor:pointer; line-height:1; padding:0; }
+.vstep .vqty { height:30px; min-width:44px; display:grid; place-items:center; font-size:15px; font-weight:800; color:var(--accent); }
+.vstep .vdec { width:44px; height:34px; border:none; background:var(--surface); color:var(--text); font-size:20px; cursor:pointer; line-height:1; border-top:1px solid var(--border); padding:0; }
 
-.content { max-width: 900px; margin: 0 auto; padding: 1.25rem 1.5rem 3rem; }
+footer { text-align:center; padding:22px; font-size:12px; color:var(--muted); border-top:1px solid var(--border); }
 
-/* PILLS */
-.cat-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
-.cat-pill { padding: 5px 14px; border-radius: 99px; font-size: 12px; font-weight: 500; border: 1.5px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.15s; white-space: nowrap; font-family: inherit; }
-.cat-pill:hover { border-color: var(--accent); color: var(--accent); }
-.cat-pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-.cat-pill-special { animation: pillGlow 2.5s ease-in-out infinite; }
-/* แท็บหมวดโปรโมชั่น — สร้างอัตโนมัติจากชื่อโปรที่ยัง active */
-.cat-pill-promo {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: #fff; border-color: #ef4444; font-weight: 700;
-  animation: promoPulse 1.5s ease-in-out infinite;
-}
-.cat-pill-promo:hover { color: #fff; border-color: #fca5a5; }
-.cat-pill-promo.active {
-  background: linear-gradient(135deg, #b91c1c, #991b1b);
-  color: #fff; border-color: #fca5a5;
-}
-@keyframes promoPulse {
-  0%, 100% { box-shadow: 0 0 5px rgba(239,68,68,.45); }
-  50%      { box-shadow: 0 0 18px rgba(239,68,68,.95), 0 0 30px rgba(239,68,68,.4); }
-}
-@keyframes pillGlow {
-  0%,100% { box-shadow: 0 0 8px rgba(255,82,82,0.5); }
-  50%      { box-shadow: 0 0 16px rgba(255,82,82,0.85); }
-}
+/* ===== BOTTOM CART BAR (mobile) ===== */
+#bottomBar { display:none; position:fixed; left:0; right:0; bottom:0; z-index:90; justify-content:center; padding:12px 16px calc(12px + env(safe-area-inset-bottom)); pointer-events:none; }
+#bottomBar .bb-btn { pointer-events:auto; width:100%; max-width:398px; height:56px; border-radius:16px; border:none; background:var(--accent); color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:space-between; padding:0 8px 0 20px; box-shadow:0 12px 30px -10px rgba(0,0,0,.5); }
+.bb-left { display:flex; align-items:center; gap:10px; font-size:15px; font-weight:700; }
+.bb-cart-ico { position:relative; display:grid; place-items:center; }
+.bb-count { position:absolute; top:-7px; right:-9px; background:var(--gold); color:#2e2405; border-radius:20px; min-width:18px; height:18px; padding:0 4px; display:grid; place-items:center; font-size:10.5px; font-weight:800; }
+.bb-right { display:flex; align-items:center; gap:9px; background:rgba(255,255,255,.16); height:40px; padding:0 16px; border-radius:12px; font-size:16px; font-weight:800; }
 
-.count-info { font-size: 13px; color: var(--text-muted); margin-bottom: 1rem; }
-.count-info span { font-weight: 500; color: var(--accent); }
+#histFab { display:none; position:fixed; bottom:calc(16px + env(safe-area-inset-bottom)); right:16px; z-index:89; width:52px; height:52px; border-radius:50%; background:var(--surface); color:var(--accent); border:1px solid var(--border); cursor:pointer; place-items:center; box-shadow:var(--shadow); }
 
-.error-box { background: #FFF0F0; border: 1px solid #FFCDD2; border-radius: 12px; padding: 1rem 1.25rem; color: #7A2510; font-size: 14px; margin-bottom: 1rem; line-height: 1.7; }
-.error-box code { font-size: 12px; background: rgba(0,0,0,0.06); padding: 2px 6px; border-radius: 4px; }
+/* ===== FULL-SCREEN OVERLAYS ===== */
+.ovl { position:fixed; inset:0; z-index:200; background:var(--bg); overflow-y:auto; display:none; }
+.ovl.open { display:block; animation:fadeIn .25s; }
+.ovl-topbar { position:sticky; top:0; z-index:2; background:linear-gradient(135deg,var(--hdr-a),var(--hdr-b)); border-bottom:1px solid var(--hdr-line); }
+.ovl-topbar-in { max-width:1100px; margin:0 auto; padding:15px clamp(14px,3vw,28px); display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.ovl-back { width:40px; height:40px; border-radius:11px; border:none; background:rgba(255,255,255,.16); color:#fff; cursor:pointer; display:grid; place-items:center; flex-shrink:0; }
+.ovl-back:hover { background:rgba(255,255,255,.28); }
+.ovl-ttl { font-size:20px; font-weight:700; color:#fff; letter-spacing:-.01em; line-height:1.2; }
+.ovl-sub { font-size:12.5px; color:rgba(255,255,255,.7); }
+.steps { display:flex; align-items:center; gap:8px; color:rgba(255,255,255,.85); font-size:13px; font-weight:600; white-space:nowrap; }
+.steps .dim { opacity:.6; }
+.steps .cur { color:var(--gold); font-weight:700; }
 
-/* TABLE */
-.table-card { background: var(--surface); border-radius: 16px; border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-col.cn { width: 30%; } col.cp { width: 16%; } col.cu { width: 9%; } col.cc { width: 20%; } col.cq { width: 25%; }
-thead th { background: var(--thead); padding: 11px 16px; text-align: left; font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid var(--border); transition: var(--transition); }
-tbody tr { transition: background 0.1s; }
-tbody tr:hover { background: var(--row-hover); }
-tbody td { padding: 9px 16px; border-bottom: 1px solid var(--row-border); font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: var(--transition); vertical-align: middle; }
-tbody tr:last-child td { border-bottom: none; }
-.cp-val { font-weight: 600; color: var(--accent); text-align: right; white-space: normal; text-overflow: clip; line-height: 1.5; }
-.cu-val { color: var(--text-muted); font-size: 13px; text-align: center; }
-.badge { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 500; white-space: nowrap; }
-.badge-link { cursor: pointer; transition: filter .15s, transform .15s; }
-.badge-link:hover { filter: brightness(0.94); transform: translateY(-1px); }
-/* คอลัมน์หมวดหมู่: แสดงชื่อเต็ม ตัดบรรทัดแทนการตัดทิ้ง */
-td.cat-cell { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.9; }
-td.cat-cell .badge { white-space: normal; }
-.b-diabetes{ background:#EBF3FF; color:#1E4D9B; }
-.b-pressure{ background:#E8F7EF; color:#1A5C3A; }
-.b-lipid   { background:#FFF5E6; color:#7A4500; }
-.b-pain    { background:#FDE8F4; color:#9C1565; }
-.b-resp    { background:#E8FDE8; color:#156515; }
-.b-psych   { background:#FDFDE8; color:#7A7A15; }
-.b-vitamin { background:#F0FAF4; color:#1B5E35; }
-.b-device  { background:#FFF3E0; color:#7A4200; }
-.b-gi      { background:#FFF8E6; color:#7A5500; }
-.b-maxxlife{ background:#E8F0FF; color:#1A3A8F; }
-.b-mega    { background:#FFE8F5; color:#8F1A5A; }
-.b-other   { background:#F2EFE9; color:#5A5248; }
-.b-antiseptic{ background:#FDF4E8; color:#A06515; }
-.b-external{ background:#FDE8E8; color:#A01515; }
-.b-herbal  { background:#FDE8E8; color:#A01515; }
-.b-hormone { background:#E8FDFD; color:#157A7A; }
-.b-eye     { background:#E8FDF0; color:#157A55; }
-.b-tears   { background:#E8FDF0; color:#157A55; }
-.b-biopharm{ background:#E8FDFD; color:#157A7A; }
-.b-siam    { background:#F4E8FD; color:#6515A0; }
-.b-special { background:#F4E8FD; color:#6515A0; }
-[data-theme="dark"] .b-diabetes{ background:#0D1F3C; color:#7DAEE8; }
-[data-theme="dark"] .b-pressure{ background:#0D2218; color:#52B788; }
-[data-theme="dark"] .b-lipid   { background:#2A1A00; color:#D4923A; }
-[data-theme="dark"] .b-pain    { background:#3C0D25; color:#E87AB0; }
-[data-theme="dark"] .b-resp    { background:#0D2218; color:#52B788; }
-[data-theme="dark"] .b-psych   { background:#2A2A0D; color:#C9C93A; }
-[data-theme="dark"] .b-vitamin { background:#0D2010; color:#52B788; }
-[data-theme="dark"] .b-device  { background:#2A1800; color:#D4923A; }
-[data-theme="dark"] .b-gi      { background:#2A1E00; color:#D4A830; }
-[data-theme="dark"] .b-maxxlife{ background:#0D1A3C; color:#7A9AE8; }
-[data-theme="dark"] .b-mega    { background:#3C0D25; color:#E87AB0; }
-[data-theme="dark"] .b-other   { background:#1A1A16; color:#8A9080; }
-[data-theme="dark"] .b-antiseptic{ background:#2A1E0D; color:#D4A86A; }
-[data-theme="dark"] .b-external{ background:#2E0D0D; color:#E88A8A; }
-[data-theme="dark"] .b-herbal  { background:#2E0D0D; color:#E88A8A; }
-[data-theme="dark"] .b-hormone { background:#0D2A2A; color:#52C4C4; }
-[data-theme="dark"] .b-eye     { background:#0D2A1C; color:#52B788; }
-[data-theme="dark"] .b-tears   { background:#0D2A1C; color:#52B788; }
-[data-theme="dark"] .b-biopharm{ background:#0D2A2A; color:#52C4C4; }
-[data-theme="dark"] .b-siam    { background:#1E0D2A; color:#B585E8; }
-[data-theme="dark"] .b-special { background:#1E0D2A; color:#B585E8; }
+/* cart layout */
+.cart-wrap { max-width:1100px; margin:0 auto; padding:24px clamp(14px,3vw,28px) 60px; display:grid; grid-template-columns:minmax(0,1fr) 380px; gap:24px; align-items:start; }
+.ship-banner { background:var(--gold-soft); border:1px solid var(--gold); border-radius:16px; padding:15px 19px; margin-bottom:16px; }
+.ship-txt { font-size:13.5px; font-weight:600; color:var(--gold-deep); margin-bottom:10px; }
+.ship-txt.done { margin-bottom:0; font-weight:700; }
+.ship-note { font-size:12px; color:var(--gold-deep); opacity:.85; margin-top:9px; }
+.ship-bar { height:8px; border-radius:99px; background:rgba(0,0,0,.08); overflow:hidden; }
+.ship-fill { height:100%; background:linear-gradient(90deg,var(--gold-deep),var(--gold)); border-radius:99px; transition:width .4s; }
+.group-notice { border-radius:12px; padding:10px 14px; font-size:12.5px; margin-bottom:10px; }
+.group-notice.ok { background:var(--accent-soft); color:var(--accent); }
+.group-notice.warn { background:#fde8e8; color:#a01515; }
+.citems-card { background:var(--surface); border:1px solid var(--border); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); }
+.citems-head { display:flex; align-items:center; justify-content:space-between; padding:15px 20px; border-bottom:1px solid var(--border); background:var(--head); font-size:14px; font-weight:700; }
+.cclear { border:none; background:none; color:var(--muted); font-size:13px; font-weight:600; cursor:pointer; }
+.cclear:hover { color:#c0392b; }
+.citem { display:flex; align-items:center; gap:14px; padding:15px 20px; border-bottom:1px solid var(--border-2); }
+.citem-thumb { width:60px; height:60px; border-radius:12px; background:var(--surface-2); background-image:repeating-linear-gradient(135deg,var(--border-2) 0 8px,transparent 8px 16px); border:1px solid var(--border); flex-shrink:0; object-fit:cover; }
+.citem-mid { flex:1; min-width:0; }
+.citem-name { font-size:15px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.citem-unit { font-size:12.5px; color:var(--muted); margin-top:2px; }
+.citem-fb { font-size:12px; color:#d97706; font-weight:600; }
+.citem-line-m { display:none; font-size:15px; font-weight:800; color:var(--accent); margin-top:3px; }
+.hstep { display:flex; align-items:center; border:1.5px solid var(--border); border-radius:11px; overflow:hidden; flex-shrink:0; }
+.hstep button { width:36px; height:38px; border:none; background:var(--surface); color:var(--text); font-size:18px; cursor:pointer; padding:0; }
+.hstep button:hover { background:var(--surface-2); }
+.hstep .hinc { color:var(--accent); }
+.hstep .hqty { min-width:36px; text-align:center; font-weight:700; font-size:15px; }
+.citem-line { min-width:86px; text-align:right; font-weight:800; font-size:16px; flex-shrink:0; }
+.citem-rm { width:36px; height:36px; border:none; background:none; color:var(--muted); cursor:pointer; border-radius:9px; display:grid; place-items:center; flex-shrink:0; }
+.citem-rm:hover { background:var(--surface-2); color:#c0392b; }
+.sum-col { position:sticky; top:92px; display:flex; flex-direction:column; gap:16px; }
+.sum-card { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:21px; box-shadow:var(--shadow); }
+.sum-ttl { font-size:16px; font-weight:800; margin-bottom:16px; }
+.sum-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:11px; font-size:14px; }
+.sum-row .lbl { color:var(--muted); }
+.sum-row .val { font-weight:600; }
+.sum-row .val.ship { font-weight:700; color:var(--accent); }
+.sum-grand { display:flex; justify-content:space-between; align-items:baseline; padding-top:14px; border-top:1px dashed var(--border); }
+.sum-grand .lbl { font-size:15.5px; font-weight:800; }
+.sum-grand .val { font-size:28px; font-weight:800; color:var(--accent); white-space:nowrap; }
+.cta { width:100%; height:56px; margin-top:18px; border-radius:14px; border:none; background:var(--accent); color:#fff; font-weight:700; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:9px; box-shadow:0 12px 28px -12px var(--accent); transition:background .15s; }
+.cta:hover { background:var(--accent-deep); }
+.cta:disabled { opacity:.6; cursor:default; }
+.trust-card { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:17px 19px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:12px; }
+.trust-row { display:flex; align-items:center; gap:11px; font-size:13.5px; }
+.trust-ico { width:32px; height:32px; border-radius:9px; display:grid; place-items:center; flex-shrink:0; }
+.trust-ico.g { background:var(--accent-soft); color:var(--accent); }
+.trust-ico.y { background:var(--gold-soft); color:var(--gold-deep); }
+.cart-empty-box { max-width:520px; margin:0 auto; padding:80px 36px; text-align:center; color:var(--muted); }
+.cart-empty-ico { width:96px; height:96px; margin:0 auto 22px; border-radius:50%; background:var(--surface); border:1px solid var(--border); display:grid; place-items:center; box-shadow:var(--shadow); }
 
-/* QTY INPUT */
-.qty-wrap { display: flex; align-items: center; gap: 4px; }
-.qty-btn { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; padding: 0; line-height: 1; font-family: inherit; flex-shrink: 0; }
-.qty-btn:hover { border-color: var(--accent); color: var(--accent); }
-.qty-input { width: 38px; text-align: center; border: 1.5px solid var(--border); border-radius: 8px; padding: 4px 2px; font-size: 13px; font-family: inherit; background: var(--surface); color: var(--text); outline: none; }
-.qty-input:focus { border-color: var(--accent); }
-.add-btn { padding: 5px 10px; border-radius: 8px; border: none; background: var(--accent); color: #fff; font-size: 12px; font-family: inherit; cursor: pointer; font-weight: 500; white-space: nowrap; transition: opacity 0.15s; }
-.add-btn:hover { opacity: 0.85; }
+/* order form */
+.order-wrap { max-width:1100px; margin:0 auto; padding:24px clamp(14px,3vw,28px) 60px; display:grid; grid-template-columns:minmax(0,1fr) 400px; gap:24px; align-items:start; }
+.form-col { display:flex; flex-direction:column; gap:16px; }
+.form-card { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:22px; box-shadow:var(--shadow); }
+.form-card-head { display:flex; align-items:center; gap:11px; margin-bottom:18px; font-size:16px; font-weight:800; }
+.form-ico { width:36px; height:36px; border-radius:10px; background:var(--accent-soft); color:var(--accent); display:grid; place-items:center; }
+.f-2col { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.f-lbl { font-size:12.5px; font-weight:600; color:var(--muted); display:block; margin-bottom:6px; }
+.f-lbl .req { color:#c0392b; }
+.f-in { width:100%; height:48px; padding:0 15px; border:1.5px solid var(--border); border-radius:12px; background:var(--bg); color:var(--text); font-size:14.5px; outline:none; }
+.f-in:focus, .f-ta:focus { border-color:var(--accent); }
+.f-ta { width:100%; min-height:105px; padding:12px 15px; border:1.5px solid var(--border); border-radius:12px; background:var(--bg); color:var(--text); font-size:14.5px; outline:none; resize:vertical; line-height:1.7; }
+.osum-items { max-height:230px; overflow-y:auto; margin-bottom:14px; }
+.osum-item { display:flex; align-items:center; gap:11px; padding:8px 0; border-bottom:1px solid var(--border-2); }
+.osum-qty { min-width:28px; height:24px; padding:0 7px; border-radius:7px; background:var(--accent-soft); color:var(--accent); font-size:12.5px; font-weight:700; display:grid; place-items:center; flex-shrink:0; }
+.osum-name { flex:1; min-width:0; font-size:13.5px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.osum-line { font-size:13.5px; font-weight:700; white-space:nowrap; flex-shrink:0; }
+.osum-fb { font-size:11.5px; color:#d97706; font-weight:600; flex-basis:100%; }
+.lock-line { display:flex; align-items:center; justify-content:center; gap:7px; margin-top:13px; font-size:12px; color:var(--muted); }
+/* success */
+.done-wrap { max-width:540px; margin:0 auto; padding:70px 28px; text-align:center; }
+.done-circle { width:96px; height:96px; margin:0 auto 24px; border-radius:50%; background:var(--accent-soft); display:grid; place-items:center; animation:pop .4s; }
+.done-ttl { margin:0 0 10px; font-size:25px; font-weight:800; color:var(--accent); }
+.done-id-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:16px 20px; margin:24px 0; display:flex; justify-content:space-between; align-items:center; box-shadow:var(--shadow); }
 
-/* PRODUCT IMAGE */
-.drug-thumb {
-  width: 36px; height: 36px; border-radius: 8px; object-fit: cover;
-  cursor: pointer; border: 1.5px solid var(--border);
-  transition: transform 0.15s, box-shadow 0.15s;
-  vertical-align: middle; flex-shrink: 0;
-}
-.drug-thumb:hover { transform: scale(1.08); box-shadow: 0 2px 10px rgba(0,0,0,0.18); }
-.drug-name-wrap { display: flex; align-items: center; gap: 8px; }
+/* history */
+#historyPanel .hist-wrap { max-width:640px; margin:0 auto; padding:16px clamp(14px,3vw,24px) 40px; display:flex; flex-direction:column; gap:11px; }
+.hist-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 16px; box-shadow:var(--shadow); }
+.hist-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; }
+.hist-id { font-size:12.5px; font-weight:800; color:var(--accent); }
+.hist-time { font-size:12px; color:var(--muted); }
+.hist-sum { font-size:13px; color:var(--muted); margin-bottom:8px; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+.hist-bot { display:flex; justify-content:space-between; align-items:center; }
+.hist-total { font-weight:700; color:var(--accent); }
+.hist-reorder { height:32px; padding:0 14px; border-radius:8px; border:none; background:var(--accent-soft); color:var(--accent); font-size:12.5px; font-weight:600; cursor:pointer; }
 
-/* IMAGE ZOOM POPUP */
-.img-popup-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.82); z-index: 700;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none; transition: opacity 0.2s;
-}
-.img-popup-overlay.open { opacity: 1; pointer-events: all; }
-.img-popup-box {
-  position: relative; max-width: 92vw; max-height: 88vh;
-  border-radius: 16px; overflow: hidden;
-  box-shadow: 0 8px 48px rgba(0,0,0,0.6);
-}
-.img-popup-box img {
-  display: block; max-width: 88vw; max-height: 80vh;
-  object-fit: contain; background: #000;
-}
-.img-popup-name {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  background: linear-gradient(transparent, rgba(0,0,0,0.75));
-  color: #fff; font-size: 13px; font-weight: 500;
-  padding: 20px 14px 12px; line-height: 1.4;
-}
-.img-popup-close {
-  position: absolute; top: 10px; right: 10px;
-  background: rgba(0,0,0,0.5); color: #fff; border: none;
-  border-radius: 50%; width: 32px; height: 32px; font-size: 16px;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  backdrop-filter: blur(4px);
-}
+/* scanner */
+#scannerOverlay { position:fixed; inset:0; z-index:210; display:none; align-items:center; justify-content:center; padding:16px; }
+#scannerOverlay.open { display:flex; animation:fadeIn .2s; }
+.scan-scrim { position:absolute; inset:0; background:rgba(0,0,0,.85); }
+.scan-card { position:relative; background:var(--surface); border-radius:20px; width:100%; max-width:420px; overflow:hidden; box-shadow:var(--shadow-lg); }
+.scan-head { display:flex; justify-content:space-between; align-items:center; padding:15px 20px; border-bottom:1px solid var(--border); font-size:16px; font-weight:700; }
+.scan-x { border:none; background:none; font-size:20px; color:var(--muted); cursor:pointer; }
+.scan-view { position:relative; aspect-ratio:1/1; background:#0a0a0a; overflow:hidden; }
+#scannerVideo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.scan-aim { position:absolute; left:22.5%; top:22.5%; width:55%; aspect-ratio:1/1; border:2.5px solid var(--accent-deep); border-radius:14px; box-shadow:0 0 0 2000px rgba(0,0,0,.45); pointer-events:none; }
+.scan-line { position:absolute; left:22.5%; width:55%; height:2px; background:var(--accent-deep); box-shadow:0 0 8px var(--accent-deep); animation:scanLine 2s linear infinite; pointer-events:none; }
+.scanner-status { position:absolute; left:0; right:0; bottom:12px; text-align:center; color:rgba(255,255,255,.85); font-size:12.5px; padding:0 14px; }
+.scanner-status.error { color:#ffb3a8; }
+.scan-foot { padding:14px 20px 18px; display:flex; gap:9px; }
+#manualBarcode { flex:1; height:44px; padding:0 14px; border:1.5px solid var(--border); border-radius:11px; background:var(--bg); color:var(--text); font-size:14px; outline:none; }
+.scan-go { height:44px; padding:0 18px; border-radius:11px; border:none; background:var(--accent); color:#fff; font-size:14px; font-weight:600; cursor:pointer; }
 
-/* BARCODE BUTTON */
-.barcode-btn {
-  display: flex; align-items: center; gap: 6px;
-  padding: 9px 14px; border-radius: 10px; border: none;
-  background: rgba(255,255,255,0.2); color: #fff;
-  font-family: inherit; font-size: 13px; font-weight: 500;
-  cursor: pointer; transition: background 0.2s; white-space: nowrap; flex-shrink: 0;
-}
-.barcode-btn:hover { background: rgba(255,255,255,0.35); }
+/* name/img popups */
+.popup { position:fixed; inset:0; z-index:220; display:none; align-items:center; justify-content:center; padding:18px; }
+.popup.open { display:flex; animation:fadeIn .2s; }
+.popup-scrim { position:absolute; inset:0; background:rgba(0,0,0,.6); }
+.popup-card { position:relative; background:var(--surface); border-radius:20px; width:100%; max-width:440px; max-height:86vh; overflow-y:auto; box-shadow:var(--shadow-lg); padding:22px; }
+.popup-lbl { font-size:12px; color:var(--muted); margin-bottom:6px; }
+#namePopupText { font-size:17px; font-weight:700; margin-bottom:10px; }
+#namePopupImgWrap { display:none; gap:8px; margin:10px 0; flex-wrap:wrap; }
+#namePopupTiers { display:none; background:var(--surface-2); border:1px solid var(--border); border-radius:12px; padding:13px 15px; font-size:13.5px; margin-top:12px; }
+#namePopupGroup { display:none; background:var(--accent-soft); border-radius:12px; padding:12px 15px; font-size:13.5px; margin-top:12px; }
+.popup-btns { display:flex; gap:9px; margin-top:16px; }
+.pbtn { flex:1; height:46px; border-radius:12px; border:none; background:var(--accent); color:#fff; font-size:14.5px; font-weight:600; cursor:pointer; }
+.pbtn.ghost { flex:0 0 auto; padding:0 20px; background:var(--surface-2); color:var(--text); border:1px solid var(--border); }
+#imgPopup .popup-card { max-width:560px; text-align:center; }
+#imgPopupImg { max-width:100%; max-height:64vh; border-radius:12px; }
+#imgPopupName { margin-top:10px; font-size:14px; font-weight:600; }
 
-/* BARCODE SCANNER OVERLAY */
-.scanner-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 600;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 1rem; opacity: 0; pointer-events: none; transition: opacity 0.2s;
-}
-.scanner-overlay.open { opacity: 1; pointer-events: all; }
-.scanner-box {
-  background: var(--surface); border-radius: 20px; width: 100%; max-width: 420px;
-  overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-}
-.scanner-head {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 1rem 1.25rem 0.75rem; border-bottom: 1px solid var(--border);
-}
-.scanner-head h3 { font-size: 16px; font-weight: 600; }
-.scanner-close { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--text-muted); padding: 0 4px; line-height: 1; }
-.scanner-video-wrap {
-  position: relative; background: #000; width: 100%; aspect-ratio: 1/1; overflow: hidden;
-}
-#scannerVideo { width: 100%; height: 100%; object-fit: cover; display: block; }
-.scanner-aim {
-  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none;
-}
-.scanner-aim-inner {
-  width: 55%; aspect-ratio: 1/1; border: 2.5px solid var(--accent); border-radius: 12px;
-  box-shadow: 0 0 0 2000px rgba(0,0,0,0.35);
-  animation: scanPulse 2s ease-in-out infinite;
-}
-@keyframes scanPulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
-.scanner-line {
-  position: absolute; width: 55%; height: 2px; background: var(--accent);
-  animation: scanLine 2s linear infinite;
-  box-shadow: 0 0 6px var(--accent);
-}
-@keyframes scanLine {
-  0%   { top: 22%; opacity: 1; }
-  50%  { top: 75%; opacity: 1; }
-  51%  { opacity: 0; }
-  100% { top: 22%; opacity: 0; }
-}
-.scanner-status {
-  padding: 10px 1.25rem; font-size: 13px; color: var(--text-muted); text-align: center;
-  min-height: 40px; display: flex; align-items: center; justify-content: center;
-}
-.scanner-status.success { color: #2E7D32; font-weight: 600; }
-.scanner-status.error { color: #C62828; }
-.scanner-manual {
-  padding: 0 1.25rem 1.25rem; display: flex; gap: 8px;
-}
-.scanner-manual input {
-  flex: 1; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 10px;
-  font-family: inherit; font-size: 14px; background: var(--surface); color: var(--text); outline: none;
-}
-.scanner-manual input:focus { border-color: var(--accent); }
-.scanner-manual-btn {
-  padding: 9px 16px; border: none; border-radius: 10px;
-  background: var(--accent); color: #fff; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer;
-}
+.toast { position:fixed; bottom:90px; left:50%; transform:translateX(-50%) translateY(20px); background:#1A1714; color:#fff; padding:10px 20px; border-radius:99px; font-size:13px; opacity:0; transition:all .3s; pointer-events:none; z-index:300; white-space:nowrap; max-width:92vw; overflow:hidden; text-overflow:ellipsis; }
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
-/* CART PANEL */
-.cart-panel {
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
-  background: var(--surface); border-top: 1px solid var(--border);
-  box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
-  transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-  max-height: 75vh; display: flex; flex-direction: column;
-}
-.cart-panel.open { transform: translateY(0); }
-.cart-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem 0.75rem; border-bottom: 1px solid var(--border); }
-.cart-title { font-size: 16px; font-weight: 600; }
-.cart-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-muted); padding: 0 4px; }
-.cart-body { overflow-y: auto; flex: 1; padding: 0.75rem 1.25rem; }
-.cart-empty { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 14px; }
-.group-notice { border-radius: 8px; padding: 8px 10px; margin: 6px 0; font-size: 12.5px; line-height: 1.5; }
-.group-notice.ok { background: rgba(45,106,79,0.10); color: var(--accent); }
-.group-notice.warn { background: rgba(255,82,82,0.10); color: #C0392B; }
-[data-theme="dark"] .group-notice.warn { color: #FF8A80; }
-.cart-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--row-border); }
-.cart-item:last-child { border-bottom: none; }
-.cart-item-name { flex: 1; font-size: 14px; min-width: 0; }
-.cart-item-name small { display: block; font-size: 12px; color: var(--text-muted); }
-.cart-item-qty { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
-.cart-item-price { font-weight: 600; color: var(--accent); font-size: 14px; text-align: right; min-width: 70px; flex-shrink: 0; }
-.cart-remove { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; padding: 0 4px; flex-shrink: 0; }
-.cart-remove:hover { color: #E07060; }
-
-/* CART FOOTER */
-.cart-footer { padding: 0.75rem 1.25rem 1rem; border-top: 1px solid var(--border); }
-.cart-summary { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
-.cart-total-label { font-size: 14px; color: var(--text-muted); }
-.cart-total-val { font-size: 20px; font-weight: 600; color: var(--accent); }
-.cart-actions { display: flex; gap: 8px; }
-.btn-copy { flex: 1; padding: 10px; border-radius: 10px; border: 1.5px solid var(--accent); background: transparent; color: var(--accent); font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
-.btn-copy:hover { background: var(--accent); color: #fff; }
-.btn-line { flex: 1; padding: 10px; border-radius: 10px; border: none; background: #06C755; color: #fff; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer; transition: opacity 0.15s; }
-.btn-line:hover { opacity: 0.85; }
-.btn-clear { padding: 10px 14px; border-radius: 10px; border: 1.5px solid var(--border); background: transparent; color: var(--text-muted); font-family: inherit; font-size: 14px; cursor: pointer; transition: all 0.15s; }
-.btn-clear:hover { border-color: #E07060; color: #E07060; }
-
-/* HISTORY PANEL */
-.history-panel {
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
-  background: var(--surface); border-top: 1px solid var(--border);
-  box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
-  transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-  max-height: 80vh; display: flex; flex-direction: column;
-}
-.history-panel.open { transform: translateY(0); }
-.history-item { padding: 12px 0; border-bottom: 1px solid var(--row-border); }
-.history-item:last-child { border-bottom: none; }
-.history-item-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
-.history-order-id { font-size: 12px; font-weight: 600; color: var(--accent); }
-.history-date { font-size: 12px; color: var(--text-muted); }
-.history-name { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
-.history-items-preview { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
-.history-total { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 8px; }
-.history-actions { display: flex; gap: 6px; }
-.btn-history-reorder { flex: 1; padding: 7px; border-radius: 8px; border: none; background: var(--accent); color: #fff; font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer; }
-.history-empty { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 14px; }
-
-/* NAME POPUP */
-.name-popup {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 500;
-  display: flex; align-items: center; justify-content: center; padding: 1rem;
-  opacity: 0; pointer-events: none; transition: opacity 0.2s;
-}
-.name-popup.open { opacity: 1; pointer-events: all; }
-.name-popup-box {
-  background: var(--surface); border-radius: 16px; padding: 1.25rem;
-  max-width: 380px; width: 100%; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-  transform: scale(0.95); transition: transform 0.2s;
-}
-.name-popup.open .name-popup-box { transform: scale(1); }
-.name-popup-label { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
-.name-popup-text { font-size: 16px; font-weight: 500; color: var(--text); line-height: 1.5; margin-bottom: 1rem; }
-.name-popup-actions { display: flex; gap: 8px; }
-.btn-copy-name { flex: 1; padding: 9px; border-radius: 10px; border: none; background: var(--accent); color: #fff; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer; }
-.btn-close-name { padding: 9px 14px; border-radius: 10px; border: 1.5px solid var(--border); background: transparent; color: var(--text-muted); font-family: inherit; font-size: 14px; cursor: pointer; }
-
-/* ORDER POPUP */
-.popup-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 400;
-  display: flex; align-items: center; justify-content: center; padding: 1rem;
-  opacity: 0; pointer-events: none; transition: opacity 0.25s;
-}
-.popup-overlay.open { opacity: 1; pointer-events: all; }
-.popup-box {
-  background: var(--surface); border-radius: 16px; width: 100%; max-width: 420px;
-  max-height: 90vh; overflow-y: auto; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-  transform: translateY(20px); transition: transform 0.25s;
-}
-.popup-overlay.open .popup-box { transform: translateY(0); }
-.popup-head { padding: 1.25rem 1.25rem 0.75rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-.popup-head h3 { font-size: 16px; font-weight: 600; }
-.popup-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-muted); }
-.popup-body { padding: 1.25rem; }
-.form-group { margin-bottom: 1rem; }
-.form-label { font-size: 13px; font-weight: 500; color: var(--text-muted); margin-bottom: 4px; display: block; }
-.form-input {
-  width: 100%; padding: 10px 14px; border: 1.5px solid var(--border);
-  border-radius: 10px; font-family: inherit; font-size: 14px;
-  background: var(--bg); color: var(--text); outline: none; transition: border-color 0.15s;
-}
-.form-input:focus { border-color: var(--accent); }
-textarea.form-input { resize: vertical; min-height: 80px; }
-.order-summary { background: var(--bg); border-radius: 10px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 13px; color: var(--text-muted); line-height: 1.8; }
-.order-summary strong { color: var(--accent); font-size: 16px; }
-.btn-confirm { width: 100%; padding: 12px; border-radius: 10px; border: none; background: var(--accent); color: #fff; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
-.btn-confirm:hover { opacity: 0.85; }
-.btn-confirm:disabled { opacity: 0.5; cursor: not-allowed; }
-
-/* COPY TOAST */
-.toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1A1714; color: #fff; padding: 10px 20px; border-radius: 99px; font-size: 13px; opacity: 0; transition: all 0.3s; pointer-events: none; z-index: 300; white-space: nowrap; }
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-.state-box { text-align: center; padding: 3rem 1rem; color: var(--text-muted); }
-.spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.state-box p { font-size: 14px; }
-
-footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); transition: var(--transition); margin-bottom: 0; }
-
+/* ===== MOBILE ===== */
 @media (max-width: 600px) {
-  header { padding: 1rem 1rem 0.9rem; }
-  /* มือถือ: ชื่อร้านเต็มความกว้างบรรทัดเดียว ปุ่มย้ายลงแถวถัดไป — ไม่เบียดกันจน header สูงครึ่งจอ */
-  .header-top { flex-wrap: wrap; gap: 6px; }
-  .header-top > div:first-child { flex: 1 1 100%; }
-  .shop-title { font-size: 20px; display: inline; white-space: nowrap; }
-  .shop-sub { display: inline; margin-left: 8px; white-space: nowrap; }
-  .updated { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .header-actions { flex: 1 1 100%; justify-content: flex-start; gap: 8px; }
-  .cart-btn-header { font-size: 12px; padding: 6px 11px; }
-  .theme-btn { margin-left: auto; }
-  .content { padding: 1rem 1rem 5rem; }
-  .stats-bar { padding: 0 1rem; }
-  .table-card { overflow: hidden; }
-  table { min-width: unset; width: 100%; table-layout: fixed; }
-  col.cn { width: 40%; } col.cp { width: 28%; } col.cu { display: none; } col.cc { display: none; } col.cq { width: 32%; }
-  thead th:nth-child(3), thead th:nth-child(4) { display: none; }
-  .cart-panel { max-height: 85vh; }
-  .add-btn { font-size: 12px; padding: 7px 8px; width: 100%; }
-  tbody td { padding: 9px 6px; }
-  thead th { padding: 10px 6px; }
+  .hdr-in { padding:12px 14px 0; }
+  .hdr-logo { width:40px; height:40px; }
+  .hdr-title { font-size:18px; }
+  .hdr-upd { display:none; }
+  .hbtn.desk { display:none; }
+  .theme-btn.desk { display:none; }
+  .hdr-row2 { margin-top:12px; }
+  .scan-btn span { display:none; }
+  .scan-btn { width:44px; padding:0; }
+  #sortSelD { display:none; }
+  #pillsSlotHeader { display:block; margin:0 -14px; padding:11px 0 12px; }
+  #pillsSlotHeader #catPills { flex-wrap:nowrap; overflow-x:auto; padding:0 14px; scrollbar-width:none; }
+  #pillsSlotHeader #catPills::-webkit-scrollbar { display:none; }
+  #pillsSlotContent { display:none; }
+  #sortSelM { display:block; flex-shrink:0; }
+  .content { padding:14px 14px 100px; }
+  .table-card { display:none; }
+  #cardList { display:flex; }
+  #bottomBar { display:flex; }
+  #histFab { display:grid; }
+  body.has-bb #histFab { bottom:calc(84px + env(safe-area-inset-bottom)); }
+  .ovl-ttl { font-size:18px; }
+  .steps { display:none; }
+  .cart-wrap { display:block; padding:16px 14px 0; }
+  .sum-col { position:static; margin-top:16px; }
+  .sum-wrap-sticky { position:sticky; bottom:0; background:var(--surface); border-top:1px solid var(--border); margin:16px -14px 0; padding:13px 16px calc(14px + env(safe-area-inset-bottom)); box-shadow:0 -6px 24px -12px rgba(0,0,0,.3); }
+  .sum-wrap-sticky .sum-card { border:none; padding:0; box-shadow:none; border-radius:0; background:transparent; }
+  .sum-grand .val { font-size:24px; }
+  .cta { height:54px; margin-top:12px; }
+  .citem { padding:12px 14px; gap:10px; }
+  .citem-thumb { width:52px; height:52px; }
+  .citem-line, .citem-rm { display:none; }
+  .citem-line-m { display:block; }
+  .hstep button { width:32px; height:34px; }
+  .order-wrap { display:block; padding:16px 14px 0; }
+  .f-2col { grid-template-columns:1fr; }
+  .form-card { padding:17px; }
+  .sum-card.order-sum { margin-bottom:16px; }
+  .done-wrap { padding:56px 22px; }
+}
+@media (min-width: 601px) {
+  .theme-btn-m { display:none; }
 }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <div class="header-top">
-      <div>
-        <div class="shop-title">ร้านยา Best</div>
-        <div class="shop-sub">แคตตาล็อกสินค้า</div>
-        <div class="updated" id="updatedAt">กำลังโหลดข้อมูล…</div>
+<header class="app-hdr">
+  <div class="hdr-in">
+    <div class="hdr-row1">
+      <div class="hdr-brand">
+        <img class="hdr-logo" src="./logo.png" alt="ร้านยา Best">
+        <div class="hdr-titles">
+          <div class="hdr-title">ร้านยา Best</div>
+          <div class="hdr-sub">แคตตาล็อกสินค้า · เวชภัณฑ์คุณภาพ</div>
+          <div class="hdr-upd num" id="updatedAt">กำลังโหลดข้อมูล…</div>
+        </div>
       </div>
-      <div class="header-actions">
-        <button class="cart-btn-header" onclick="manualRefresh()" title="โหลดข้อมูลล่าสุด">
-          🔄
+      <div class="hdr-acts">
+        <button class="hbtn icon desk" onclick="manualRefresh()" title="โหลดข้อมูลล่าสุด">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3v6h-6"/></svg>
         </button>
-        <button class="cart-btn-header" onclick="toggleHistory()">
-          🕐 ประวัติ
+        <button class="hbtn desk" onclick="toggleHistory()">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          ประวัติ
         </button>
-        <button class="cart-btn-header" onclick="toggleCart()">
-          🛒 ตะกร้า <span class="cart-badge" id="cartBadge">0</span>
+        <button class="hbtn gold desk" onclick="toggleCart()">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.4 12.2a1.5 1.5 0 0 0 1.5 1.2h8.3a1.5 1.5 0 0 0 1.5-1.2L22 7H6"/></svg>
+          ตะกร้า
+          <span class="cart-badge num" id="cartBadge">0</span>
         </button>
-        <button class="theme-btn" onclick="toggleTheme()">
-          <span class="knob" id="themeIcon">🌙</span>
-        </button>
+        <button class="theme-btn desk" onclick="toggleTheme()" title="สลับโหมด"><span class="knob" id="themeIcon">🌙</span></button>
+        <button class="hbtn icon mob theme-btn-m" id="themeBtnM" onclick="toggleTheme()" title="สลับโหมด">🌙</button>
       </div>
     </div>
-    <div class="search-row">
+    <div class="hdr-row2">
       <div class="search-wrap">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
-        <input type="text" id="search" placeholder="ค้นหาชื่อยา / Generic / Barcode..." oninput="onSearchInput()">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+        <input type="text" id="search" placeholder="ค้นหาชื่อยา / Generic / Barcode…" oninput="onSearchInput()">
       </div>
-      <button class="barcode-btn" onclick="openBarcodeScanner()" title="สแกน Barcode">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="3" width="3" height="18"></rect><rect x="6" y="3" width="1.5" height="18"></rect><rect x="9.5" y="3" width="2.5" height="18"></rect><rect x="14" y="3" width="1.5" height="18"></rect><rect x="17.5" y="3" width="3" height="18"></rect></svg>
-        สแกน
+      <button class="scan-btn" onclick="openBarcodeScanner()" title="สแกน Barcode">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+        <span>สแกน</span>
       </button>
-      <select id="catFilter" onchange="setActiveCat(this.value)"><option value="">ทุกหมวด</option><option value="ราคาพิเศษ">ราคาพิเศษ</option><option value="MaxxLife">MaxxLife</option><option value="Mega">Mega</option><option value="น้ำตาเทียม">น้ำตาเทียม</option><option value="Biopharm">Biopharm</option><option value="Siam">Siam</option><option value="ยาความดัน">ยาความดัน</option><option value="ยาฆ่าเชื้อ">ยาฆ่าเชื้อ</option><option value="ยาระบบกระดูกและกล้ามเนื้อ">ยาระบบกระดูกและกล้ามเนื้อ</option><option value="ยาระบบทางเดินหายใจ">ยาระบบทางเดินหายใจ</option><option value="ยาระบบทางเดินอาหาร">ยาระบบทางเดินอาหาร</option><option value="ยาระบบประสาทและสมอง">ยาระบบประสาทและสมอง</option><option value="ยาหยอดตา">ยาหยอดตา</option><option value="ยาเบาหวาน">ยาเบาหวาน</option><option value="ยาใช้ภายนอก">ยาใช้ภายนอก</option><option value="ยาไขมัน">ยาไขมัน</option><option value="วิตามิน/อาหารเสริม">วิตามิน/อาหารเสริม</option><option value="สมุนไพร">สมุนไพร</option><option value="อื่นๆ">อื่นๆ</option><option value="ฮอร์โมน">ฮอร์โมน</option><option value="เครื่องมือแพทย์">เครื่องมือแพทย์</option></select>
+      <select class="sort-sel" id="sortSelD" onchange="setSort(this.value)">
+        <option value="featured">เรียง: แนะนำ</option>
+        <option value="promo">ราคาพิเศษก่อน</option>
+        <option value="low">ราคาต่ำ → สูง</option>
+        <option value="high">ราคาสูง → ต่ำ</option>
+        <option value="name">ชื่อ ก → ฮ</option>
+      </select>
     </div>
+    <div id="pillsSlotHeader"></div>
   </div>
 </header>
 
-<div class="stats-bar">
-  <div class="stat-chip">รายการทั้งหมด <strong id="totalCount">—</strong> รายการ</div>
-  <div class="stat-chip">ราคา <strong id="minPrice">—</strong> – <strong id="maxPrice">—</strong> บาท</div>
-</div>
-
 <div class="content">
-  <div class="cat-pills" id="catPills"><button class="cat-pill active">ทุกหมวด</button><button class="cat-pill cat-pill-special" style="background: rgb(255, 82, 82); color: rgb(255, 255, 255); border-color: rgb(255, 82, 82); font-weight: 600; box-shadow: rgba(255, 82, 82, 0.376) 0px 0px 10px;">ราคาพิเศษ</button><button class="cat-pill">MaxxLife</button><button class="cat-pill">Mega</button><button class="cat-pill">น้ำตาเทียม</button><button class="cat-pill">Biopharm</button><button class="cat-pill">Siam</button><button class="cat-pill">ยาความดัน</button><button class="cat-pill">ยาฆ่าเชื้อ</button><button class="cat-pill">ยาระบบกระดูกและกล้ามเนื้อ</button><button class="cat-pill">ยาระบบทางเดินหายใจ</button><button class="cat-pill">ยาระบบทางเดินอาหาร</button><button class="cat-pill">ยาระบบประสาทและสมอง</button><button class="cat-pill">ยาหยอดตา</button><button class="cat-pill">ยาเบาหวาน</button><button class="cat-pill">ยาใช้ภายนอก</button><button class="cat-pill">ยาไขมัน</button><button class="cat-pill">วิตามิน/อาหารเสริม</button><button class="cat-pill">สมุนไพร</button><button class="cat-pill">อื่นๆ</button><button class="cat-pill">ฮอร์โมน</button><button class="cat-pill">เครื่องมือแพทย์</button></div>
+  <div id="pillsSlotContent"><div id="catPills"></div></div>
   <div id="errorBox"></div>
-  <div class="count-info" id="countInfo">กำลังโหลดรายการยา…</div>
+  <div class="list-head">
+    <div id="countInfo">กำลังโหลดรายการยา…</div>
+    <select id="sortSelM" onchange="setSort(this.value)">
+      <option value="featured">แนะนำ</option>
+      <option value="promo">ราคาพิเศษก่อน</option>
+      <option value="low">ราคาต่ำ → สูง</option>
+      <option value="high">ราคาสูง → ต่ำ</option>
+      <option value="name">ชื่อ ก → ฮ</option>
+    </select>
+  </div>
+
   <div class="table-card">
     <table>
       <colgroup><col class="cn"><col class="cp"><col class="cu"><col class="cc"><col class="cq"></colgroup>
       <thead>
         <tr>
           <th>รายการยา</th>
-          <th style="text-align:right">ราคา</th>
-          <th style="text-align:center">หน่วย</th>
+          <th class="thp">ราคา</th>
+          <th class="thu">หน่วย</th>
           <th>หมวดหมู่</th>
-          <th style="text-align:center">ใส่ตะกร้า</th>
+          <th class="thq">ใส่ตะกร้า</th>
         </tr>
       </thead>
-      <tbody id="tbody"><tr><td colspan="5"><div class="state-box"><p>⏳ กำลังโหลดรายการยา…</p></div></td></tr></tbody>
+      <tbody id="tbody"><tr><td colspan="5"><div class="state-box">⏳ กำลังโหลดรายการยา…</div></td></tr></tbody>
     </table>
   </div>
+  <div id="cardList"></div>
 </div>
 
-<footer>ร้านยา Best &nbsp;|&nbsp; ราคาอาจมีการเปลี่ยนแปลงโดยไม่แจ้งล่วงหน้า &nbsp;|&nbsp; สอบถามเพิ่มเติมติดต่อร้าน</footer>
+<footer>ร้านยา Best · ราคาอาจมีการเปลี่ยนแปลงโดยไม่แจ้งล่วงหน้า · สอบถามเพิ่มเติมติดต่อร้าน</footer>
 
-<!-- CART PANEL -->
-<div class="cart-panel" id="cartPanel">
-  <div class="cart-header">
-    <div class="cart-title">🛒 ตะกร้าสินค้า</div>
-    <button class="cart-close" onclick="toggleCart()">✕</button>
-  </div>
-  <div class="cart-body" id="cartBody">
-    <div class="cart-empty">ยังไม่มีสินค้าในตะกร้า</div>
-  </div>
-  <div class="cart-footer">
-    <div class="cart-summary">
-      <div class="cart-total-label">ยอดรวมทั้งหมด</div>
-      <div class="cart-total-val" id="cartTotal">0 ฿</div>
+<!-- mobile bottom cart bar -->
+<div id="bottomBar" style="display:none">
+  <button class="bb-btn" onclick="toggleCart()">
+    <span class="bb-left">
+      <span class="bb-cart-ico">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.4 12.2a1.5 1.5 0 0 0 1.5 1.2h8.3a1.5 1.5 0 0 0 1.5-1.2L22 7H6"/></svg>
+        <span class="bb-count num" id="bbCount">0</span>
+      </span>
+      ดูตะกร้า
+    </span>
+    <span class="bb-right num"><span id="bbTotal">0 ฿</span>
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </span>
+  </button>
+</div>
+
+<!-- mobile history fab -->
+<button id="histFab" onclick="toggleHistory()" title="ประวัติการสั่งซื้อ">
+  <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+</button>
+
+<!-- ===== CART OVERLAY ===== -->
+<div class="ovl" id="cartPanel">
+  <div class="ovl-topbar">
+    <div class="ovl-topbar-in">
+      <div style="display:flex;align-items:center;gap:13px;min-width:0">
+        <button class="ovl-back" onclick="toggleCart()">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        </button>
+        <div>
+          <div class="ovl-ttl">ตะกร้าสินค้าของคุณ</div>
+          <div class="ovl-sub num" id="cartPanelCount">0 รายการ · ร้านยา Best</div>
+        </div>
+      </div>
+      <button class="hbtn desk" onclick="toggleCart()">เลือกซื้อต่อ</button>
     </div>
-    <div class="cart-actions">
-      <button class="btn-clear" onclick="clearCart()">ล้างตะกร้า</button>
-      <button class="btn-copy" onclick="openOrderPopup()">✅ ยืนยันสั่งซื้อ</button>
+  </div>
+  <div id="cartContent"></div>
+</div>
+
+<!-- ===== ORDER OVERLAY ===== -->
+<div class="ovl" id="orderPopup">
+  <div id="orderFormView">
+    <div class="ovl-topbar">
+      <div class="ovl-topbar-in">
+        <div style="display:flex;align-items:center;gap:13px;min-width:0">
+          <button class="ovl-back" onclick="backToCart()">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          </button>
+          <div>
+            <div class="ovl-ttl">ดำเนินการสั่งซื้อ</div>
+            <div class="ovl-sub">กรอกข้อมูลจัดส่งให้ครบเพื่อยืนยันคำสั่งซื้อ</div>
+          </div>
+        </div>
+        <div class="steps">
+          <span class="dim">1. ตะกร้า</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          <span class="cur">2. ข้อมูลจัดส่ง</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          <span class="dim">3. สำเร็จ</span>
+        </div>
+      </div>
+    </div>
+    <div class="order-wrap">
+      <div class="form-col">
+        <div class="form-card">
+          <div class="form-card-head">
+            <span class="form-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+            ข้อมูลผู้รับ
+          </div>
+          <div class="f-2col">
+            <div><label class="f-lbl">ชื่อ - นามสกุล <span class="req">*</span></label><input class="f-in" id="cusName" placeholder="กรอกชื่อ-นามสกุล"></div>
+            <div><label class="f-lbl">เบอร์โทรศัพท์ <span class="req">*</span></label><input class="f-in" id="cusPhone" placeholder="08X-XXX-XXXX" inputmode="tel"></div>
+          </div>
+        </div>
+        <div class="form-card">
+          <div class="form-card-head">
+            <span class="form-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            ที่อยู่จัดส่ง
+          </div>
+          <label class="f-lbl">ที่อยู่เต็ม <span class="req">*</span></label>
+          <textarea class="f-ta" id="cusAddress" placeholder="บ้านเลขที่ / หมู่บ้าน / ถนน / ตำบล / อำเภอ / จังหวัด / รหัสไปรษณีย์"></textarea>
+        </div>
+      </div>
+      <div class="sum-card order-sum" style="position:sticky;top:92px">
+        <div class="sum-ttl">สรุปคำสั่งซื้อ</div>
+        <div class="osum-items" id="orderSummaryItems"></div>
+        <div class="sum-row"><span class="lbl">ยอดรวมสินค้า</span><span class="val num" id="oSumSub">0 ฿</span></div>
+        <div class="sum-row"><span class="lbl">ค่าจัดส่ง</span><span class="val ship num" id="oSumShip">—</span></div>
+        <div class="sum-grand"><span class="lbl">ยอดชำระ</span><span class="val num" id="oSumGrand">0 ฿</span></div>
+        <button class="cta" id="confirmBtn" onclick="submitOrder()">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          ยืนยันคำสั่งซื้อ
+        </button>
+        <div class="lock-line">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          ข้อมูลของคุณปลอดภัย เก็บเป็นความลับ
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="orderDoneView" style="display:none">
+    <div class="done-wrap">
+      <div class="done-circle">
+        <svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <h3 class="done-ttl">สั่งซื้อสำเร็จ!</h3>
+      <p style="margin:0 0 6px;font-size:15px">ขอบคุณสำหรับคำสั่งซื้อ ยอดรวม <strong class="num" style="color:var(--accent)" id="doneTotal">0 ฿</strong></p>
+      <p style="margin:0;font-size:13.5px;color:var(--muted);line-height:1.7">ทางร้านได้รับคำสั่งซื้อของคุณแล้ว เจ้าหน้าที่จะติดต่อกลับเพื่อยืนยันการจัดส่งและการชำระเงินโดยเร็วที่สุดครับ</p>
+      <div class="done-id-card">
+        <span style="font-size:13px;color:var(--muted)">หมายเลขคำสั่งซื้อ</span>
+        <span class="num" style="font-size:15px;font-weight:800;color:var(--accent)" id="doneId">—</span>
+      </div>
+      <button class="cta" style="margin-top:0" onclick="closeOrderDone()">กลับไปเลือกซื้อสินค้า</button>
     </div>
   </div>
 </div>
 
-<!-- HISTORY PANEL -->
-<div class="history-panel" id="historyPanel">
-  <div class="cart-header">
-    <div class="cart-title">🕐 ประวัติการสั่งซื้อ</div>
-    <button class="cart-close" onclick="toggleHistory()">✕</button>
-  </div>
-  <div class="cart-body" id="historyBody">
-    <div class="history-empty">ยังไม่มีประวัติการสั่งซื้อ</div>
-  </div>
-</div>
-
-<!-- SUCCESS POPUP (mobile LINE button) -->
-<div class="popup-overlay" id="successPopup">
-  <div class="popup-box">
-    <div class="popup-head">
-      <h3>✅ สั่งซื้อสำเร็จ!</h3>
-      <button class="popup-close" onclick="closeSuccessPopup()">✕</button>
-    </div>
-    <div class="popup-body">
-      <p style="font-size:14px; color:var(--text-muted); margin-bottom:1rem; line-height:1.6">
-        Copy รายการแล้ว กรุณาส่งรายการให้ทางร้านผ่าน LINE ได้เลยครับ
-      </p>
-      <button class="btn-line" id="lineBtn" onclick="openLine()" style="width:100%; padding:12px; border-radius:10px; font-size:15px; margin-bottom:8px;">
-        💬 เปิด LINE และวางรายการ
-      </button>
-      <button class="btn-clear" onclick="closeSuccessPopup()" style="width:100%; padding:10px; border-radius:10px; text-align:center;">
-        ปิด
-      </button>
+<!-- ===== HISTORY OVERLAY ===== -->
+<div class="ovl" id="historyPanel">
+  <div class="ovl-topbar">
+    <div class="ovl-topbar-in">
+      <div style="display:flex;align-items:center;gap:13px">
+        <button class="ovl-back" onclick="toggleHistory()">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="ovl-ttl">ประวัติการสั่งซื้อ</div>
+      </div>
     </div>
   </div>
+  <div class="hist-wrap" id="historyBody"></div>
 </div>
 
-<!-- NAME POPUP -->
-<div class="name-popup" id="namePopup" onclick="closeNamePopup()">
-  <div class="name-popup-box" onclick="event.stopPropagation()">
-    <div class="name-popup-label">ชื่อยา</div>
-    <div id="namePopupImgWrap" style="display:none;gap:8px;margin-bottom:10px;justify-content:center"></div>
-    <div class="name-popup-text" id="namePopupText"></div>
-    <div id="namePopupGeneric" style="font-size:12px;color:var(--text-muted);margin-top:-6px;margin-bottom:10px;display:none">🔬 <span id="namePopupGenericText"></span></div>
-    <div id="namePopupUnit" style="font-size:13px;color:var(--text-muted);margin-bottom:10px;display:none">📦 หน่วย: <span id="namePopupUnitText"></span></div>
-    <div id="namePopupGroup" style="font-size:13px;margin-bottom:10px;display:none;background:rgba(45,106,79,0.10);color:var(--accent);border-radius:8px;padding:8px 12px;line-height:1.6"></div>
-    <div id="namePopupTiers" style="font-size:13px;margin-bottom:12px;display:none;background:var(--card-bg,#1e1e1e);border-radius:8px;padding:8px 12px;line-height:2"></div>
-    <div class="name-popup-actions">
-      <button class="btn-copy-name" onclick="copyName()">📋 Copy ชื่อ</button>
-      <button class="btn-close-name" onclick="closeNamePopup()">ปิด</button>
+<!-- ===== SCANNER ===== -->
+<div id="scannerOverlay">
+  <div class="scan-scrim" onclick="closeBarcodeScanner()"></div>
+  <div class="scan-card">
+    <div class="scan-head">📷 สแกน Barcode <button class="scan-x" onclick="closeBarcodeScanner()">✕</button></div>
+    <div class="scan-view">
+      <video id="scannerVideo" autoplay playsinline muted></video>
+      <div class="scan-aim"></div>
+      <div class="scan-line"></div>
+      <div class="scanner-status" id="scannerStatus">🔍 เล็งกล้องไปที่ barcode ครับ</div>
+    </div>
+    <div class="scan-foot">
+      <input id="manualBarcode" placeholder="หรือพิมพ์ barcode เอง…" inputmode="numeric" onkeydown="if(event.key==='Enter')searchByBarcode(this.value)">
+      <button class="scan-go" onclick="searchByBarcode(document.getElementById('manualBarcode').value)">ค้นหา</button>
     </div>
   </div>
 </div>
 
-<!-- IMAGE ZOOM POPUP -->
-<div class="img-popup-overlay" id="imgPopup" onclick="closeImgPopup()">
-  <div class="img-popup-box" onclick="event.stopPropagation()">
+<!-- ===== NAME POPUP ===== -->
+<div class="popup" id="namePopup">
+  <div class="popup-scrim" onclick="closeNamePopup()"></div>
+  <div class="popup-card">
+    <div class="popup-lbl">ชื่อยา</div>
+    <div id="namePopupImgWrap"></div>
+    <div id="namePopupText"></div>
+    <div id="namePopupGeneric" style="display:none;font-size:13.5px;color:var(--muted)">💊 Generic: <span id="namePopupGenericText"></span></div>
+    <div id="namePopupUnit" style="display:none;font-size:13.5px;color:var(--muted);margin-top:2px">📦 หน่วย: <span id="namePopupUnitText"></span></div>
+    <div id="namePopupGroup"></div>
+    <div id="namePopupTiers"></div>
+    <div class="popup-btns">
+      <button class="pbtn" onclick="copyName()">📋 Copy ชื่อ</button>
+      <button class="pbtn ghost" onclick="closeNamePopup()">ปิด</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== IMG POPUP ===== -->
+<div class="popup" id="imgPopup">
+  <div class="popup-scrim" onclick="closeImgPopup()"></div>
+  <div class="popup-card">
     <img id="imgPopupImg" src="" alt="">
-    <div class="img-popup-name" id="imgPopupName"></div>
-    <button class="img-popup-close" onclick="closeImgPopup()">✕</button>
+    <div id="imgPopupName"></div>
+    <div class="popup-btns"><button class="pbtn ghost" style="flex:1" onclick="closeImgPopup()">ปิด</button></div>
   </div>
 </div>
 
-<!-- BARCODE SCANNER -->
-<div class="scanner-overlay" id="scannerOverlay">
-  <div class="scanner-box">
-    <div class="scanner-head">
-      <h3>📷 สแกน Barcode</h3>
-      <button class="scanner-close" onclick="closeBarcodeScanner()">✕</button>
-    </div>
-    <div class="scanner-video-wrap">
-      <video id="scannerVideo" autoplay="" playsinline="" muted=""></video>
-      <div class="scanner-aim">
-        <div class="scanner-aim-inner"></div>
-        <div class="scanner-line"></div>
-      </div>
-    </div>
-    <div class="scanner-status" id="scannerStatus">🔍 เล็งกล้องไปที่ barcode ครับ</div>
-    <div class="scanner-manual">
-      <input type="text" id="manualBarcode" placeholder="หรือพิมพ์ barcode เองได้เลย..." onkeydown="if(event.key===&#39;Enter&#39;)searchByBarcode(document.getElementById(&#39;manualBarcode&#39;).value)">
-      <button class="scanner-manual-btn" onclick="searchByBarcode(document.getElementById(&#39;manualBarcode&#39;).value)">ค้นหา</button>
-    </div>
-  </div>
-</div>
-
-<!-- ORDER POPUP -->
-<div class="popup-overlay" id="orderPopup">
-  <div class="popup-box">
-    <div class="popup-head">
-      <h3>📋 ยืนยันการสั่งซื้อ</h3>
-      <button class="popup-close" onclick="closeOrderPopup()">✕</button>
-    </div>
-    <div class="popup-body">
-      <div class="order-summary" id="orderSummary"></div>
-      <div class="form-group">
-        <label class="form-label">ชื่อ - นามสกุล *</label>
-        <input class="form-input" id="cusName" type="text" placeholder="กรอกชื่อ-นามสกุล">
-      </div>
-      <div class="form-group">
-        <label class="form-label">เบอร์โทรศัพท์ *</label>
-        <input class="form-input" id="cusPhone" type="tel" placeholder="กรอกเบอร์โทร">
-      </div>
-      <div class="form-group">
-        <label class="form-label">ที่อยู่จัดส่ง *</label>
-        <textarea class="form-input" id="cusAddress" placeholder="กรอกที่อยู่สำหรับจัดส่ง"></textarea>
-      </div>
-      <button class="btn-confirm" id="confirmBtn" onclick="submitOrder()">✅ ยืนยันและ Copy รายการ</button>
-    </div>
-  </div>
-</div>
-
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
 const API_URL = 'https://script.google.com/macros/s/AKfycbw4FAQ43SmQEnQ4lIJ720D9fHvSGlxiY6cBtik-651jnwPO1ShT5T4Kj-W9eUr-taYw/exec';
 const ORDER_URL = 'https://script.google.com/macros/s/AKfycbzKmSzS6J6gRzLySRH4fxSxJrR8VZCtOO0eDJ0YS7bfwFMb8NtcOgch9ksUBlzSo6qSgw/exec';
 
-// DARK MODE
+// ── กติกาค่าจัดส่ง (ยืนยันกับร้านแล้ว: 3,000 ไม่รวมยาคุม / 6,000 รวมทั้งบิล) ──
+const FREE_NORMAL = 3000;   // สินค้าทั่วไป (ไม่รวมยาคุม) ครบเท่านี้ → ส่งฟรี
+const FREE_CONTRA = 6000;   // หรือยอดรวมทั้งบิลครบเท่านี้ → ส่งฟรี
+const SHIP_FEE    = 50;     // ค่าส่งกรณีไม่เข้าเงื่อนไข
+
+// ── THEME ──
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  const icon = t === 'dark' ? '🌙' : '☀️';
+  document.getElementById('themeIcon').textContent = icon;
+  document.getElementById('themeBtnM').textContent = icon;
+}
 function toggleTheme() {
-  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-  document.documentElement.setAttribute('data-theme', isDark ? '' : 'dark');
-  document.getElementById('themeIcon').textContent = isDark ? '☀️' : '🌙';
-  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('theme', next);
+  applyTheme(next);
 }
-const savedTheme = localStorage.getItem('theme') ||
-  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-if (savedTheme === 'dark') {
-  document.documentElement.setAttribute('data-theme', 'dark');
-  document.getElementById('themeIcon').textContent = '🌙';
-}
+applyTheme(localStorage.getItem('theme') || 'dark');
 
-// CATEGORIES
-const CAT_CLASS = {
-  "ยาเบาหวาน":"b-diabetes","ยาความดัน":"b-pressure","ยาไขมัน":"b-lipid",
-  "ยาระบบกระดูกและกล้ามเนื้อ":"b-pain","ยาระบบทางเดินหายใจ":"b-resp","ยาระบบประสาทและสมอง":"b-psych",
-  "ยาระบบทางเดินอาหาร":"b-gi","วิตามิน/อาหารเสริม":"b-vitamin",
-  "เครื่องมือแพทย์":"b-device","MaxxLife":"b-maxxlife","Mega":"b-mega","อื่นๆ":"b-other",
-  "ยาฆ่าเชื้อ":"b-antiseptic","ยาใช้ภายนอก":"b-external","สมุนไพร":"b-herbal",
-  "ฮอร์โมน":"b-hormone","ยาหยอดตา":"b-eye","น้ำตาเทียม":"b-tears",
-  "Biopharm":"b-biopharm","Siam":"b-siam","ราคาพิเศษ":"b-special"
-};
-
-// สีสำหรับหมวดหมู่ที่ไม่ได้กำหนดไว้ — auto generate จากชื่อ
-const AUTO_COLORS = [
-  {bg:'#E8F4FD',text:'#1565A0'},{bg:'#FDE8F4',text:'#9C1565'},
-  {bg:'#E8FDE8',text:'#156515'},{bg:'#FDF4E8',text:'#A06515'},
-  {bg:'#F4E8FD',text:'#6515A0'},{bg:'#FDE8E8',text:'#A01515'},
-  {bg:'#E8FDFD',text:'#157A7A'},{bg:'#FDFDE8',text:'#7A7A15'},
-  {bg:'#F0E8FD',text:'#5515A0'},{bg:'#E8FDF0',text:'#157A55'},
-];
-
-const autoColorCache = {};
-function getAutoColor(cat) {
-  if (!autoColorCache[cat]) {
-    let hash = 0;
-    for (let i = 0; i < cat.length; i++) hash = (hash * 31 + cat.charCodeAt(i)) & 0xFFFFFF;
-    autoColorCache[cat] = AUTO_COLORS[Math.abs(hash) % AUTO_COLORS.length];
-  }
-  return autoColorCache[cat];
-}
-
-function getBadgeHtml(cat) {
-  const esc = cat.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-  const click = ` onclick="event.stopPropagation();setActiveCat('${esc}')" title="กรองเฉพาะ ${cat}"`;
-  if (CAT_CLASS[cat]) return `<span class="badge badge-link ${CAT_CLASS[cat]}"${click}>${cat}</span>`;
-  const c = getAutoColor(cat);
-  return `<span class="badge badge-link" style="background:${c.bg};color:${c.text}"${click}>${cat}</span>`;
-}
-
+// ── หมวดหมู่ ──
 function catOf(n) {
-  const l = n.toLowerCase();
-  if (/^maxxlife/.test(l)) return "MaxxLife";
-  if (/^mega /.test(l)) return "Mega";
-  if (/glucoph|metfor|diamicron|jardiance|januv|janumet|foexiga|glyxabi|glucovia|glizid|glycedieb|ozempic|wegovy|monjaro|rybesus|trajenta|tenelia|sucovia|sitagliptin|zemiglo|zemidapa|oseni|xigduo|favotan|dafomin/.test(l)) return "ยาเบาหวาน";
-  if (/blopress|diovan|exforge|dafiro|lanzaar|losartan|valsartan|micardis|edarbi|caraten|normetec|twynstar|unisia|amlod|amlopine|amlopress|madiplot|manidipin|zandip|felopine|lercardip|tritace|bisoprolol|bisoven|prenolol|metoprolol/.test(l)) return "ยาความดัน";
-  if (/crestor|atorvast|bestatin|chovas|rosucor|lipanthyl|lipostat|mevalotin|pitavast|pravast|surotin|roacta|livalo|atozet|ezetimibe|ezetrol|ezuvas|vytorin|xarator|xatrel|tovastatin|vivacor/.test(l)) return "ยาไขมัน";
-  if (/cemol|bakamol|diclof|volta|napro|probufen|umafen|solufen|ultracet|celxib|b-coxib|exib|torixib|melcalm|mel-od|naproxen|sinprofen|duocet|norgesic/.test(l)) return "ยาระบบกระดูกและกล้ามเนื้อ";
-  if (/anoro|symbicort|seretide|relvar|flixot|salda|busonase|rhinoc|nasonex|momemsa|mometha|aerius|bilaxten|telfast|alerest|deztanex|cetrizine|deslorat|bliztine|lorsedin|loridine|singulair/.test(l)) return "ยาระบบทางเดินหายใจ";
-  if (/abilify|seroquel|apalife|neutapin|risperidone|deanxit|efexor|escitalop|lexapro|pristiq|voldoxan|duloz|quantia|trazadone/.test(l)) return "ยาระบบประสาทและสมอง";
-  if (/nexium|buscopan|omeprazole|pantoprazole|pariet|controloc|axiago|taprazole|miracid|gasmotin|domperidone|smecta|gaviscon|colpermin|eno|kremil|dexilant|prevacid|sucralfate|ulcefate|mucosta|diasgest|motilium|spasmex|cencopan|corilax/.test(l)) return "ยาระบบทางเดินอาหาร";
-  if (/^everest |vitamin|calcium|fish oil|collagen|probiotic|glucosamine|bioactive|albumin|albu quick|lamoon|bioflor|caltab/.test(l)) return "วิตามิน/อาหารเสริม";
-  if (/yuwell|accucheck|contour|rossmax|nipro|bd ultra|oral quick|เครื่อง/.test(l)) return "เครื่องมือแพทย์";
-  return "อื่นๆ";
+  n = n.toLowerCase();
+  if (/maxxlife/.test(n)) return 'MaxxLife';
+  if (/^mega|mega\s/.test(n)) return 'Mega';
+  if (/biopharm/.test(n)) return 'Biopharm';
+  if (/siam/.test(n)) return 'Siam';
+  if (/metformin|glipizide|gluco|insulin|เบาหวาน|janu|forxiga|jardiance/.test(n)) return 'ยาเบาหวาน';
+  if (/amlodipine|losartan|enalapril|atenolol|ความดัน|madiplot|hyzaar|exforge|micardis|diovan|olmetec|coversyl/.test(n)) return 'ยาความดัน';
+  if (/simvastatin|atorvastatin|rosuvastatin|gemfibrozil|fenofibrate|ไขมัน|crestor|lipitor|caduet/.test(n)) return 'ยาไขมัน';
+  if (/amoxi|cephalexin|dicloxa|azithro|roxithro|cipro|oflox|clinda|doxy|penicillin|augmentin|ฆ่าเชื้อ|cef/.test(n)) return 'ยาฆ่าเชื้อ';
+  if (/para|ibuprofen|diclofenac|naproxen|celecoxib|arcoxia|กระดูก|กล้ามเนื้อ|norgesic|tolperisone|myonal|voltaren/.test(n)) return 'ยาระบบกระดูกและกล้ามเนื้อ';
+  if (/หอบ|ภูมิแพ้|ไอ|เสมหะ|แก้แพ้|cetirizine|loratadine|fexofenadine|salbutamol|ventolin|seretide|breo|montelukast|bromhexine|ambroxol|acetylcysteine|หายใจ/.test(n)) return 'ยาระบบทางเดินหายใจ';
+  if (/omeprazole|lansoprazole|ranitidine|air-x|ท้องเสีย|ท้องผูก|กระเพาะ|ลำไส้|miracid|antacid|gaviscon|imodium|buscopan|ทางเดินอาหาร/.test(n)) return 'ยาระบบทางเดินอาหาร';
+  if (/นอนหลับ|กล่อมประสาท|ซึมเศร้า|ชัก|ไมเกรน|สมอง|ประสาท|amitriptyline|gabapentin|cinnarizine|flunarizine|betahistine/.test(n)) return 'ยาระบบประสาทและสมอง';
+  if (/หยอดตา|ป้ายตา|น้ำตาเทียม|tears|refresh|vislube|hialid/.test(n)) return 'ยาหยอดตา';
+  if (/วิตามิน|vitamin|แคลเซียม|calcium|fish oil|collagen|zinc|อาหารเสริม|centrum|blackmores/.test(n)) return 'วิตามิน/อาหารเสริม';
+  if (/ครีม|เจล|ขี้ผึ้ง|โลชั่น|ทาผิว|ทาแผล|betadine|ภายนอก|counterpain|cream|gel|ointment/.test(n)) return 'ยาใช้ภายนอก';
+  if (/สมุนไพร|ฟ้าทะลายโจร|ขมิ้นชัน|มะขามแขก|เพชรสังฆาต/.test(n)) return 'สมุนไพร';
+  if (/ฮอร์โมน|thyroid|euthyrox|ยาคุม|premarin/.test(n)) return 'ฮอร์โมน';
+  if (/เครื่องวัด|ปรอท|เข็ม|syringe|ผ้าก๊อซ|สำลี|alcohol|แอลกอฮอล์|หน้ากาก|mask|ชุดตรวจ|atk/.test(n)) return 'เครื่องมือแพทย์';
+  return 'อื่นๆ';
 }
 
-// ── หมวดที่ต้องการให้อยู่หน้าสุด (เรียงตามลำดับนี้) ──
-const CAT_PINNED = [
-  "ราคาพิเศษ",
-  "MaxxLife",
-  "Mega",
-  "น้ำตาเทียม",
-];
-
-// ── หมวดที่มี style พิเศษ { bg, text, border } ──
-const CAT_SPECIAL_STYLE = {
-  "ราคาพิเศษ": { bg: "#FF5252", text: "#fff", border: "#FF5252", activeBg: "#D32F2F", glow: true },
+const CAT_PINNED = ['ราคาพิเศษ', 'MaxxLife', 'Mega', 'น้ำตาเทียม'];
+const CAT_STYLE = {
+  'ยาเบาหวาน':['#ebf3ff','#1e4d9b'], 'ยาความดัน':['#e8f7ef','#1a5c3a'], 'ยาไขมัน':['#fff5e6','#7a4500'],
+  'ยาระบบกระดูกและกล้ามเนื้อ':['#fde8f4','#9c1565'], 'ยาระบบทางเดินหายใจ':['#e8fde8','#156515'],
+  'ยาระบบประสาทและสมอง':['#fdfde8','#7a7a15'], 'ยาระบบทางเดินอาหาร':['#fff8e6','#7a5500'],
+  'วิตามิน/อาหารเสริม':['#f0faf4','#1b5e35'], 'เครื่องมือแพทย์':['#fff3e0','#7a4200'],
+  'MaxxLife':['#e8f0ff','#1a3a8f'], 'Mega':['#ffe8f5','#8f1a5a'], 'Biopharm':['#e8fdfd','#157a7a'],
+  'Siam':['#f4e8fd','#6515a0'], 'ยาฆ่าเชื้อ':['#fdf4e8','#a06515'], 'ยาใช้ภายนอก':['#fde8e8','#a01515'],
+  'ยาหยอดตา':['#e8fdf0','#157a55'], 'น้ำตาเทียม':['#e8fdf0','#157a55'], 'ฮอร์โมน':['#e8fdfd','#157a7a'],
+  'ราคาพิเศษ':['#ffe5e5','#c0392b'], 'ยาคุมกำเนิด':['#fde8f4','#9c1565'], 'สมุนไพร':['#e8fde8','#156515'],
+  'ยาเบาหวาน ':['#ebf3ff','#1e4d9b'], 'อื่นๆ':['#f2efe9','#5a5248']
 };
-
-let allData = [], activeCat = "";
-
-// ชื่อโปรทั้งหมดที่ยังไม่หมดเขต (ไว้สร้างแท็บหมวดโปรอัตโนมัติ)
-function getActivePromoNames() {
-  const names = new Set();
-  allData.forEach(d => {
-    const promo = getActivePromo(d);
-    if (promo) names.add(promo.name);
-  });
-  return Array.from(names);
+function getBadgeHtml(cat) {
+  const c = CAT_STYLE[cat] || CAT_STYLE['อื่นๆ'];
+  return `<span class="badge" style="background:${c[0]};color:${c[1]}">${cat}</span>`;
 }
 
-function buildCatPills() {
-  // รวบรวมหมวดหมู่ทั้งหมดจากข้อมูล
-  const catSet = new Set();
-  allData.forEach(d => {
-    d.category.split(',').map(c => c.trim()).filter(Boolean).forEach(c => catSet.add(c));
-  });
+let allData = [], activeCat = "", sortMode = 'featured';
 
-  // จัดลำดับ: ทุกหมวด → pinned (ตามลำดับ) → ที่เหลือ sort
-  const pinned = CAT_PINNED.filter(c => catSet.has(c));
-  const rest = Array.from(catSet).filter(c => !CAT_PINNED.includes(c)).sort();
-  const cats = ["ทุกหมวด", ...pinned, ...rest];
-  const promoNames = getActivePromoNames();
+// ── สต็อก / โปรโมชั่น / ของแถม ──
+function isOutOfStock(d) { return /หมด/.test(d.stock || ''); }
 
-  const pillsEl = document.getElementById('catPills');
-  pillsEl.innerHTML = '';
-
-  // แท็บโปรโมชั่น — อยู่หน้าสุด ลูกไฟกระพริบ กดแล้วเห็นเฉพาะสินค้าโปรนั้น
-  promoNames.forEach(pn => {
-    const btn = document.createElement('button');
-    btn.className = 'cat-pill cat-pill-promo';
-    btn.textContent = '🔥 ' + pn;
-    btn.dataset.cat = 'promo:' + pn;
-    btn.onclick = () => setActiveCat('promo:' + pn);
-    pillsEl.appendChild(btn);
-  });
-
-  cats.forEach(c => {
-    const btn = document.createElement('button');
-    const isActive = c === "ทุกหมวด";
-    const special = CAT_SPECIAL_STYLE[c];
-
-    btn.className = 'cat-pill' + (isActive ? ' active' : '') + (special ? ' cat-pill-special' : '');
-    btn.textContent = c;
-
-    // ใส่ inline style สำหรับหมวดพิเศษ
-    if (special && !isActive) {
-      btn.style.cssText = `background:${special.bg};color:${special.text};border-color:${special.border};font-weight:600`;
-      if (special.glow) btn.style.boxShadow = `0 0 10px ${special.bg}60`;
-    }
-
-    btn.onclick = () => {
-      setActiveCat(c === "ทุกหมวด" ? "" : c);
-      // reset special style เวลา active
-      if (special) {
-        document.querySelectorAll('.cat-pill').forEach(el => {
-          if (el.textContent === c) {
-            el.style.cssText = activeCat === c
-              ? `background:${special.activeBg||special.bg};color:#fff;border-color:${special.border};font-weight:600;box-shadow:0 0 14px ${special.bg}80`
-              : `background:${special.bg};color:${special.text};border-color:${special.border};font-weight:600;box-shadow:0 0 10px ${special.bg}60`;
-          }
-        });
-      }
-    };
-    pillsEl.appendChild(btn);
-  });
-
-  // อัปเดต dropdown (แท็บโปรอยู่บนสุดเช่นกัน)
-  const select = document.getElementById('catFilter');
-  select.innerHTML = '<option value="">ทุกหมวด</option>';
-  promoNames.forEach(pn => {
-    const opt = document.createElement('option');
-    opt.value = 'promo:' + pn; opt.textContent = '🔥 ' + pn;
-    select.appendChild(opt);
-  });
-  [...pinned, ...rest].forEach(c => {
-    const opt = document.createElement('option');
-    opt.value = c; opt.textContent = c;
-    select.appendChild(opt);
-  });
-}
-
-// พิมพ์ในช่องค้นหา: ถ้ามีคำค้นและกำลังเลือกหมวดอยู่ ให้รีเซ็ตเป็นทุกหมวด (ค้นทั้งหมด)
-// debounce: รอหยุดพิมพ์ 250ms ค่อยเรนเดอร์ — ไม่สร้างตาราง 800 แถวใหม่ทุกตัวอักษร
-let searchDebounce = null;
-function onSearchInput() {
-  clearTimeout(searchDebounce);
-  searchDebounce = setTimeout(() => {
-    const q = document.getElementById('search').value.trim();
-    if (q && activeCat) { setActiveCat(''); }
-    else render();
-  }, 250);
-}
-
-function setActiveCat(val) {
-  // เลือกหมวด = ล้างคำค้นที่ค้างอยู่ เพื่อไม่ให้บังรายการในหมวด
-  if (val) { const s = document.getElementById('search'); if (s) s.value = ''; }
-  activeCat = val;
-  document.getElementById('catFilter').value = val;
-  document.querySelectorAll('.cat-pill').forEach(el => {
-    // แท็บโปรเก็บค่าจริงไว้ใน data-cat (textContent มี 🔥 นำหน้า)
-    const catVal = el.dataset.cat || el.textContent;
-    const isActive = val === "" ? el.textContent === "ทุกหมวด" : catVal === val;
-    el.classList.toggle('active', isActive);
-
-    // restore special style สำหรับ pill พิเศษที่ไม่ได้ active
-    const special = CAT_SPECIAL_STYLE[el.textContent];
-    if (special) {
-      if (isActive) {
-        el.style.cssText = `background:${special.activeBg||special.bg};color:#fff;border-color:${special.border};font-weight:600;box-shadow:0 0 14px ${special.bg}80`;
-      } else {
-        el.style.cssText = `background:${special.bg};color:${special.text};border-color:${special.border};font-weight:600;box-shadow:0 0 10px ${special.bg}60`;
-      }
-    }
-  });
-  render();
-}
-
-// CART STATE
-let cart = JSON.parse(localStorage.getItem('cart') || '{}');
-
-function saveCart() {
-  localStorage.setItem('cart', JSON.stringify(cart));
-}
-
-function getCartId(name) {
-  // เก็บตัวอักษรไทย (฀-๿) ไว้ด้วย ไม่งั้น \W จะแปลงเป็น _ ทั้งหมด
-  // ทำให้สินค้าที่ต่างกันแค่คำไทย (เช่น เล็ก/ใหญ่, ชมพู/ม่วง) ได้ id ชนกัน
-  return name.replace(/[^A-Za-z0-9_฀-๿]/g, '_');
-}
-
-function getTiers(baseName) {
-  // Get all rows with same base name (ignore trailing spaces)
-  const base = baseName.trim();
-  const rows = allData.filter(d => d.name.trim() === base);
-  if (rows.length <= 1) return null;
-  // Sort by price ascending to get tiers
-  return rows.map(r => ({
-    price: typeof r.price === 'number' ? r.price : parseFloat(r.price) || 0,
-    unit: r.unit,
-    minQty: extractMinQty(r.unit)
-  })).sort((a, b) => a.minQty - b.minQty);
-}
-
-function extractMinQty(unit) {
-  // Extract number from unit like "10 กล่อง", "5 กล่อง", "กล่อง" -> 1
-  const m = unit.match(/^(\d+)/);
-  return m ? parseInt(m[1]) : 1;
-}
-
-function getEffectivePrice(name, qty) {
-  const tiers = getTiers(name);
-  if (!tiers) {
-    const item = allData.find(d => d.name.trim() === name.trim());
-    return item ? getBasePrice(item) : 0; // คิดราคาโปรให้ด้วย (ถ้ามี)
-  }
-  // Find best tier: largest minQty that qty >= minQty
-  let best = tiers[0];
-  for (const t of tiers) {
-    if (qty >= t.minQty) best = t;
-  }
-  return best.price / best.minQty; // price per unit
-}
-
-function getTierHtml(name) {
-  const tiers = getTiers(name);
-  if (!tiers || tiers.length <= 1) return '';
-  return tiers.map(t => `${t.minQty}+ → ${(Math.round((t.price/t.minQty)*100)/100).toLocaleString()} ฿`).join(' | ');
-}
-
-// ── สต็อก / โปรโมชั่นราคา / ของแถม ──
-// คอลัมน์ "สถานะ" ในชีต: พิมพ์ "หมด" = สินค้าหมด, เว้นว่าง = มีของ
-function isOutOfStock(d) {
-  return /หมด/.test(d.stock || '');
-}
-
-// วันหมดโปร: รับทั้งวันที่จากชีต (ISO) และพิมพ์เอง dd/mm/yyyy (รองรับปี พ.ศ.)
 function parsePromoUntil(v) {
   if (!v) return null;
   const s = String(v).trim();
@@ -904,18 +694,17 @@ function parsePromoUntil(v) {
   let dt;
   if (m) {
     let y = parseInt(m[3]);
-    if (y < 100) y += 2500;        // "69" → 2569
-    if (y > 2200) y -= 543;        // พ.ศ. → ค.ศ.
+    if (y < 100) y += 2500;
+    if (y > 2200) y -= 543;
     dt = new Date(y, parseInt(m[2]) - 1, parseInt(m[1]));
   } else {
     dt = new Date(s);
   }
   if (isNaN(dt)) return null;
-  dt.setHours(23, 59, 59, 999);    // โปรใช้ได้ถึงสิ้นวันนั้น
+  dt.setHours(23, 59, 59, 999);
   return dt;
 }
 
-// โปรราคา: คืน {price, until, name} ถ้ายังไม่หมดเขต — หมดเขตแล้วกลับราคาเดิมอัตโนมัติ
 function getActivePromo(d) {
   if (!d || !(d.promoPrice > 0)) return null;
   const until = parsePromoUntil(d.promoUntil);
@@ -923,15 +712,12 @@ function getActivePromo(d) {
   return { price: d.promoPrice, until, name: d.promoName || 'โปรพิเศษ' };
 }
 
-// ราคาที่ใช้จริงของแถวนี้ (คิดโปรแล้ว)
 function getBasePrice(d) {
   const promo = getActivePromo(d);
   if (promo) return promo.price;
   return typeof d.price === 'number' ? d.price : 0;
 }
 
-// ของแถม: คอลัมน์รูปแบบ "10:แถม 1 กล่อง" หรือหลายขั้น "10:แถม 1 กล่อง/30:แถม 4 กล่อง"
-// ตัดขั้นเฉพาะ / หรือ | ที่ตามด้วย "ตัวเลข:" — เครื่องหมาย / ในข้อความของแถมเองไม่โดนตัด
 function parseFreebieRules(val) {
   if (!val) return [];
   return String(val).split(/\s*[\/|]\s*(?=\d+\s*[:=])/).map(part => {
@@ -940,7 +726,6 @@ function parseFreebieRules(val) {
   }).filter(Boolean).sort((a, b) => a.min - b.min);
 }
 
-// หาของแถมที่ได้ตามจำนวนที่สั่ง (เลือกขั้นสูงสุดที่ถึงเงื่อนไข)
 function getFreebie(name, qty) {
   const item = allData.find(d => d.name.trim() === name.trim());
   if (!item) return null;
@@ -950,18 +735,54 @@ function getFreebie(name, qty) {
   return hit;
 }
 
-// ป้ายบอกเงื่อนไขของแถมใต้ราคาในตาราง
-function freebieHintHtml(d) {
-  const rules = parseFreebieRules(d.freebie);
-  if (!rules.length) return '';
-  const u = (d.unit || '').replace(/^\d+\s*/, '');
-  const txt = rules.map(r => `ซื้อ ${r.min} ${u} ${r.gift}`).join(' · ');
-  return `<br><small style="color:#d97706;font-weight:500">🎁 ${txt}</small>`;
+// สินค้า "ยาคุมกำเนิด" ไม่นับรวมเกณฑ์ส่งฟรี 3,000
+function isContra(d) { return /ยาคุม/.test(d.category || ''); }
+
+function getActivePromoNames() {
+  const names = new Set();
+  allData.forEach(d => {
+    if (isOutOfStock(d)) return;
+    const promo = getActivePromo(d);
+    if (promo) names.add(promo.name);
+  });
+  return Array.from(names);
 }
 
-// ── กลุ่มสั่งขั้นต่ำรวม (mix group) ──
-// อ่านจากคอลัมน์ "group" ใน Sheet รูปแบบ "ชื่อกลุ่ม:จำนวนเท่า" เช่น "Glucerna:24"
-// สินค้าที่อยู่กลุ่มเดียวกันนับยอดรวมข้ามกัน คละได้ แต่ยอดรวมต้องเป็นเท่าของจำนวนที่กำหนด
+// ── ราคาขั้นบันได (หลายแถวชื่อเดียวกัน) ──
+function getCartId(name) {
+  return name.replace(/[^A-Za-z0-9_฀-๿]/g, '_');
+}
+function getTiers(baseName) {
+  const base = baseName.trim();
+  const rows = allData.filter(d => d.name.trim() === base);
+  if (rows.length <= 1) return null;
+  return rows.map(r => ({
+    price: typeof r.price === 'number' ? r.price : parseFloat(r.price) || 0,
+    unit: r.unit,
+    minQty: extractMinQty(r.unit)
+  })).sort((a, b) => a.minQty - b.minQty);
+}
+function extractMinQty(unit) {
+  const m = (unit || '').match(/^(\d+)/);
+  return m ? parseInt(m[1]) : 1;
+}
+function getEffectivePrice(name, qty) {
+  const tiers = getTiers(name);
+  if (!tiers) {
+    const item = allData.find(d => d.name.trim() === name.trim());
+    return item ? getBasePrice(item) : 0;
+  }
+  let best = tiers[0];
+  for (const t of tiers) if (qty >= t.minQty) best = t;
+  return best.price / best.minQty;
+}
+function getTierHtml(name) {
+  const tiers = getTiers(name);
+  if (!tiers || tiers.length <= 1) return '';
+  return tiers.map(t => `${t.minQty}+ → ${(Math.round((t.price/t.minQty)*100)/100).toLocaleString()} ฿`).join(' | ');
+}
+
+// ── กลุ่มสั่งขั้นต่ำรวม (mix group) — คอลัมน์ group "ชื่อกลุ่ม:จำนวนเท่า" ──
 function parseGroup(val) {
   if (!val) return null;
   const m = String(val).trim().match(/^(.*?):(\d+)\s*$/);
@@ -969,15 +790,12 @@ function parseGroup(val) {
   const label = String(val).trim();
   return label ? { label, step: 1 } : null;
 }
-
 function getProductGroup(name) {
   const item = allData.find(d => d.name.trim() === name.trim());
   return item ? parseGroup(item.group) : null;
 }
-
-// รวมยอดสินค้าในตะกร้าตามกลุ่ม และหากลุ่มที่ยอดยังไม่เป็นเท่าของขั้นต่ำ
 function getCartGroups() {
-  const groups = {}; // label -> {step, qty, unit}
+  const groups = {};
   Object.values(cart).forEach(item => {
     const g = getProductGroup(item.name);
     if (!g) return;
@@ -994,7 +812,6 @@ function getCartGroups() {
   });
   return { groups, issues };
 }
-
 function groupNoticesHtml() {
   const { groups } = getCartGroups();
   const labels = Object.keys(groups).filter(l => groups[l].step > 1);
@@ -1005,303 +822,231 @@ function groupNoticesHtml() {
     const target = Math.ceil(g.qty / g.step) * g.step;
     const need = target - g.qty;
     const gUnit = (g.unit || '').replace(/^\d+\s*/, '');
-    return `<div class="group-notice ${ok ? 'ok' : 'warn'}">
-      📦 กลุ่ม <b>${label}</b> · รวม ${g.qty} ${gUnit} ` +
-      (ok
-        ? `✅ ครบเงื่อนไข (เท่าของ ${g.step})`
-        : `<br>⚠️ ต้องสั่งเป็นเท่าของ ${g.step} — เพิ่มอีก <b>${need}</b> ให้ครบ ${target}`) +
+    return `<div class="group-notice ${ok ? 'ok' : 'warn'}">📦 กลุ่ม <b>${label}</b> · รวม ${g.qty} ${gUnit} ` +
+      (ok ? `✅ ครบเงื่อนไข (เท่าของ ${g.step})`
+          : `— ⚠️ ต้องสั่งเป็นเท่าของ ${g.step} เพิ่มอีก <b>${need}</b> ให้ครบ ${target}`) +
       `</div>`;
   }).join('');
 }
+
+// ── CART STATE ──
+let cart = JSON.parse(localStorage.getItem('cart') || '{}');
+function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); }
 
 function addToCart(name, price, unit, qty) {
   qty = parseInt(qty) || 1;
   if (qty <= 0) return;
   const id = getCartId(name);
-  if (cart[id]) {
-    cart[id].qty += qty;
-  } else {
-    cart[id] = { name, price, unit, qty };
-  }
+  if (cart[id]) cart[id].qty += qty;
+  else cart[id] = { name, price, unit, qty };
   saveCart();
   updateCartUI();
-  showToast(`เพิ่ม ${name} x${qty} ลงตะกร้าแล้ว`);
+  showToast(`เพิ่ม ${name} x${qty} แล้ว`);
 }
-
 function updateCartQty(id, delta) {
   if (!cart[id]) return;
   cart[id].qty += delta;
   if (cart[id].qty <= 0) delete cart[id];
   saveCart();
   updateCartUI();
-  renderCartBody();
 }
-
 function removeFromCart(id) {
   delete cart[id];
   saveCart();
   updateCartUI();
-  renderCartBody();
 }
-
 function clearCart() {
   cart = {};
   saveCart();
   updateCartUI();
-  renderCartBody();
+}
+
+// ── ค่าจัดส่ง ──
+function calcCartInfo() {
+  const items = Object.values(cart);
+  let total = 0, contraTotal = 0, count = 0;
+  items.forEach(it => {
+    const line = getEffectivePrice(it.name, it.qty) * it.qty;
+    total += line;
+    count += it.qty;
+    const d = allData.find(x => x.name.trim() === it.name.trim());
+    if (d && isContra(d)) contraTotal += line;
+  });
+  const nonContra = total - contraTotal;
+  const hasContra = contraTotal > 0;
+  const freeShip = total > 0 && (nonContra >= FREE_NORMAL || total >= FREE_CONTRA);
+  const shipping = freeShip ? 0 : (total > 0 ? SHIP_FEE : 0);
+  const pct = freeShip ? 100 : (hasContra
+    ? Math.min(100, Math.round(Math.max(nonContra / FREE_NORMAL, total / FREE_CONTRA) * 100))
+    : Math.min(100, Math.round(total / FREE_NORMAL * 100)));
+  return {
+    items, count, total, contraTotal, nonContra, hasContra, freeShip, shipping,
+    grand: total + shipping, pct,
+    remainNormal: Math.max(0, FREE_NORMAL - nonContra),
+  };
 }
 
 function updateCartUI() {
-  const items = Object.values(cart);
-  const total = items.reduce((s, i) => s + (typeof i.price === 'number' ? i.price * i.qty : 0), 0);
-  const count = items.reduce((s, i) => s + i.qty, 0);
-
+  const info = calcCartInfo();
   const badge = document.getElementById('cartBadge');
-  badge.textContent = count;
-  badge.classList.toggle('show', count > 0);
-
-  document.getElementById('cartTotal').textContent = total.toLocaleString() + ' ฿';
+  badge.textContent = info.count;
+  badge.classList.toggle('show', info.count > 0);
+  document.getElementById('bbCount').textContent = info.count;
+  document.getElementById('bbTotal').textContent = info.total.toLocaleString() + ' ฿';
+  document.getElementById('bottomBar').style.display = info.count > 0 ? 'flex' : 'none';
+  document.body.classList.toggle('has-bb', info.count > 0);
+  document.getElementById('cartPanelCount').textContent = `${info.count} รายการ · ร้านยา Best`;
+  if (document.getElementById('cartPanel').classList.contains('open')) renderCartPanel();
+  if (document.getElementById('orderPopup').classList.contains('open')) renderOrderSummary();
 }
 
-function calcCartTotal() {
-  return Object.values(cart).reduce((sum, item) => {
-    const p = getEffectivePrice(item.name, item.qty);
-    return sum + p * item.qty;
-  }, 0);
+// ── CART PANEL ──
+function shipBannerHtml(info) {
+  if (info.freeShip) {
+    return `<div class="ship-banner"><div class="ship-txt done">🎉 ยินดีด้วย! คำสั่งซื้อนี้ได้รับสิทธิ์จัดส่งฟรี</div></div>`;
+  }
+  const remainTxt = `<b class="num">${info.remainNormal.toLocaleString()} ฿</b>`;
+  const msg = info.hasContra
+    ? `ซื้อสินค้าทั่วไปเพิ่มอีก ${remainTxt} หรือซื้อรวมครบ <b class="num">${FREE_CONTRA.toLocaleString()} ฿</b> รับสิทธิ์ <strong>จัดส่งฟรี</strong>`
+    : `ซื้อเพิ่มอีก ${remainTxt} รับสิทธิ์ <strong>จัดส่งฟรี</strong> <span style="font-weight:500;opacity:.85">(ครบ ${FREE_NORMAL.toLocaleString()} ฿)</span>`;
+  const note = info.hasContra
+    ? `<div class="ship-note">* สินค้าหมวดยาคุมกำเนิดไม่นับรวมในเกณฑ์ ${FREE_NORMAL.toLocaleString()} ฿ — จะได้ส่งฟรีเมื่อยอดรวมทั้งบิลครบ ${FREE_CONTRA.toLocaleString()} ฿</div>`
+    : '';
+  return `<div class="ship-banner">
+    <div class="ship-txt">${msg}</div>
+    <div class="ship-bar"><div class="ship-fill" style="width:${info.pct}%"></div></div>
+    ${note}</div>`;
 }
 
-function renderCartBody() {
-  const items = Object.entries(cart);
-  const body = document.getElementById('cartBody');
-  if (!items.length) {
-    body.innerHTML = '<div class="cart-empty">ยังไม่มีสินค้าในตะกร้า</div>';
+function renderCartPanel() {
+  const info = calcCartInfo();
+  const wrap = document.getElementById('cartContent');
+  if (!info.items.length) {
+    wrap.innerHTML = `<div class="cart-empty-box">
+      <div class="cart-empty-ico"><svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="var(--border)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.4 12.2a1.5 1.5 0 0 0 1.5 1.2h8.3a1.5 1.5 0 0 0 1.5-1.2L22 7H6"/></svg></div>
+      <div style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px">ตะกร้ายังว่างอยู่</div>
+      <div style="font-size:14px;margin-bottom:26px">เลือกเวชภัณฑ์คุณภาพจากร้านยา Best แล้วเพิ่มลงตะกร้าได้เลย</div>
+      <button class="cta" style="max-width:240px;margin:0 auto" onclick="toggleCart()">เลือกซื้อสินค้า</button>
+    </div>`;
     return;
   }
-  body.innerHTML = groupNoticesHtml() + items.map(([id, item]) => {
-    const effPrice = getEffectivePrice(item.name, item.qty);
-    const priceStr = typeof item.price === 'number'
-      ? (effPrice * item.qty).toLocaleString() + ' ฿'
-      : 'สอบถามราคา';
-    const tiers = getTiers(item.name);
-    const tierHint = tiers ? `<small style="color:var(--accent-2,#f59e0b)">${getTierHtml(item.name)}</small>` : `<small>${item.unit} · ${typeof item.price === 'number' ? item.price.toLocaleString() + ' ฿/'+item.unit : 'สอบถามราคา'}</small>`;
-    const priceHint = tierHint;
+  const itemsHtml = Object.entries(cart).map(([id, item]) => {
+    const eff = getEffectivePrice(item.name, item.qty);
+    const line = eff * item.qty;
     const fb = getFreebie(item.name, item.qty);
-    const fbHint = fb ? `<small style="color:#d97706;font-weight:600">🎁 ได้ของแถม: ${fb.gift}</small>` : '';
-    return `<div class="cart-item">
-      <div class="cart-item-name">
-        ${item.name}
-        ${priceHint}
-        ${fbHint}
+    const tierHint = getTierHtml(item.name);
+    const d = allData.find(x => x.name.trim() === item.name.trim());
+    const firstImg = d && d.image ? d.image.split(',')[0].trim() : '';
+    const thumb = firstImg
+      ? `<img class="citem-thumb" src="${getDriveImgUrl(firstImg)}" alt="">`
+      : `<div class="citem-thumb"></div>`;
+    const minQ = getProductGroup(item.name) && getProductGroup(item.name).step > 1 ? 1 : extractMinQty(item.unit);
+    return `<div class="citem">
+      ${thumb}
+      <div class="citem-mid">
+        <div class="citem-name">${item.name}</div>
+        <div class="citem-unit num">${(Math.round(eff*100)/100).toLocaleString()} ฿ / ${(item.unit || 'หน่วย').replace(/^\d+\s*/, '') || 'หน่วย'}${tierHint ? ` · <span class="hint-tier">${tierHint}</span>` : ''}</div>
+        ${fb ? `<div class="citem-fb">🎁 ได้ของแถม: ${fb.gift}</div>` : ''}
+        <div class="citem-line-m num">${line.toLocaleString()} ฿</div>
       </div>
-      <div class="cart-item-qty">
-        <button class="qty-btn" onclick="updateCartQty('${id}', -1)">−</button>
-        <span style="min-width:28px;text-align:center;font-weight:500">${item.qty}</span>
-        <button class="qty-btn" onclick="updateCartQty('${id}', 1)">+</button>
+      <div class="hstep">
+        <button onclick="updateCartQty('${id}', -${minQ})">−</button>
+        <span class="hqty num">${item.qty}</span>
+        <button class="hinc" onclick="updateCartQty('${id}', ${minQ})">+</button>
       </div>
-      <div class="cart-item-price">${priceStr}</div>
-      <button class="cart-remove" onclick="removeFromCart('${id}')">🗑</button>
+      <div class="citem-line num">${line.toLocaleString()} ฿</div>
+      <button class="citem-rm" onclick="removeFromCart('${id}')" title="ลบ">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+      </button>
     </div>`;
   }).join('');
+
+  wrap.innerHTML = `<div class="cart-wrap">
+    <div>
+      ${shipBannerHtml(info)}
+      ${groupNoticesHtml()}
+      <div class="citems-card">
+        <div class="citems-head">รายการสินค้า <button class="cclear" onclick="clearCart()">ล้างตะกร้าทั้งหมด</button></div>
+        ${itemsHtml}
+      </div>
+      <div class="trust-card" style="margin-top:16px">
+        <div class="trust-row"><span class="trust-ico g"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> เภสัชกรตรวจสอบทุกคำสั่งซื้อ</div>
+        <div class="trust-row"><span class="trust-ico y"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span> สินค้าของแท้ 100% มีใบอนุญาต</div>
+        <div class="trust-row"><span class="trust-ico g"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span> จัดส่งทั่วไทย เก็บเงินปลายทางได้</div>
+      </div>
+    </div>
+    <div class="sum-col">
+      <div class="sum-wrap-sticky"><div class="sum-card">
+        <div class="sum-ttl">สรุปคำสั่งซื้อ</div>
+        <div class="sum-row"><span class="lbl">ยอดรวมสินค้า (${info.count} รายการ)</span><span class="val num">${info.total.toLocaleString()} ฿</span></div>
+        <div class="sum-row"><span class="lbl">ค่าจัดส่ง</span><span class="val ship num">${info.shipping === 0 ? 'ฟรี' : info.shipping.toLocaleString() + ' ฿'}</span></div>
+        <div class="sum-grand"><span class="lbl">ยอดชำระทั้งหมด</span><span class="val num">${info.grand.toLocaleString()} ฿</span></div>
+        <button class="cta" onclick="openOrderPopup()">ดำเนินการสั่งซื้อ
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div></div>
+    </div>
+  </div>`;
 }
 
 function toggleCart() {
-  const panel = document.getElementById('cartPanel');
-  const isOpen = panel.classList.toggle('open');
-  if (isOpen) renderCartBody();
+  const p = document.getElementById('cartPanel');
+  const willOpen = !p.classList.contains('open');
+  closeOverlays();
+  if (willOpen) {
+    p.classList.add('open');
+    renderCartPanel();
+  }
+}
+function closeOverlays() {
+  ['cartPanel', 'orderPopup', 'historyPanel'].forEach(id => document.getElementById(id).classList.remove('open'));
 }
 
-function sendToLine() {
-  const items = Object.values(cart);
-  if (!items.length) { showToast('ตะกร้าว่างอยู่ครับ'); return; }
-  const total = items.reduce((s, i) => s + (typeof i.price === 'number' ? i.price * i.qty : 0), 0);
-  let text = '📋 รายการสั่งซื้อ — ร้านยา Best\n';
-  text += '─────────────────\n';
-  items.forEach((item, i) => {
-    const lineTotal = typeof item.price === 'number' ? (item.price * item.qty).toLocaleString() + ' ฿' : 'สอบถามราคา';
-    text += `${i+1}. ${item.name}\n   จำนวน: ${item.qty} ${item.unit} · รวม: ${lineTotal}\n`;
+// ── ORDER ──
+function renderOrderSummary() {
+  const info = calcCartInfo();
+  document.getElementById('orderSummaryItems').innerHTML = Object.values(cart).map(item => {
+    const line = getEffectivePrice(item.name, item.qty) * item.qty;
     const fb = getFreebie(item.name, item.qty);
-    if (fb) text += `   🎁 ของแถม: ${fb.gift}\n`;
-  });
-  text += '─────────────────\n';
-  text += `ยอดรวม: ${total.toLocaleString()} ฿`;
-  navigator.clipboard.writeText(text).then(() => {
-    showToast('📋 Copy รายการแล้ว! กำลังเปิด LINE...');
-    setTimeout(() => {
-      window.open('https://line.me/ti/p/~hongkamon33', '_blank');
-    }, 800);
-  }).catch(() => {
-    window.open('https://line.me/ti/p/~hongkamon33', '_blank');
-  });
+    return `<div class="osum-item" style="flex-wrap:wrap">
+      <span class="osum-qty num">${item.qty}</span>
+      <span class="osum-name">${item.name}</span>
+      <span class="osum-line num">${line.toLocaleString()} ฿</span>
+      ${fb ? `<span class="osum-fb">🎁 ${fb.gift}</span>` : ''}
+    </div>`;
+  }).join('');
+  document.getElementById('oSumSub').textContent = info.total.toLocaleString() + ' ฿';
+  document.getElementById('oSumShip').textContent = info.shipping === 0 ? 'ฟรี' : info.shipping.toLocaleString() + ' ฿';
+  document.getElementById('oSumGrand').textContent = info.grand.toLocaleString() + ' ฿';
 }
 
-function copyCart() {
-  const items = Object.values(cart);
-  if (!items.length) { showToast('ตะกร้าว่างอยู่ครับ'); return; }
-  const total = items.reduce((s, i) => s + (typeof i.price === 'number' ? i.price * i.qty : 0), 0);
-  let text = '📋 รายการสั่งซื้อ — ร้านยา Best\n';
-  text += '─────────────────\n';
-  items.forEach((item, i) => {
-    const lineTotal = typeof item.price === 'number' ? (item.price * item.qty).toLocaleString() + ' ฿' : 'สอบถามราคา';
-    text += `${i+1}. ${item.name}\n   จำนวน: ${item.qty} ${item.unit} · รวม: ${lineTotal}\n`;
-    const fb = getFreebie(item.name, item.qty);
-    if (fb) text += `   🎁 ของแถม: ${fb.gift}\n`;
-  });
-  text += '─────────────────\n';
-  text += `ยอดรวม: ${total.toLocaleString()} ฿`;
-  navigator.clipboard.writeText(text).then(() => showToast('Copy รายการแล้ว! นำไปส่งได้เลยครับ'));
-}
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
-}
-
-function closeSuccessPopup() {
-  document.getElementById('successPopup').classList.remove('open');
-}
-
-function openLine() {
-  window.open('https://line.me/ti/p/~hongkamon33', '_blank');
-  closeSuccessPopup();
-}
-
-// NAME POPUP
-function openNamePopup(name, generic, image, unit) {
-  document.getElementById('namePopupText').textContent = name;
-  const genEl = document.getElementById('namePopupGeneric');
-  const genText = document.getElementById('namePopupGenericText');
-  if (generic) {
-    genText.textContent = generic;
-    genEl.style.display = 'block';
-  } else {
-    genEl.style.display = 'none';
-  }
-  const unitEl = document.getElementById('namePopupUnit');
-  const unitText = document.getElementById('namePopupUnitText');
-  if (unit) {
-    unitText.textContent = unit;
-    unitEl.style.display = 'block';
-  } else {
-    unitEl.style.display = 'none';
-  }
-  // ขั้นต่ำกลุ่ม (สั่งรวมเป็นเท่าของ N คละสินค้าในกลุ่มได้)
-  const groupEl = document.getElementById('namePopupGroup');
-  const grp = getProductGroup(name);
-  if (grp && grp.step > 1) {
-    const gUnit = (unit || '').replace(/^\d+\s*/, '');
-    groupEl.innerHTML = `📦 <b>สั่งขั้นต่ำ ${grp.step} ${gUnit}</b><br>` +
-      `<span style="color:var(--text-muted);font-size:12px">สั่งรวมเป็นเท่าของ ${grp.step} (${grp.step}, ${grp.step*2}, ${grp.step*3}…) ` +
-      `คละกับสินค้ากลุ่ม “${grp.label}” ได้</span>`;
-    groupEl.style.display = 'block';
-  } else {
-    groupEl.style.display = 'none';
-  }
-  // รูปสินค้า (รองรับหลายรูปคั่น ,)
-  const imgWrap = document.getElementById('namePopupImgWrap');
-  if (image) {
-    const urls = image.split(',').map(u => u.trim()).filter(Boolean);
-    imgWrap.innerHTML = urls.map(u => {
-      const src = getDriveImgUrl(u);
-      return `<img src="${src}" alt="" style="flex:1;min-width:0;max-width:${urls.length > 1 ? '48%' : '100%'};max-height:180px;object-fit:contain;border-radius:10px;cursor:pointer;background:#f5f5f5" onclick="event.stopPropagation();openImgPopup('${src}','${name.replace(/'/g,"\\'")}')">`;
-    }).join('');
-    imgWrap.style.display = 'flex';
-  } else {
-    imgWrap.style.display = 'none';
-    imgWrap.innerHTML = '';
-  }
-  // ราคาขั้นบันได
-  const tiersEl = document.getElementById('namePopupTiers');
-  const tiers = getTiers(name);
-  if (tiers && tiers.length > 1) {
-    const unitBase = tiers[0].unit.replace(/^\d+\s*/, '').trim() || tiers[0].unit;
-    tiersEl.innerHTML = '<div style="font-weight:600;margin-bottom:4px;color:var(--accent)">💰 ราคาตามจำนวน</div>' +
-      tiers.map((t, i) => {
-        // ห้ามปัดเป็นจำนวนเต็ม: 1450/100 = 14.5 ต้องโชว์ 14.5 ไม่ใช่ 15 (ปัดแค่ทศนิยม 2 ตำแหน่ง)
-        const pricePerUnit = Math.round((t.price / t.minQty) * 100) / 100;
-        // ใช้หน่วยของแถวนั้นเอง (เช่น "100 กล่อง" → กล่อง) ไม่ใช่หน่วยของแถวแรก
-        const tUnit = (t.unit || '').replace(/^\d+\s*/, '').trim() || unitBase;
-        const nextMin = tiers[i+1] ? tiers[i+1].minQty - 1 : null;
-        const range = nextMin ? `${t.minQty}–${nextMin} ${tUnit}` : `${t.minQty}+ ${tUnit}`;
-        return `<div style="display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.06)">
-          <span>${range}</span>
-          <span style="color:var(--accent);font-weight:600">${pricePerUnit.toLocaleString()} ฿/${tUnit}</span>
-        </div>`;
-      }).join('');
-    tiersEl.style.display = 'block';
-  } else {
-    // Single price
-    const item = allData.find(d => d.name.trim() === name.trim());
-    if (item && typeof item.price === 'number') {
-      tiersEl.innerHTML = `<div style="display:flex;justify-content:space-between"><span>ราคา</span><span style="color:var(--accent);font-weight:600">${item.price.toLocaleString()} ฿/${item.unit}</span></div>`;
-      tiersEl.style.display = 'block';
-    } else {
-      tiersEl.style.display = 'none';
-    }
-  }
-  document.getElementById('namePopup').classList.add('open');
-}
-function closeNamePopup() {
-  document.getElementById('namePopup').classList.remove('open');
-}
-function copyName() {
-  const name = document.getElementById('namePopupText').textContent;
-  navigator.clipboard.writeText(name).then(() => {
-    showToast('Copy ชื่อยาแล้วครับ');
-    closeNamePopup();
-  });
-}
-
-// ORDER POPUP
 function openOrderPopup() {
-  const items = Object.values(cart);
-  if (!items.length) { showToast('ตะกร้าว่างอยู่ครับ'); return; }
-  // ตรวจกลุ่มสั่งขั้นต่ำรวม — ถ้ายอดรวมในกลุ่มยังไม่เป็นเท่าของขั้นต่ำ ให้บล็อกและบอกให้เพิ่ม
-  const { issues } = getCartGroups();
-  if (issues.length) {
-    const i = issues[0];
-    showToast(`⚠️ กลุ่ม ${i.label} ต้องสั่งเป็นเท่าของ ${i.step} (ตอนนี้ ${i.qty}) — เพิ่มอีก ${i.need} ให้ครบ ${i.target}`);
-    const panel = document.getElementById('cartPanel');
-    if (!panel.classList.contains('open')) panel.classList.add('open');
-    renderCartBody();
-    return;
-  }
-  const total = items.reduce((s, i) => s + (typeof i.price === 'number' ? i.price * i.qty : 0), 0);
-
-  // แสดงสรุปออเดอร์
-  let summary = '<b>รายการสั่งซื้อ</b><br>';
-  items.forEach((item, i) => {
-    summary += `${i+1}. ${item.name} x${item.qty} ${item.unit}<br>`;
-  });
-  summary += `<br>ยอดรวม: <strong>${total.toLocaleString()} ฿</strong>`;
-  document.getElementById('orderSummary').innerHTML = summary;
-
-  // โหลดข้อมูลที่จำไว้
+  if (!Object.keys(cart).length) { showToast('ตะกร้าว่างอยู่ครับ'); return; }
+  closeOverlays();
   const saved = JSON.parse(localStorage.getItem('cusInfo') || '{}');
   if (saved.name) document.getElementById('cusName').value = saved.name;
   if (saved.phone) document.getElementById('cusPhone').value = saved.phone;
   if (saved.address) document.getElementById('cusAddress').value = saved.address;
-
+  document.getElementById('orderFormView').style.display = '';
+  document.getElementById('orderDoneView').style.display = 'none';
   document.getElementById('orderPopup').classList.add('open');
-  toggleCart();
+  renderOrderSummary();
 }
-
-function closeOrderPopup() {
-  document.getElementById('orderPopup').classList.remove('open');
+function backToCart() {
+  closeOverlays();
+  document.getElementById('cartPanel').classList.add('open');
+  renderCartPanel();
+}
+function closeOrderDone() {
+  closeOverlays();
 }
 
 async function submitOrder() {
   const name = document.getElementById('cusName').value.trim();
   const phone = document.getElementById('cusPhone').value.trim();
   const address = document.getElementById('cusAddress').value.trim();
+  if (!name || !phone || !address) { showToast('กรุณากรอกข้อมูลให้ครบครับ'); return; }
 
-  if (!name || !phone || !address) {
-    showToast('กรุณากรอกข้อมูลให้ครบครับ');
-    return;
-  }
-
-  // กันเหนียว: ตรวจกลุ่มสั่งขั้นต่ำรวมอีกครั้งก่อนส่งจริง
   const { issues } = getCartGroups();
   if (issues.length) {
     const i = issues[0];
@@ -1309,21 +1054,20 @@ async function submitOrder() {
     return;
   }
 
-  // จำข้อมูลลูกค้า
   localStorage.setItem('cusInfo', JSON.stringify({ name, phone, address }));
-
+  const info = calcCartInfo();
   const items = Object.values(cart);
-  const total = items.reduce((s, i) => s + (typeof i.price === 'number' ? i.price * i.qty : 0), 0);
 
-  // สร้างข้อความ
-  let itemsText = items.map((item, i) => {
-    const lineTotal = typeof item.price === 'number' ? (item.price * item.qty).toLocaleString() + ' ฿' : 'สอบถามราคา';
+  const itemsText = items.map((item, i) => {
+    const line = getEffectivePrice(item.name, item.qty) * item.qty;
     const fb = getFreebie(item.name, item.qty);
-    return `${i+1}. ${item.name} x${item.qty} ${item.unit} = ${lineTotal}`
+    return `${i+1}. ${item.name} x${item.qty} ${item.unit} = ${line.toLocaleString()} ฿`
       + (fb ? `\n   🎁 ของแถม: ${fb.gift}` : '');
   }).join('\n');
 
-  const orderText = `📋 รายการสั่งซื้อ
+  const orderId = new Date().toLocaleDateString('th-TH', {year:'2-digit',month:'2-digit',day:'2-digit'}).replace(/\//g,'') + '-' + Date.now().toString().slice(-4);
+  const shipText = info.shipping === 0 ? 'ฟรี' : info.shipping.toLocaleString() + ' ฿';
+  const orderText = `📋 รายการสั่งซื้อ #${orderId}
 ─────────────────
 👤 ผู้สั่งซื้อ
 ชื่อ: ${name}
@@ -1332,125 +1076,108 @@ async function submitOrder() {
 ─────────────────
 ${itemsText}
 ─────────────────
-ยอดรวม: ${total.toLocaleString()} ฿`;
+ยอดรวมสินค้า: ${info.total.toLocaleString()} ฿
+ค่าจัดส่ง: ${shipText}
+ยอดชำระ: ${info.grand.toLocaleString()} ฿`;
 
-  // บันทึกลง Google Sheets
   const btn = document.getElementById('confirmBtn');
   btn.disabled = true;
   btn.textContent = 'กำลังบันทึก...';
-
   try {
     await fetch(ORDER_URL, {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, phone, address, items: itemsText, total: total.toLocaleString() + ' ฿' })
+      body: JSON.stringify({
+        name, phone, address,
+        items: itemsText + `\nค่าจัดส่ง: ${shipText}`,
+        total: info.grand.toLocaleString() + ' ฿',
+        orderId: '#' + orderId
+      })
     });
-  } catch(e) {
-    console.log('บันทึกออเดอร์:', e);
-  }
+  } catch(e) { console.log('บันทึกออเดอร์:', e); }
 
-  // Copy รายการ
-  try {
-    await navigator.clipboard.writeText(orderText);
-  } catch(e) {
-    console.log('copy failed:', e);
-  }
-
-  // บันทึกประวัติใน localStorage
-  const orderId = '#' + new Date().toLocaleDateString('th-TH', {year:'2-digit',month:'2-digit',day:'2-digit'}).replace(/\//g,'') + '-' + Date.now().toString().slice(-4);
   const historyItem = {
-    id: orderId,
+    id: '#' + orderId,
     date: new Date().toLocaleString('th-TH', {day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}),
     name, phone, address,
     items: items.map(i => ({ name: i.name, qty: i.qty, unit: i.unit, price: i.price })),
-    total: total,
+    total: info.grand,
     orderText
   };
   const history = JSON.parse(localStorage.getItem('orderHistory') || '[]');
   history.unshift(historyItem);
   localStorage.setItem('orderHistory', JSON.stringify(history.slice(0, 20)));
 
-  // ล้างตะกร้า
-  cart = {};
-  saveCart();
-  updateCartUI();
-
+  clearCart();
   btn.disabled = false;
-  btn.textContent = '✅ ยืนยันและ Copy รายการ';
-  closeOrderPopup();
-  showToast('✅ บันทึกแล้ว! Copy รายการแล้วครับ');
-
-  // เปิด success popup บนมือถือเท่านั้น
-  if (window.innerWidth <= 600) {
-    setTimeout(() => {
-      document.getElementById('successPopup').classList.add('open');
-    }, 600);
-  }
+  btn.innerHTML = '<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> ยืนยันคำสั่งซื้อ';
+  document.getElementById('doneTotal').textContent = info.grand.toLocaleString() + ' ฿';
+  document.getElementById('doneId').textContent = '#' + orderId;
+  document.getElementById('orderFormView').style.display = 'none';
+  document.getElementById('orderDoneView').style.display = '';
+  window.scrollTo(0, 0);
 }
 
-// HISTORY
+// ── HISTORY ──
 function toggleHistory() {
-  const panel = document.getElementById('historyPanel');
-  const isOpen = panel.classList.toggle('open');
-  if (isOpen) {
+  const p = document.getElementById('historyPanel');
+  const willOpen = !p.classList.contains('open');
+  closeOverlays();
+  if (willOpen) {
     renderHistory();
-    document.getElementById('cartPanel').classList.remove('open');
+    p.classList.add('open');
   }
 }
-
 function renderHistory() {
   const history = JSON.parse(localStorage.getItem('orderHistory') || '[]');
   const body = document.getElementById('historyBody');
   if (!history.length) {
-    body.innerHTML = '<div class="history-empty">ยังไม่มีประวัติการสั่งซื้อ</div>';
+    body.innerHTML = '<div class="state-box">ยังไม่มีประวัติการสั่งซื้อ</div>';
     return;
   }
-  body.innerHTML = history.map((order, idx) => {
-    const preview = order.items.slice(0, 2).map(i => `${i.name} x${i.qty}`).join(', ') + (order.items.length > 2 ? ` และอีก ${order.items.length - 2} รายการ` : '');
-    const isLatest = idx === 0;
-    return `<div class="history-item">
-      <div class="history-item-head">
-        <span class="history-order-id">${order.id}</span>
-        <span class="history-date">${order.date}</span>
-      </div>
-      <div class="history-name">👤 ${order.name} | ${order.phone}</div>
-      <div class="history-items-preview">${preview}</div>
-      <div class="history-total">ยอดรวม: ${typeof order.total === 'number' ? order.total.toLocaleString() : order.total} ฿</div>
-      <div class="history-actions">
-        <button class="btn-history-reorder" onclick="reorder(${idx})" style="flex:1">🔄 สั่งซื้อซ้ำ</button>
-      </div>
-    </div>`;
-  }).join('');
+  body.innerHTML = history.map((o, idx) => `<div class="hist-card">
+    <div class="hist-top"><span class="hist-id num">${o.id}</span><span class="hist-time num">${o.date}</span></div>
+    <div class="hist-sum">${o.items.map(i => `${i.name} ×${i.qty}`).join(' · ')}</div>
+    <div class="hist-bot">
+      <span class="hist-total num">${typeof o.total === 'number' ? o.total.toLocaleString() : o.total} ฿</span>
+      <button class="hist-reorder" onclick="reorder(${idx})">🔄 สั่งซ้ำ</button>
+    </div>
+  </div>`).join('');
 }
-
 function reorder(idx) {
   const history = JSON.parse(localStorage.getItem('orderHistory') || '[]');
   const order = history[idx];
   if (!order) return;
-
-  // ดึงรายการเดิมใส่ตะกร้าพร้อมราคาปัจจุบัน
   order.items.forEach(item => {
     const current = allData.find(d => d.name === item.name);
-    const currentPrice = current ? current.price : item.price;
+    const currentPrice = current ? getBasePrice(current) : item.price;
     const id = getCartId(item.name);
     cart[id] = { name: item.name, price: currentPrice, unit: item.unit, qty: item.qty };
   });
   saveCart();
   updateCartUI();
-  toggleHistory();
-  setTimeout(() => toggleCart(), 300);
+  closeOverlays();
+  document.getElementById('cartPanel').classList.add('open');
+  renderCartPanel();
   showToast('🔄 ใส่ตะกร้าแล้ว ราคาอัปเดตเป็นปัจจุบันแล้วครับ');
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(() => t.classList.remove('show'), 2500);
 }
 
 // ── BARCODE SCANNER ──
 let scannerStream = null;
 let scannerInterval = null;
 let barcodeDetector = null;
-
 let zxingReader = null;
 let zxingLoadPromise = null;
-// โหลดไลบรารีสแกนเฉพาะตอนกดเปิดกล้อง — ไม่ถ่วงหน้าแรก
 function loadZXing() {
   if (typeof ZXing !== 'undefined') return Promise.resolve();
   if (!zxingLoadPromise) {
@@ -1466,12 +1193,11 @@ function loadZXing() {
 }
 async function openBarcodeScanner() {
   document.getElementById('scannerOverlay').classList.add('open');
-  document.getElementById('scannerStatus').className = 'scanner-status';
-  document.getElementById('scannerStatus').textContent = '🔍 เล็งกล้องไปที่ barcode ครับ';
+  const st = document.getElementById('scannerStatus');
+  st.className = 'scanner-status';
+  st.textContent = '🔍 เล็งกล้องไปที่ barcode ครับ';
   document.getElementById('manualBarcode').value = '';
-
   const video = document.getElementById('scannerVideo');
-
   try {
     scannerStream = await navigator.mediaDevices.getUserMedia({
       video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 1280 } }
@@ -1479,12 +1205,10 @@ async function openBarcodeScanner() {
     video.srcObject = scannerStream;
     try { await video.play(); } catch(pe) {}
   } catch(e) {
-    document.getElementById('scannerStatus').className = 'scanner-status error';
-    document.getElementById('scannerStatus').textContent = '❌ ไม่สามารถเข้าถึงกล้องได้ — ลองพิมพ์ barcode ด้านล่างแทนครับ';
+    st.className = 'scanner-status error';
+    st.textContent = '❌ ไม่สามารถเข้าถึงกล้องได้ — พิมพ์ barcode ด้านล่างแทนครับ';
     return;
   }
-
-  // ลอง BarcodeDetector ก่อน (Android Chrome)
   if ('BarcodeDetector' in window) {
     try {
       barcodeDetector = new BarcodeDetector({ formats: ['ean_13','ean_8','code_128','code_39','qr_code','upc_a','upc_e'] });
@@ -1500,15 +1224,14 @@ async function openBarcodeScanner() {
       return;
     } catch(e) { barcodeDetector = null; }
   }
-
-  // Fallback: ZXing (สำหรับ iPhone/Safari ที่ไม่มี BarcodeDetector)
+  // Fallback: ZXing (iPhone/Safari ไม่มี BarcodeDetector) — โหลดเฉพาะตอนใช้
   if (typeof ZXing === 'undefined') {
-    document.getElementById('scannerStatus').textContent = '⏳ กำลังเตรียมตัวสแกน…';
+    st.textContent = '⏳ กำลังเตรียมตัวสแกน…';
     try {
       await loadZXing();
-      document.getElementById('scannerStatus').textContent = '🔍 เล็งกล้องไปที่ barcode ครับ';
+      st.textContent = '🔍 เล็งกล้องไปที่ barcode ครับ';
     } catch(e) {
-      document.getElementById('scannerStatus').textContent = '📷 กล้องพร้อมแล้ว — พิมพ์ barcode ด้านล่างได้เลยครับ';
+      st.textContent = '📷 กล้องพร้อมแล้ว — พิมพ์ barcode ด้านล่างได้เลยครับ';
       return;
     }
   }
@@ -1521,31 +1244,25 @@ async function openBarcodeScanner() {
       ZXing.BarcodeFormat.QR_CODE
     ]);
     zxingReader = new ZXing.BrowserMultiFormatReader(hints);
-    // ต้องใช้ decodeContinuously: video เล่นอยู่แล้ว ถ้าใช้ decodeFromVideoElement
-    // มันจะรอ event 'playing' ที่ยิงไปแล้ว → ค้างเงียบ สแกนไม่ติด (โดยเฉพาะ iPhone)
+    // ต้อง decodeContinuously: video เล่นอยู่แล้ว event 'playing' ยิงไปแล้ว
     zxingReader.decodeContinuously(video, (result, err) => {
-      if (result) {
-        searchByBarcode(result.getText(), true);
-      }
+      if (result) searchByBarcode(result.getText(), true);
     });
   } catch(e) {
-    document.getElementById('scannerStatus').textContent = '📷 กล้องพร้อมแล้ว — พิมพ์ barcode ด้านล่างได้เลยครับ';
+    st.textContent = '📷 กล้องพร้อมแล้ว — พิมพ์ barcode ด้านล่างได้เลยครับ';
   }
 }
-
 function closeBarcodeScanner() {
   document.getElementById('scannerOverlay').classList.remove('open');
   if (scannerInterval) { clearInterval(scannerInterval); scannerInterval = null; }
   if (scannerStream) { scannerStream.getTracks().forEach(t => t.stop()); scannerStream = null; }
   if (zxingReader) { try { zxingReader.reset(); } catch(e){} zxingReader = null; }
 }
-
 function searchByBarcode(code, fromCamera = false) {
   if (!code || !code.trim()) return;
   code = code.trim();
   const matches = allData.filter(d => d.barcode && d.barcode === code);
   const found = matches.filter(d => !isOutOfStock(d));
-  // เจอแต่ตัวที่หมด: บอกตรงๆ ว่าหมด (ไม่ใช่หาไม่เจอ)
   if (!found.length && matches.length) {
     const st = document.getElementById('scannerStatus');
     st.className = 'scanner-status error';
@@ -1558,19 +1275,13 @@ function searchByBarcode(code, fromCamera = false) {
     render();
     showToast(`✅ พบ ${found.length} รายการ: ${found[0].name}`);
   } else {
+    const st = document.getElementById('scannerStatus');
+    st.className = 'scanner-status error';
+    st.textContent = `⚠️ ไม่พบยา barcode: ${code}`;
     if (fromCamera) {
-      // แสดงที่หน้า scanner แต่ยังสแกนต่อ
-      const st = document.getElementById('scannerStatus');
-      st.className = 'scanner-status error';
-      st.textContent = `⚠️ ไม่พบยา barcode: ${code}`;
-      // ZXing สแกนต่อเนื่องอยู่แล้ว — แค่รีเซ็ตข้อความสถานะ
       if (zxingReader) {
-        setTimeout(() => {
-          st.className = 'scanner-status';
-          st.textContent = '🔍 เล็งกล้องไปที่ barcode ครับ';
-        }, 2000);
+        setTimeout(() => { st.className = 'scanner-status'; st.textContent = '🔍 เล็งกล้องไปที่ barcode ครับ'; }, 2000);
       }
-      // เริ่มสแกนใหม่หลัง 2 วิ
       if (barcodeDetector) {
         setTimeout(() => {
           st.className = 'scanner-status';
@@ -1580,18 +1291,13 @@ function searchByBarcode(code, fromCamera = false) {
             try {
               const barcodes = await barcodeDetector.detect(video);
               if (barcodes.length > 0) {
-                const newCode = barcodes[0].rawValue;
                 clearInterval(scannerInterval);
-                searchByBarcode(newCode, true);
+                searchByBarcode(barcodes[0].rawValue, true);
               }
             } catch(e) {}
           }, 300);
         }, 2000);
       }
-    } else {
-      // manual input
-      document.getElementById('scannerStatus').className = 'scanner-status error';
-      document.getElementById('scannerStatus').textContent = `⚠️ ไม่พบยา barcode: ${code}`;
     }
   }
 }
@@ -1599,15 +1305,12 @@ function searchByBarcode(code, fromCamera = false) {
 // ── IMAGE HELPERS ──
 function getDriveImgUrl(raw) {
   if (!raw) return '';
-  // https://drive.google.com/file/d/FILE_ID/view → thumbnail
   const m = raw.match(/\/d\/([a-zA-Z0-9_-]{10,})/);
   if (m) return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w400`;
-  // https://drive.google.com/open?id=FILE_ID
   const m2 = raw.match(/[?&]id=([a-zA-Z0-9_-]{10,})/);
   if (m2) return `https://drive.google.com/thumbnail?id=${m2[1]}&sz=w400`;
-  return raw; // ถ้าเป็น URL อื่นใช้ตรงๆ
+  return raw;
 }
-
 function openImgPopup(src, name) {
   document.getElementById('imgPopupImg').src = src;
   document.getElementById('imgPopupName').textContent = name;
@@ -1618,13 +1321,142 @@ function closeImgPopup() {
   document.getElementById('imgPopupImg').src = '';
 }
 
-// ── LOAD DATA ──
-const CACHE_KEY     = 'drugDataCache_v1';
-const CACHE_TS_KEY  = 'drugDataCacheTs_v1';
-const LOAD_TIMEOUT  = 30000;   // รอ Apps Script ได้นานขึ้น (เดิม 15s)
-const MAX_RETRIES   = 2;       // ลองซ้ำอัตโนมัติก่อนยอมแพ้
+// ── NAME POPUP ──
+function openNamePopup(name, generic, image, unit) {
+  document.getElementById('namePopupText').textContent = name;
+  const genEl = document.getElementById('namePopupGeneric');
+  document.getElementById('namePopupGenericText').textContent = generic || '';
+  genEl.style.display = generic ? 'block' : 'none';
+  const unitEl = document.getElementById('namePopupUnit');
+  document.getElementById('namePopupUnitText').textContent = unit || '';
+  unitEl.style.display = unit ? 'block' : 'none';
 
-// แปลง raw json จากชีตให้อยู่ในรูปที่ใช้งาน
+  const groupEl = document.getElementById('namePopupGroup');
+  const grp = getProductGroup(name);
+  if (grp && grp.step > 1) {
+    const gUnit = (unit || '').replace(/^\d+\s*/, '');
+    groupEl.innerHTML = `📦 <b>สั่งขั้นต่ำ ${grp.step} ${gUnit}</b><br><span style="color:var(--muted);font-size:12px">สั่งรวมเป็นเท่าของ ${grp.step} (${grp.step}, ${grp.step*2}, ${grp.step*3}…) คละกับสินค้ากลุ่ม “${grp.label}” ได้</span>`;
+    groupEl.style.display = 'block';
+  } else groupEl.style.display = 'none';
+
+  const imgWrap = document.getElementById('namePopupImgWrap');
+  if (image) {
+    const urls = image.split(',').map(u => u.trim()).filter(Boolean);
+    imgWrap.innerHTML = urls.map(u => {
+      const src = getDriveImgUrl(u);
+      return `<img src="${src}" alt="" style="flex:1;min-width:0;max-width:${urls.length > 1 ? '48%' : '100%'};max-height:180px;object-fit:contain;border-radius:10px;cursor:pointer;background:#f5f5f5" onclick="event.stopPropagation();openImgPopup('${src}','${name.replace(/'/g,"\\'")}')">`;
+    }).join('');
+    imgWrap.style.display = 'flex';
+  } else { imgWrap.style.display = 'none'; imgWrap.innerHTML = ''; }
+
+  const tiersEl = document.getElementById('namePopupTiers');
+  const tiers = getTiers(name);
+  if (tiers && tiers.length > 1) {
+    const unitBase = tiers[0].unit.replace(/^\d+\s*/, '').trim() || tiers[0].unit;
+    tiersEl.innerHTML = '<div style="font-weight:600;margin-bottom:4px;color:var(--accent)">💰 ราคาตามจำนวน</div>' +
+      tiers.map((t, i) => {
+        const pricePerUnit = Math.round((t.price / t.minQty) * 100) / 100;
+        const tUnit = (t.unit || '').replace(/^\d+\s*/, '').trim() || unitBase;
+        const nextMin = tiers[i+1] ? tiers[i+1].minQty - 1 : null;
+        const range = nextMin ? `${t.minQty}–${nextMin} ${tUnit}` : `${t.minQty}+ ${tUnit}`;
+        return `<div style="display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid var(--border-2)">
+          <span>${range}</span>
+          <span class="num" style="color:var(--accent);font-weight:600">${pricePerUnit.toLocaleString()} ฿/${tUnit}</span>
+        </div>`;
+      }).join('');
+    tiersEl.style.display = 'block';
+  } else {
+    const item = allData.find(d => d.name.trim() === name.trim());
+    if (item && typeof item.price === 'number') {
+      tiersEl.innerHTML = `<div style="display:flex;justify-content:space-between"><span>ราคา</span><span class="num" style="color:var(--accent);font-weight:600">${getBasePrice(item).toLocaleString()} ฿/${item.unit}</span></div>`;
+      tiersEl.style.display = 'block';
+    } else tiersEl.style.display = 'none';
+  }
+  document.getElementById('namePopup').classList.add('open');
+}
+function closeNamePopup() { document.getElementById('namePopup').classList.remove('open'); }
+function copyName() {
+  const name = document.getElementById('namePopupText').textContent;
+  navigator.clipboard.writeText(name).then(() => showToast('📋 Copy ชื่อแล้วครับ'));
+}
+function openNamePopupFromEl(el) {
+  const name = el.dataset.name || el.textContent;
+  const unit = el.dataset.unit || '';
+  const generic = el.dataset.generic || '';
+  const image = decodeURIComponent((el.dataset.image || '').trim());
+  openNamePopup(name, generic, image, unit);
+}
+
+// ── CATEGORY PILLS ──
+function buildCatPills() {
+  const catSet = new Set();
+  allData.forEach(d => {
+    if (isOutOfStock(d)) return;
+    d.category.split(',').map(c => c.trim()).filter(Boolean).forEach(c => catSet.add(c));
+  });
+  const pinned = CAT_PINNED.filter(c => catSet.has(c));
+  const rest = Array.from(catSet).filter(c => !CAT_PINNED.includes(c)).sort((a,b) => a.localeCompare(b,'th'));
+  const promoNames = getActivePromoNames();
+
+  const pillsEl = document.getElementById('catPills');
+  pillsEl.innerHTML = '';
+
+  promoNames.forEach(pn => {
+    const btn = document.createElement('button');
+    btn.className = 'pill pill-promo';
+    btn.textContent = '🔥 ' + pn;
+    btn.dataset.cat = 'promo:' + pn;
+    btn.onclick = () => setActiveCat('promo:' + pn);
+    pillsEl.appendChild(btn);
+  });
+
+  ['ทุกหมวด', ...pinned, ...rest].forEach(c => {
+    const btn = document.createElement('button');
+    const isAll = c === 'ทุกหมวด';
+    btn.className = 'pill' + (c === 'ราคาพิเศษ' ? ' pill-special' : '');
+    if (isAll && !activeCat) btn.classList.add('active');
+    btn.textContent = c;
+    btn.onclick = () => setActiveCat(isAll ? '' : c);
+    pillsEl.appendChild(btn);
+  });
+  syncPillActive();
+}
+function syncPillActive() {
+  document.querySelectorAll('#catPills .pill').forEach(el => {
+    const catVal = el.dataset.cat || el.textContent;
+    const isActive = activeCat === '' ? el.textContent === 'ทุกหมวด' : catVal === activeCat;
+    el.classList.toggle('active', isActive);
+  });
+}
+function setActiveCat(val) {
+  if (val) { const s = document.getElementById('search'); if (s) s.value = ''; }
+  activeCat = val;
+  syncPillActive();
+  render();
+}
+function setSort(v) {
+  sortMode = v;
+  document.getElementById('sortSelD').value = v;
+  document.getElementById('sortSelM').value = v;
+  render();
+}
+
+let searchDebounce = null;
+function onSearchInput() {
+  clearTimeout(searchDebounce);
+  searchDebounce = setTimeout(() => {
+    const q = document.getElementById('search').value.trim();
+    if (q && activeCat) { setActiveCat(''); }
+    else render();
+  }, 250);
+}
+
+// ── LOAD DATA ──
+const CACHE_KEY = 'drugDataCache_v1';
+const CACHE_TS_KEY = 'drugDataCacheTs_v1';
+const LOAD_TIMEOUT = 30000;
+const MAX_RETRIES = 2;
+
 function normalizeRows(json) {
   return json
     .filter(r => r.name && r.name.toString().trim() !== '')
@@ -1637,7 +1469,6 @@ function normalizeRows(json) {
       barcode:  (r.barcode || '').toString().trim(),
       image:    (r.image || '').toString().trim(),
       group:    (r.group || '').toString().trim(),
-      // คอลัมน์ใหม่ (ถ้า Apps Script ยังไม่ส่งมา จะเป็นค่าว่าง = ไม่มีผลอะไร)
       stock:      (r.stock || '').toString().trim(),
       freebie:    (r.freebie || '').toString().trim(),
       promoPrice: typeof r.promoPrice === 'number' ? r.promoPrice : parseFloat(r.promoPrice) || 0,
@@ -1646,23 +1477,15 @@ function normalizeRows(json) {
     }));
 }
 
-// อัปเดตหัวสถิติ + ตารางจาก allData ปัจจุบัน (นับเฉพาะสินค้าที่มีของ)
 function applyData(loadedAt) {
-  const inStock = allData.filter(d => !isOutOfStock(d));
-  const nums = inStock.map(d => d.price).filter(p => typeof p === 'number' && p > 0);
-  document.getElementById('totalCount').textContent = inStock.length.toLocaleString();
-  if (nums.length) {
-    document.getElementById('minPrice').textContent = Math.min(...nums).toLocaleString();
-    document.getElementById('maxPrice').textContent = Math.max(...nums).toLocaleString();
-  }
   const ts = loadedAt ? new Date(loadedAt) : new Date();
   document.getElementById('updatedAt').textContent =
-    'โหลดข้อมูลเมื่อ ' + ts.toLocaleString('th-TH', {day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    'อัปเดตล่าสุด ' + ts.toLocaleString('th-TH', {day:'numeric',month:'short',year:'2-digit',hour:'2-digit',minute:'2-digit'});
   buildCatPills();
   render();
+  updateCartUI();
 }
 
-// โชว์ข้อมูลที่แคชไว้ทันที (ถ้ามี) เพื่อไม่ต้องรอเน็ต
 function showCachedData() {
   try {
     const raw = localStorage.getItem(CACHE_KEY);
@@ -1682,7 +1505,6 @@ function loadSheet(attempt) {
 
   function fail(msg) {
     delete window[cbName];
-    // ถ้ามีข้อมูลเก่าให้ดูอยู่แล้ว ไม่ต้องขึ้นจอ error ทับ — แค่เตือนเบาๆ
     if (allData.length) {
       document.getElementById('errorBox').innerHTML =
         '<div class="error-box" style="background:#fef9c3;border-color:#fde047;color:#854d0e">' +
@@ -1694,13 +1516,9 @@ function loadSheet(attempt) {
         `<div class="error-box">⚠️ <strong>โหลดข้อมูลไม่ได้</strong> — กรุณาลองรีเฟรชใหม่<br><code>${msg}</code></div>`;
     }
   }
-
   function retryOrFail(msg) {
-    if (attempt < MAX_RETRIES) {
-      setTimeout(() => loadSheet(attempt + 1), 1500 * (attempt + 1));
-    } else {
-      fail(msg);
-    }
+    if (attempt < MAX_RETRIES) setTimeout(() => loadSheet(attempt + 1), 1500 * (attempt + 1));
+    else fail(msg);
   }
 
   const timeout = setTimeout(() => retryOrFail('Request timeout'), LOAD_TIMEOUT);
@@ -1714,7 +1532,7 @@ function loadSheet(attempt) {
       try {
         localStorage.setItem(CACHE_KEY, JSON.stringify(allData));
         localStorage.setItem(CACHE_TS_KEY, String(now));
-      } catch(_) { /* localStorage เต็ม/ปิดอยู่ — ข้ามได้ */ }
+      } catch(_) {}
       document.getElementById('errorBox').innerHTML = '';
       applyData(now);
     } catch(e) {
@@ -1728,34 +1546,52 @@ function loadSheet(attempt) {
   document.head.appendChild(script);
 }
 
-// ปุ่ม 🔄 — บังคับโหลดข้อมูลล่าสุดจากชีตทันที
 function manualRefresh() {
   document.getElementById('errorBox').innerHTML = '';
   showToast('🔄 กำลังโหลดข้อมูลล่าสุด…');
   loadSheet();
 }
-
-// สลับกลับมาที่แท็บ/แอป แล้วข้อมูลเก่ากว่า 5 นาที → โหลดใหม่ให้อัตโนมัติ
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState !== 'visible') return;
   const ts = parseInt(localStorage.getItem(CACHE_TS_KEY)) || 0;
   if (Date.now() - ts > 5 * 60 * 1000) loadSheet();
 });
 
-function render() {
+// ── RENDER (desktop table + mobile cards) ──
+function isMobile() { return window.innerWidth <= 600; }
+
+function itemHints(d, promo) {
+  const bits = [];
+  if (promo) {
+    const untilTxt = promo.until ? ' ถึง ' + promo.until.toLocaleDateString('th-TH', { day:'numeric', month:'short' }) : '';
+    bits.push(`<span class="hint-promo">🔥 ${promo.name}${untilTxt}</span>`);
+  }
+  const tiers = getTiers(d.name);
+  if (tiers && tiers.length > 1) bits.push(`<span class="hint-tier">🏷️ ราคาดีลพิเศษ</span>`);
+  const rules = parseFreebieRules(d.freebie);
+  if (rules.length) {
+    const u = (d.unit || '').replace(/^\d+\s*/, '');
+    bits.push(`<span class="hint-free">🎁 ${rules.map(r => `ซื้อ ${r.min} ${u} ${r.gift}`).join(' · ')}</span>`);
+  }
+  const grp = parseGroup(d.group);
+  if (grp && grp.step > 1) {
+    const gu = (d.unit || '').replace(/^\d+\s*/, '');
+    bits.push(`<span class="hint-grp">📦 ขั้นต่ำ ${grp.step} ${gu}</span>`);
+  }
+  return bits.join(' · ');
+}
+
+function getFiltered() {
   const q = document.getElementById('search').value.toLowerCase().trim();
   const allFiltered = allData.filter(d => {
-    if (isOutOfStock(d)) return false; // สินค้าหมด: ซ่อนจากลูกค้า (ข้อมูลยังอยู่ในชีต)
+    if (isOutOfStock(d)) return false;
     const matchQ = !q ||
       d.name.toLowerCase().includes(q) ||
       (d.generic && d.generic.toLowerCase().includes(q)) ||
       (d.barcode && d.barcode.includes(q));
-    // มีคำค้นหา = ค้นทั้งหมดทุกหมวด (ไม่ติดหมวดที่เลือกอยู่)
     let matchC;
-    if (q) {
-      matchC = true;
-    } else if (activeCat.startsWith('promo:')) {
-      // แท็บโปร: เอาเฉพาะสินค้าที่ติดโปรชื่อนั้นและยังไม่หมดเขต
+    if (q) matchC = true;
+    else if (activeCat.startsWith('promo:')) {
       const promo = getActivePromo(d);
       matchC = !!promo && promo.name === activeCat.slice(6);
     } else {
@@ -1763,136 +1599,180 @@ function render() {
     }
     return matchQ && matchC;
   });
-  // Deduplicate: keep only first row per name
   const seen = new Set();
-  const filtered = allFiltered.filter(d => {
+  let filtered = allFiltered.filter(d => {
     const key = d.name.trim();
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
   });
-  // เปิดแท็บโปรอยู่: โชว์ชื่อโปร + วันหมดเขตรวมไว้ที่หัวรายการทีเดียว (แถวในตารางไม่ต้องแปะป้ายซ้ำ)
+  if (sortMode === 'low') filtered.sort((a,b) => getBasePrice(a) - getBasePrice(b));
+  else if (sortMode === 'high') filtered.sort((a,b) => getBasePrice(b) - getBasePrice(a));
+  else if (sortMode === 'name') filtered.sort((a,b) => a.name.localeCompare(b.name, 'th'));
+  else if (sortMode === 'promo') filtered.sort((a,b) => (getActivePromo(b)?1:0) - (getActivePromo(a)?1:0));
+  return filtered;
+}
+
+function render() {
+  const filtered = getFiltered();
   let promoHeader = '';
   if (activeCat.startsWith('promo:') && filtered.length) {
-    const firstPromo = getActivePromo(filtered[0]);
-    const untilTxt = firstPromo && firstPromo.until
-      ? ' ถึง ' + firstPromo.until.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' })
-      : '';
+    const fp = getActivePromo(filtered[0]);
+    const untilTxt = fp && fp.until ? ' ถึง ' + fp.until.toLocaleDateString('th-TH', { day:'numeric', month:'short' }) : '';
     promoHeader = ` · <b style="color:#dc2626">🔥 ${activeCat.slice(6)}${untilTxt}</b>`;
   }
-  const totalVisible = allData.filter(d => !isOutOfStock(d)).length;
+  const catLabel = activeCat.startsWith('promo:') ? activeCat.slice(6) : (activeCat || 'ทุกหมวด');
   document.getElementById('countInfo').innerHTML =
-    `แสดง <span>${filtered.length.toLocaleString()}</span> รายการ จากทั้งหมด ${totalVisible.toLocaleString()} รายการ${promoHeader}`;
+    `แสดง <span class="cnt num">${filtered.length.toLocaleString()}</span> รายการ · หมวด <strong style="color:var(--text)">${catLabel}</strong>${promoHeader}`;
+
+  const inPromoTab = activeCat.startsWith('promo:');
+  if (isMobile()) {
+    renderCards(filtered, inPromoTab);
+  } else {
+    renderTable(filtered, inPromoTab);
+  }
+}
+
+function priceCellHtml(d, promo) {
+  if (promo && typeof d.price === 'number') {
+    return `<div class="p-old num">${d.price.toLocaleString()} ฿</div><div class="p-cur num" style="color:#dc2626">${promo.price.toLocaleString()} ฿</div>`;
+  }
+  return `<div class="p-cur num">${typeof d.price === 'number' ? d.price.toLocaleString() + ' ฿' : (d.price || 'สอบถามราคา')}</div>`;
+}
+
+function dataAttrs(d) {
+  return `data-name="${d.name.replace(/"/g,'&quot;')}" data-unit="${(d.unit||'').replace(/"/g,'&quot;')}" data-generic="${(d.generic||'').replace(/"/g,'&quot;')}" data-image="${encodeURIComponent(d.image||'')}"`;
+}
+
+function thumbHtml(d, cls) {
+  const firstImg = d.image ? d.image.split(',')[0].trim() : '';
+  if (!firstImg) return `<div class="thumb-ph"></div>`;
+  const src = getDriveImgUrl(firstImg);
+  return `<img class="drug-thumb" src="${src}" alt="" loading="lazy" onclick="event.stopPropagation();openImgPopup('${src}','${d.name.replace(/'/g,"\\'")}')">`;
+}
+
+function ctlHtml(d, mode) {
+  const id = getCartId(d.name);
+  const grp = parseGroup(d.group);
+  const minQ = grp && grp.step > 1 ? 1 : extractMinQty(d.unit);
+  const qty = cart[id] ? cart[id].qty : 0;
+  const nameAttr = encodeURIComponent(d.name);
+  if (mode === 'card') {
+    if (!qty) return `<button class="pcard-add" data-n="${nameAttr}" onclick="rowAdd(this)">+</button>`;
+    return `<div class="vstep">
+      <button class="vinc" data-n="${nameAttr}" onclick="rowAdd(this)">+</button>
+      <span class="vqty num">${qty}</span>
+      <button class="vdec" data-n="${nameAttr}" onclick="rowDec(this)">−</button>
+    </div>`;
+  }
+  if (!qty) return `<button class="add-btn" data-n="${nameAttr}" onclick="rowAdd(this)"><span style="font-size:15px;line-height:1">+</span> ใส่ตะกร้า</button>`;
+  return `<div class="stepper">
+    <button class="sbtn" data-n="${nameAttr}" onclick="rowDec(this)">−</button>
+    <span class="sqty num">${qty}</span>
+    <button class="sbtn inc" data-n="${nameAttr}" onclick="rowAdd(this)">+</button>
+  </div>`;
+}
+
+function rowAdd(btn) {
+  const name = decodeURIComponent(btn.dataset.n);
+  const d = allData.find(x => x.name.trim() === name.trim());
+  if (!d) return;
+  const grp = parseGroup(d.group);
+  const minQ = grp && grp.step > 1 ? 1 : extractMinQty(d.unit);
+  const id = getCartId(name);
+  if (cart[id]) updateCartQty(id, minQ);
+  else addToCart(name, getBasePrice(d), d.unit, minQ);
+  render();
+}
+function rowDec(btn) {
+  const name = decodeURIComponent(btn.dataset.n);
+  const d = allData.find(x => x.name.trim() === name.trim());
+  if (!d) return;
+  const grp = parseGroup(d.group);
+  const minQ = grp && grp.step > 1 ? 1 : extractMinQty(d.unit);
+  updateCartQty(getCartId(name), -minQ);
+  render();
+}
+
+function renderTable(filtered, inPromoTab) {
   const tbody = document.getElementById('tbody');
   if (!filtered.length) {
-    tbody.innerHTML = '<tr><td colspan="5"><div class="state-box"><p>ไม่พบรายการที่ค้นหา</p></div></td></tr>';
+    tbody.innerHTML = '<tr><td colspan="5"><div class="state-box">ไม่พบรายการที่ค้นหา</div></td></tr>';
     return;
   }
   tbody.innerHTML = filtered.map(d => {
-    const id = getCartId(d.name);
-    const hasTiers = getTiers(d.name) && getTiers(d.name).length > 1;
-    const grp = parseGroup(d.group);
-    const grpUnit = (d.unit || '').replace(/^\d+\s*/, '');
-    const groupHint = grp && grp.step > 1
-      ? `<br><small style="color:var(--accent,#2D6A4F);font-weight:500;white-space:nowrap">📦 ขั้นต่ำ ${grp.step} ${grpUnit}</small>`
-      : '';
-    const oos = isOutOfStock(d);
     const promo = getActivePromo(d);
-    // ตอนเปิดแท็บโปรอยู่: ทุกตัวคือโปรเดียวกัน ไม่ต้องแปะป้ายแดงซ้ำทุกแถว (แถวเตี้ยลง ดูง่าย)
-    const inPromoTab = activeCat.startsWith('promo:');
-    let priceHtml;
-    if (promo && typeof d.price === 'number') {
-      // โปรราคา: ขีดฆ่าราคาเดิม โชว์ราคาโปร + วันหมดเขต
-      const untilTxt = promo.until
-        ? ' ถึง ' + promo.until.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' })
-        : '';
-      priceHtml = `<s style="opacity:.5;font-size:.85em">${d.price.toLocaleString()} ฿</s> ` +
-        `<b style="color:#dc2626;font-size:1.2em;white-space:nowrap">${promo.price.toLocaleString()} ฿</b>` +
-        (inPromoTab ? '' :
-          `<br><small style="display:inline-block;background:#dc2626;color:#fff;font-weight:600;padding:2px 8px;border-radius:8px;margin-top:2px;line-height:1.4">🔥 ${promo.name}${untilTxt}</small>`);
-    } else {
-      priceHtml = typeof d.price === 'number' ? d.price.toLocaleString() + ' ฿' : (d.price || 'สอบถามราคา');
-    }
-    const p = priceHtml
-      + (hasTiers && typeof d.price === 'number' ? '<br><small style="color:var(--accent-2,#f59e0b);font-weight:500">🏷️ ราคาดีลพิเศษ</small>' : '')
-      + freebieHintHtml(d)
-      + groupHint;
-    const isMobile = window.innerWidth <= 600;
-    const price = getBasePrice(d);
-    // สินค้าในกลุ่มสั่งขั้นต่ำรวม: ปลดล็อกให้เลือกทีละ 1 (คละข้ามสินค้าได้) ขั้นต่ำคุมที่ยอดรวมกลุ่มตอนสั่ง
-    const minQ = grp && grp.step > 1 ? 1 : extractMinQty(d.unit);
-    const addBtn = `<button class="add-btn" data-id="${id}" data-price="${price}" data-unit="${d.unit}" onclick="addFromRow(this)">+ ตะกร้า</button>`;
-    const qtyWrap = oos
-      ? `<span class="badge" style="background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;font-weight:600;white-space:nowrap">❌ สินค้าหมด</span>`
-      : isMobile
-      ? `<div class="qty-wrap" style="justify-content:center">${addBtn}</div>`
-      : `<div class="qty-wrap" style="justify-content:center">
-          <button class="qty-btn" onclick="changeQty('${id}',-${minQ})">−</button>
-          <input class="qty-input" id="qty_${id}" type="number" value="${minQ}" min="${minQ}" step="${minQ}" max="999">
-          <button class="qty-btn" onclick="changeQty('${id}',${minQ})">+</button>
-          ${addBtn}
-        </div>`;
-    if (isMobile) {
-      const firstImg = d.image ? d.image.split(',')[0].trim() : '';
-      const imgHtml = firstImg ? `<img class="drug-thumb" src="${getDriveImgUrl(firstImg)}" alt="" onclick="event.stopPropagation();openImgPopup('${getDriveImgUrl(firstImg)}','${d.name.replace(/'/g,"\\'")}')">` : '';
-      const clickAttr = `data-name="${d.name.replace(/"/g,'&quot;')}" data-unit="${d.unit.replace(/"/g,'&quot;')}" data-generic="${(d.generic||'').replace(/"/g,'&quot;')}" data-image="${encodeURIComponent(d.image||'')}"`;
-      return `<tr${oos ? ' style="opacity:.6"' : ''}>
-        <td><div class="drug-name-wrap">${imgHtml}<span title="${d.name}" ${clickAttr} onclick="openNamePopupFromEl(this)" style="cursor:pointer">${d.name}</span></div></td>
-        <td class="cp-val" ${clickAttr} onclick="openNamePopupFromEl(this)" style="cursor:pointer">${p}</td>
-        <td style="text-align:center">${qtyWrap}</td>
-      </tr>`;
-    }
-    const firstImgD = d.image ? d.image.split(',')[0].trim() : '';
-    const imgHtml = firstImgD ? `<img class="drug-thumb" src="${getDriveImgUrl(firstImgD)}" alt="" onclick="event.stopPropagation();openImgPopup('${getDriveImgUrl(firstImgD)}','${d.name.replace(/'/g,"\\'")}')">` : '';
-    const dClickAttr = `data-name="${d.name.replace(/"/g,'&quot;')}" data-unit="${d.unit.replace(/"/g,'&quot;')}" data-generic="${(d.generic||'').replace(/"/g,'&quot;')}" data-image="${encodeURIComponent(d.image||'')}"`;
-    return `<tr${oos ? ' style="opacity:.6"' : ''}>
-      <td><div class="drug-name-wrap">${imgHtml}<span title="${d.name}" ${dClickAttr} onclick="openNamePopupFromEl(this)" style="cursor:pointer">${d.name}</span></div></td>
-      <td class="cp-val" ${dClickAttr} onclick="openNamePopupFromEl(this)" style="cursor:pointer">${p}</td>
-      <td class="cu-val" ${dClickAttr} onclick="openNamePopupFromEl(this)" style="cursor:pointer">${d.unit}</td>
-      <td class="cat-cell">${d.category.split(',').map(c => c.trim()).filter(Boolean).map(c => getBadgeHtml(c)).join(' ')}</td>
-      <td style="text-align:center">${qtyWrap}</td>
+    const hints = inPromoTab ? itemHints(d, null) : itemHints(d, promo);
+    return `<tr>
+      <td>
+        <div class="drug-name-wrap" ${dataAttrs(d)} onclick="openNamePopupFromEl(this)">
+          ${thumbHtml(d)}
+          <div style="min-width:0">
+            <div class="d-name" title="${d.name.replace(/"/g,'&quot;')}">${d.name}</div>
+            ${d.generic ? `<div class="d-gen">${d.generic}</div>` : ''}
+            ${hints ? `<div class="d-hints">${hints}</div>` : ''}
+          </div>
+        </div>
+      </td>
+      <td class="cp-val">${priceCellHtml(d, promo)}</td>
+      <td class="cu-val">${d.unit}</td>
+      <td class="cat-cell">${d.category.split(',').map(c => c.trim()).filter(Boolean).map(getBadgeHtml).join(' ')}</td>
+      <td class="cq-cell">${ctlHtml(d, 'table')}</td>
     </tr>`;
   }).join('');
 }
 
-function changeQty(id, delta) {
-  const input = document.getElementById('qty_' + id);
-  if (!input) return;
-  const min = parseInt(input.min) || 1;
-  const step = parseInt(input.step) || 1;
-  const cur = parseInt(input.value) || min;
-  input.value = Math.max(min, cur + delta);
+function renderCards(filtered, inPromoTab) {
+  const list = document.getElementById('cardList');
+  if (!filtered.length) {
+    list.innerHTML = '<div class="state-box">ไม่พบรายการที่ค้นหา</div>';
+    return;
+  }
+  list.innerHTML = filtered.map(d => {
+    const promo = getActivePromo(d);
+    const hints = inPromoTab ? itemHints(d, null) : itemHints(d, promo);
+    const badges = d.category.split(',').map(c => c.trim()).filter(Boolean).slice(0,2).map(getBadgeHtml).join(' ');
+    const priceRow = promo && typeof d.price === 'number'
+      ? `<span class="p-old num">${d.price.toLocaleString()} ฿</span><span class="p-cur num" style="color:#dc2626">${promo.price.toLocaleString()} ฿</span>`
+      : `<span class="p-cur num">${typeof d.price === 'number' ? d.price.toLocaleString() + ' ฿' : (d.price || 'สอบถามราคา')}</span>`;
+    return `<div class="pcard">
+      ${thumbHtml(d)}
+      <div class="pcard-mid" ${dataAttrs(d)} onclick="openNamePopupFromEl(this)">
+        <div style="margin-bottom:2px">${badges}</div>
+        <div class="pcard-name">${d.name}</div>
+        <div class="pcard-sub">${[d.generic, d.unit].filter(Boolean).join(' · ')}</div>
+        <div class="pcard-price-row">${priceRow}</div>
+        ${hints ? `<div class="pcard-hints">${hints}</div>` : ''}
+      </div>
+      <div class="pcard-ctl">${ctlHtml(d, 'card')}</div>
+    </div>`;
+  }).join('');
 }
 
-function addFromRow(btn) {
-  const id = btn.dataset.id;
-  const price = parseFloat(btn.dataset.price) || 0;
-  const unit = btn.dataset.unit;
-  // หาชื่อจาก allData
-  const item = allData.find(d => getCartId(d.name) === id);
-  const name = item ? item.name : id;
-  const input = document.getElementById('qty_' + id);
-  const qty = parseInt(input?.value) || 1;
-  addToCart(name, price || item?.price || 'สอบถามราคา', unit, qty);
-  if (input) input.value = 1;
+// ── PILLS SLOT (mobile: ใน header / desktop: ใน content) ──
+function relocatePills() {
+  const pills = document.getElementById('catPills');
+  const target = isMobile() ? document.getElementById('pillsSlotHeader') : document.getElementById('pillsSlotContent');
+  if (pills.parentElement !== target) target.appendChild(pills);
 }
-
-function openNamePopupFromEl(el) {
-  const name = el.dataset.name || el.textContent;
-  const unit = el.dataset.unit || '';
-  const generic = el.dataset.generic || '';
-  const image = decodeURIComponent((el.dataset.image || '').trim());
-  openNamePopup(name, generic, image, unit);
-}
+let lastMobile = null;
+window.addEventListener('resize', () => {
+  const m = isMobile();
+  if (m !== lastMobile) {
+    lastMobile = m;
+    relocatePills();
+    render();
+  }
+});
+lastMobile = isMobile();
+relocatePills();
 
 loadSheet();
 updateCartUI();
 
-// PWA: ให้ติดตั้งเป็นแอปได้ + เปิดดูราคาแบบ offline ได้
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js').catch(() => {});
 }
 </script>
-
-
-</body></html>
+</body>
+</html>
