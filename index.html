@@ -95,8 +95,13 @@ header.app-hdr { background:linear-gradient(135deg,var(--hdr-a),var(--hdr-b)); b
 .pill-promo.active { background:#c0392b; border-color:#ffb3a8; }
 
 /* ===== CONTENT ===== */
-.content { max-width:1060px; margin:0 auto; padding:20px clamp(14px,3vw,26px) 60px; }
-#pillsSlotContent { margin-bottom:16px; }
+/* จอคอม: หมวดหมู่เป็น sidebar ซ้าย เรียงตามตัวอักษร */
+.content { max-width:1060px; margin:0 auto; padding:20px clamp(14px,3vw,26px) 60px; display:grid; grid-template-columns:220px minmax(0,1fr); gap:22px; align-items:start; }
+#pillsSlotContent { position:sticky; top:150px; max-height:calc(100vh - 170px); overflow-y:auto; padding-right:4px; }
+.side-ttl { font-size:11.5px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:9px; padding-left:3px; }
+#pillsSlotContent #catPills { flex-direction:column; align-items:stretch; gap:6px; }
+#pillsSlotContent .pill { text-align:left; border-radius:11px; padding:8px 13px; white-space:normal; line-height:1.45; }
+.main-col { min-width:0; }
 #errorBox .error-box { background:#fde8e8; border:1px solid #f5b5b5; color:#a01515; border-radius:12px; padding:12px 16px; margin-bottom:14px; font-size:13.5px; }
 .list-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px; }
 #countInfo { font-size:13px; color:var(--muted); }
@@ -310,7 +315,7 @@ footer { text-align:center; padding:22px; font-size:12px; color:var(--muted); bo
   #pillsSlotHeader #catPills::-webkit-scrollbar { display:none; }
   #pillsSlotContent { display:none; }
   #sortSelM { display:block; flex-shrink:0; }
-  .content { padding:14px 14px 100px; }
+  .content { display:block; padding:14px 14px 100px; }
   .table-card { display:none; }
   #cardList { display:flex; }
   #histFab { display:grid; }
@@ -392,7 +397,8 @@ footer { text-align:center; padding:22px; font-size:12px; color:var(--muted); bo
 </header>
 
 <div class="content">
-  <div id="pillsSlotContent"><div id="catPills"></div></div>
+  <div id="pillsSlotContent"><div class="side-ttl">หมวดหมู่</div><div id="catPills"></div></div>
+  <div class="main-col">
   <div id="errorBox"></div>
   <div class="list-head">
     <div id="countInfo">กำลังโหลดรายการยา…</div>
@@ -421,6 +427,7 @@ footer { text-align:center; padding:22px; font-size:12px; color:var(--muted); bo
     </table>
   </div>
   <div id="cardList"></div>
+  </div>
 </div>
 
 <footer>ร้านยา Best · ราคาอาจมีการเปลี่ยนแปลงโดยไม่แจ้งล่วงหน้า · สอบถามเพิ่มเติมติดต่อร้าน</footer>
@@ -638,7 +645,6 @@ function catOf(n) {
   return 'อื่นๆ';
 }
 
-const CAT_PINNED = ['ราคาพิเศษ', 'MaxxLife', 'Mega', 'น้ำตาเทียม'];
 const CAT_STYLE = {
   'ยาเบาหวาน':['#ebf3ff','#1e4d9b'], 'ยาความดัน':['#e8f7ef','#1a5c3a'], 'ยาไขมัน':['#fff5e6','#7a4500'],
   'ยาระบบกระดูกและกล้ามเนื้อ':['#fde8f4','#9c1565'], 'ยาระบบทางเดินหายใจ':['#e8fde8','#156515'],
@@ -1361,8 +1367,8 @@ function buildCatPills() {
     if (isOutOfStock(d)) return;
     d.category.split(',').map(c => c.trim()).filter(Boolean).forEach(c => catSet.add(c));
   });
-  const pinned = CAT_PINNED.filter(c => catSet.has(c));
-  const rest = Array.from(catSet).filter(c => !CAT_PINNED.includes(c)).sort((a,b) => a.localeCompare(b,'th'));
+  // เรียงหมวดตามตัวอักษรล้วน (ผู้ใช้ขอ — ไม่ปักหมุดหมวดพิเศษแล้ว)
+  const cats = ['ทุกหมวด', ...Array.from(catSet).sort((a, b) => a.localeCompare(b, 'th'))];
   const promoNames = getActivePromoNames();
 
   const pillsEl = document.getElementById('catPills');
@@ -1377,7 +1383,7 @@ function buildCatPills() {
     pillsEl.appendChild(btn);
   });
 
-  ['ทุกหมวด', ...pinned, ...rest].forEach(c => {
+  cats.forEach(c => {
     const btn = document.createElement('button');
     const isAll = c === 'ทุกหมวด';
     btn.className = 'pill' + (c === 'ราคาพิเศษ' ? ' pill-special' : '');
