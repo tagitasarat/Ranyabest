@@ -52,7 +52,7 @@ input, button, select, textarea { font-family:inherit; }
 
 /* ===== HEADER ===== */
 header.app-hdr { background:linear-gradient(135deg,var(--hdr-a),var(--hdr-b)); border-bottom:1px solid var(--hdr-line); position:sticky; top:0; z-index:100; box-shadow:0 4px 24px -8px rgba(0,0,0,.5); }
-.hdr-in { max-width:1060px; margin:0 auto; padding:16px clamp(14px,3vw,26px) 16px; }
+.hdr-in { max-width:none; margin:0 auto; padding:16px clamp(14px,2vw,28px) 16px; }
 .hdr-row1 { display:flex; align-items:center; justify-content:space-between; gap:14px; }
 .hdr-brand { display:flex; align-items:center; gap:12px; min-width:0; }
 .hdr-logo { width:46px; height:46px; border-radius:50%; box-shadow:0 4px 14px -4px rgba(0,0,0,.5); border:2px solid rgba(255,255,255,.35); flex-shrink:0; }
@@ -96,7 +96,7 @@ header.app-hdr { background:linear-gradient(135deg,var(--hdr-a),var(--hdr-b)); b
 
 /* ===== CONTENT ===== */
 /* จอคอม: หมวดหมู่เป็น sidebar ซ้าย เรียงตามตัวอักษร */
-.content { max-width:1060px; margin:0 auto; padding:20px clamp(14px,3vw,26px) 60px; display:grid; grid-template-columns:220px minmax(0,1fr); gap:22px; align-items:start; }
+.content { max-width:none; margin:0; padding:20px clamp(14px,2vw,28px) 60px; display:grid; grid-template-columns:230px minmax(0,1fr); gap:24px; align-items:start; }
 #pillsSlotContent { position:sticky; top:150px; max-height:calc(100vh - 170px); overflow-y:auto; padding-right:4px; }
 .side-ttl { font-size:11.5px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:9px; padding-left:3px; }
 #pillsSlotContent #catPills { flex-direction:column; align-items:stretch; gap:6px; }
@@ -1367,12 +1367,20 @@ function buildCatPills() {
     if (isOutOfStock(d)) return;
     d.category.split(',').map(c => c.trim()).filter(Boolean).forEach(c => catSet.add(c));
   });
-  // เรียงหมวดตามตัวอักษรล้วน (ผู้ใช้ขอ — ไม่ปักหมุดหมวดพิเศษแล้ว)
-  const cats = ['ทุกหมวด', ...Array.from(catSet).sort((a, b) => a.localeCompare(b, 'th'))];
+  // เรียง: ราคาพิเศษบนสุด → แท็บโปร 🔥 → ทุกหมวด → ที่เหลือตามตัวอักษร
+  const rest = Array.from(catSet).filter(c => c !== 'ราคาพิเศษ').sort((a, b) => a.localeCompare(b, 'th'));
   const promoNames = getActivePromoNames();
 
   const pillsEl = document.getElementById('catPills');
   pillsEl.innerHTML = '';
+
+  if (catSet.has('ราคาพิเศษ')) {
+    const btn = document.createElement('button');
+    btn.className = 'pill pill-special';
+    btn.textContent = 'ราคาพิเศษ';
+    btn.onclick = () => setActiveCat('ราคาพิเศษ');
+    pillsEl.appendChild(btn);
+  }
 
   promoNames.forEach(pn => {
     const btn = document.createElement('button');
@@ -1383,7 +1391,7 @@ function buildCatPills() {
     pillsEl.appendChild(btn);
   });
 
-  cats.forEach(c => {
+  ['ทุกหมวด', ...rest].forEach(c => {
     const btn = document.createElement('button');
     const isAll = c === 'ทุกหมวด';
     btn.className = 'pill' + (c === 'ราคาพิเศษ' ? ' pill-special' : '');
