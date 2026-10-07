@@ -1176,19 +1176,23 @@ function reorder(idx) {
   const history = JSON.parse(localStorage.getItem('orderHistory') || '[]');
   const order = history[idx];
   if (!order) return;
+  const skipped = [];
   order.items.forEach(item => {
     const current = allData.find(d => d.name === item.name);
-    const currentPrice = current ? getBasePrice(current) : item.price;
-    const currentUnit = current ? current.unit : item.unit;   // หน่วยปัจจุบัน ไม่ใช่หน่วย ณ วันสั่งเดิม
+    // ของที่ตอนนี้หมด/ไม่มีในระบบแล้ว ไม่ใส่กลับเข้าตะกร้า
+    if (!current || isOutOfStock(current)) { skipped.push(item.name); return; }
+    const currentPrice = getBasePrice(current);
     const id = getCartId(item.name);
-    cart[id] = { name: item.name, price: currentPrice, unit: currentUnit, qty: item.qty };
+    cart[id] = { name: item.name, price: currentPrice, unit: current.unit, qty: item.qty };
   });
   saveCart();
   updateCartUI();
   closeOverlays();
   document.getElementById('cartPanel').classList.add('open');
   renderCartPanel();
-  showToast('🔄 ใส่ตะกร้าแล้ว ราคาอัปเดตเป็นปัจจุบันแล้วครับ');
+  showToast(skipped.length
+    ? `🔄 ใส่ตะกร้าแล้ว — ยกเว้น ${skipped.join(', ')} (หมด/ไม่มีแล้ว)`
+    : '🔄 ใส่ตะกร้าแล้ว ราคาอัปเดตเป็นปัจจุบันแล้วครับ');
 }
 
 // ── TOAST ──
@@ -1517,14 +1521,24 @@ function normalizeRows(json) {
 // (กันเคสร้านแก้หน่วยในชีตแล้ว แต่ตะกร้า/สั่งซ้ำของลูกค้ายังจำหน่วยเก่า → จัดยาผิด)
 function syncCartWithData() {
   let changed = false;
-  Object.values(cart).forEach(it => {
+  const removed = [];
+  Object.entries(cart).forEach(([id, it]) => {
     const d = allData.find(x => x.name.trim() === it.name.trim());
-    if (!d) return;
+    // สินค้าถูกลบ/เปลี่ยนชื่อในชีต (กันสั่งได้ราคา 0) หรือติ๊ก "หมด" แล้ว → เอาออกจากตะกร้า
+    if (!d || isOutOfStock(d)) {
+      removed.push(it.name);
+      delete cart[id];
+      changed = true;
+      return;
+    }
     if (it.unit !== d.unit) { it.unit = d.unit; changed = true; }
     const p = getBasePrice(d);
     if (typeof p === 'number' && p > 0 && it.price !== p) { it.price = p; changed = true; }
   });
   if (changed) saveCart();
+  if (removed.length) {
+    showToast(`⚠️ นำออกจากตะกร้า (สินค้าหมด/ไม่มีแล้ว): ${removed.join(', ')}`);
+  }
 }
 
 function applyData(loadedAt) {
