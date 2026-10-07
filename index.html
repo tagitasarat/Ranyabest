@@ -1083,7 +1083,10 @@ async function submitOrder() {
   const itemsText = items.map((item, i) => {
     const line = getEffectivePrice(item.name, item.qty) * item.qty;
     const fb = getFreebie(item.name, item.qty);
-    return `${i+1}. ${item.name} x${item.qty} ${item.unit} = ${line.toLocaleString()} ฿`
+    // หน่วยอิงข้อมูลล่าสุดเสมอ ไม่ใช้ค่าที่ค้างในตะกร้า
+    const d = allData.find(x => x.name.trim() === item.name.trim());
+    const unitNow = d ? d.unit : item.unit;
+    return `${i+1}. ${item.name} x${item.qty} ${unitNow} = ${line.toLocaleString()} ฿`
       + (fb ? `\n   🎁 ของแถม: ${fb.gift}` : '');
   }).join('\n');
 
@@ -1176,8 +1179,9 @@ function reorder(idx) {
   order.items.forEach(item => {
     const current = allData.find(d => d.name === item.name);
     const currentPrice = current ? getBasePrice(current) : item.price;
+    const currentUnit = current ? current.unit : item.unit;   // หน่วยปัจจุบัน ไม่ใช่หน่วย ณ วันสั่งเดิม
     const id = getCartId(item.name);
-    cart[id] = { name: item.name, price: currentPrice, unit: item.unit, qty: item.qty };
+    cart[id] = { name: item.name, price: currentPrice, unit: currentUnit, qty: item.qty };
   });
   saveCart();
   updateCartUI();
@@ -1509,10 +1513,25 @@ function normalizeRows(json) {
     }));
 }
 
+// ซิงก์หน่วย/ราคาอ้างอิงในตะกร้าให้ตรงกับชีตล่าสุดทุกครั้งที่โหลดข้อมูล
+// (กันเคสร้านแก้หน่วยในชีตแล้ว แต่ตะกร้า/สั่งซ้ำของลูกค้ายังจำหน่วยเก่า → จัดยาผิด)
+function syncCartWithData() {
+  let changed = false;
+  Object.values(cart).forEach(it => {
+    const d = allData.find(x => x.name.trim() === it.name.trim());
+    if (!d) return;
+    if (it.unit !== d.unit) { it.unit = d.unit; changed = true; }
+    const p = getBasePrice(d);
+    if (typeof p === 'number' && p > 0 && it.price !== p) { it.price = p; changed = true; }
+  });
+  if (changed) saveCart();
+}
+
 function applyData(loadedAt) {
   const ts = loadedAt ? new Date(loadedAt) : new Date();
   document.getElementById('updatedAt').textContent =
     'อัปเดตล่าสุด ' + ts.toLocaleString('th-TH', {day:'numeric',month:'short',year:'2-digit',hour:'2-digit',minute:'2-digit'});
+  syncCartWithData();
   buildCatPills();
   render();
   updateCartUI();
